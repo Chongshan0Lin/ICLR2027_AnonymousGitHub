@@ -1,0 +1,12 @@
+panel,row,metric,value,ci_low,ci_high,n,note
+a,Controls only,AUROC,0.5137,0.3489,0.6712,106,AUPRC 0.3242; features num_feasible_branches|pass_at_1|effective_feasible_count
+a,State only,AUROC,0.7795,0.6705,0.8781,106,AUPRC 0.4528; features normalized_entropy|top1_mass|top1_top2_margin
+a,State + controls,AUROC,0.8044,0.7052,0.8938,106,AUPRC 0.5088; features normalized_entropy|top1_mass|top1_top2_margin|num_feasible_branches|pass_at_1|effective_feasible_count
+b,margin sextile 1,modal_switch_rate,0.244344,0.179548,0.308511,442,"108 switches, 38 questions, mean margin 0.1255"
+b,margin sextile 2,modal_switch_rate,0.015837,0.004673,0.028986,442,"7 switches, 60 questions, mean margin 0.3865"
+b,margin sextile 3,modal_switch_rate,0.002268,0.0,0.007519,441,"1 switches, 74 questions, mean margin 0.5680"
+b,margin sextile 4,modal_switch_rate,0.0,0.0,0.0,442,"0 switches, 69 questions, mean margin 0.6709"
+b,margin sextile 5,modal_switch_rate,0.004535,0.0,0.01217,441,"2 switches, 71 questions, mean margin 0.7748"
+b,margin sextile 6,modal_switch_rate,0.002262,0.0,0.008108,442,"1 switches, 54 questions, mean margin 0.9309"
+b,all cells,switch_base_rate,0.044906,,,2650,Delta = 5
+b,all cells,AUROC_neg_margin,0.934573,0.899304,0.961077,2650,"raw margin, no model"

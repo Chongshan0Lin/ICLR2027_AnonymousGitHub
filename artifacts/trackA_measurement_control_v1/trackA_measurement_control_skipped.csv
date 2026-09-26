@@ -1,0 +1,26 @@
+root,question_id,reason
+75,cd/490264,effective_feasible_count < 4 in some arm
+75,cd/490306,effective_feasible_count < 4 in some arm
+75,cd/490308,effective_feasible_count < 4 in some arm
+75,cd/490330,effective_feasible_count < 4 in some arm
+100,cd/490254,effective_feasible_count < 4 in some arm
+100,cd/490264,effective_feasible_count < 4 in some arm
+100,cd/490305,effective_feasible_count < 4 in some arm
+100,cd/490306,effective_feasible_count < 4 in some arm
+100,cd/490308,effective_feasible_count < 4 in some arm
+100,cd/490330,effective_feasible_count < 4 in some arm
+100,cd/490352,effective_feasible_count < 4 in some arm
+125,cd/490254,effective_feasible_count < 4 in some arm
+125,cd/490264,effective_feasible_count < 4 in some arm
+125,cd/490305,effective_feasible_count < 4 in some arm
+125,cd/490306,effective_feasible_count < 4 in some arm
+125,cd/490308,effective_feasible_count < 4 in some arm
+125,cd/490320,effective_feasible_count < 4 in some arm
+125,cd/490330,effective_feasible_count < 4 in some arm
+150,cd/490254,effective_feasible_count < 4 in some arm
+150,cd/490264,effective_feasible_count < 4 in some arm
+150,cd/490305,effective_feasible_count < 4 in some arm
+150,cd/490306,effective_feasible_count < 4 in some arm
+150,cd/490308,effective_feasible_count < 4 in some arm
+150,cd/490330,effective_feasible_count < 4 in some arm
+150,cd/490333,effective_feasible_count < 4 in some arm

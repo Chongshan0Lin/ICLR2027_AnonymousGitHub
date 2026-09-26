@@ -1,0 +1,479 @@
+{
+ "scope": "Qwen2.5-3B Countdown multi-root trunk that produced roots 75/100/125/150",
+ "authority_rule": "the runtime manifest wins; documented expectations are only checked against it",
+ "base_model": {
+  "path": {
+   "value": "<local-copy-of-the-base-checkpoint>",
+   "source": "launcher MODEL=",
+   "key": "MODEL",
+   "note": ""
+  },
+  "revision_or_hash": {
+   "value": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+   "source": "results/round11_3b_trunk/step0_manifest.json (sha256 b09a2717d1fce5709416f9fe23414c9f54ad1c75addac9c36779b335bb0cb9e2)",
+   "key": "start_model.revision",
+   "note": "repo Qwen/Qwen2.5-3B-Instruct. RESOLVED in v2; v1 marked this UNRESOLVED because only the launcher's local MODEL= path had been checked."
+  },
+  "step0_weight_hash_bf16": {
+   "value": "ea5d46b5ea5379c497d42622e782591d68666e8e17e749e580b52b56fd76966d",
+   "source": "results/round11_3b_trunk/step0_manifest.json (sha256 b09a2717d1fce5709416f9fe23414c9f54ad1c75addac9c36779b335bb0cb9e2)",
+   "key": "per_rank.0.weights_bf16",
+   "note": "3,085,938,688 parameters, gathered from the ZeRO-3 shards and hashed on rank 0 before the first optimizer step"
+  }
+ },
+ "dataset": {
+  "fingerprint": {
+   "value": "06716e1bb83702f6",
+   "source": "results/round11_3b_trunk/step0_manifest.json (sha256 b09a2717d1fce5709416f9fe23414c9f54ad1c75addac9c36779b335bb0cb9e2)",
+   "key": "per_rank.0.dataset_fingerprint",
+   "note": "identical on all 3 ranks; 45,000 training rows. RESOLVED in v2; v1 had checked only effective_config.json, run_summary.json and trainer_state.json."
+  },
+  "per_step_prompt_hash": {
+   "value": "prompt_ids_sha256, one per optimizer step",
+   "source": "runs/trunk_p2/step_metrics.jsonl",
+   "key": "prompt_ids_sha256",
+   "note": ""
+  },
+  "data_cursor_hash_first_200_steps": {
+   "value": "337168daee8e1ab4866926d04497ab2eb13d7977d82eb02123e80a17cf1d9141",
+   "source": "results/round11_3b_trunk/step0_manifest.json (sha256 b09a2717d1fce5709416f9fe23414c9f54ad1c75addac9c36779b335bb0cb9e2)",
+   "key": "per_rank.0.data_cursor_first_200_steps",
+   "note": "the prompt order itself is pinned ahead of the run, 24 prompts per step"
+  }
+ },
+ "optimizer": {
+  "name": {
+   "value": "fused AdamW (torch fused implementation, decoupled weight decay)",
+   "source": "results/round11_3b_trunk/step0_manifest.json (sha256 b09a2717d1fce5709416f9fe23414c9f54ad1c75addac9c36779b335bb0cb9e2)",
+   "key": "per_rank.0.optimizer_hparams_readable[0]",
+   "note": "confirmed from the live optimizer, not inferred: fused=True, decoupled_weight_decay=True, amsgrad=False, maximize=False. v1 had recorded this as a trainer-default inference."
+  },
+  "adam_beta1": {
+   "value": 0.9,
+   "source": "countdown/src/r11_trunk_train.py (GRPOConfig literal, the code that ran)",
+   "key": "adam_beta1",
+   "note": ""
+  },
+  "adam_beta2": {
+   "value": 0.999,
+   "source": "countdown/src/r11_trunk_train.py (GRPOConfig literal, the code that ran)",
+   "key": "adam_beta2",
+   "note": ""
+  },
+  "weight_decay": {
+   "value": 0.0,
+   "source": "countdown/src/r11_trunk_train.py (GRPOConfig literal, the code that ran)",
+   "key": "weight_decay",
+   "note": ""
+  },
+  "adam_epsilon": {
+   "value": 1e-08,
+   "source": "results/round11_3b_trunk/step0_manifest.json (sha256 b09a2717d1fce5709416f9fe23414c9f54ad1c75addac9c36779b335bb0cb9e2)",
+   "key": "per_rank.0.optimizer_hparams_readable[0].eps",
+   "note": "read off the live optimizer at step 0, identical on every rank (optimizer_hparams digest 222c3b12df8b49b37c4dad2979e37c7eb8c6d00a59e71b3221690ab1972bf96c). RESOLVED in v2; v1 marked it UNRESOLVED because it is not set in the GRPOConfig literal."
+  },
+  "amsgrad": {
+   "value": false,
+   "source": "results/round11_3b_trunk/step0_manifest.json (sha256 b09a2717d1fce5709416f9fe23414c9f54ad1c75addac9c36779b335bb0cb9e2)",
+   "key": "optimizer_hparams_readable[0].amsgrad",
+   "note": ""
+  },
+  "initial_lr_in_param_groups": {
+   "value": 5e-07,
+   "source": "results/round11_3b_trunk/step0_manifest.json (sha256 b09a2717d1fce5709416f9fe23414c9f54ad1c75addac9c36779b335bb0cb9e2)",
+   "key": "optimizer_hparams_readable[0].initial_lr",
+   "note": "lr at step 0 is 0.0 because warmup starts from zero"
+  },
+  "step0_moment_state": {
+   "value": "empty (0 entries)",
+   "source": "results/round11_3b_trunk/step0_manifest.json (sha256 b09a2717d1fce5709416f9fe23414c9f54ad1c75addac9c36779b335bb0cb9e2)",
+   "key": "per_rank.0.optimizer_state",
+   "note": "the digest is e3b0c442... = SHA256 of the empty string. Fused Adam allocates its moments lazily at the first step, so the step-0 state is genuinely empty rather than uncaptured; the manifest says so explicitly."
+  }
+ },
+ "schedule": {
+  "learning_rate_peak": {
+   "value": 5e-07,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "learning_rate",
+   "note": ""
+  },
+  "lr_scheduler_type": {
+   "value": "cosine",
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "lr_scheduler_type",
+   "note": ""
+  },
+  "warmup_ratio": {
+   "value": 0.03,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "warmup_ratio",
+   "note": ""
+  },
+  "max_steps": {
+   "value": 450,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "max_steps",
+   "note": "the schedule is defined over 450 steps; the trunk was stopped at 200 and the forks at 175, so only the first part of the cosine was traversed"
+  },
+  "realised_lr_at_endpoint": {
+   "value": 3.907591317825956e-07,
+   "source": "trunk/full_state/step150/trainer_state.json",
+   "key": "log_history[-1].learning_rate",
+   "note": ""
+  }
+ },
+ "objective": {
+  "loss_type": {
+   "value": "grpo",
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "loss_type",
+   "note": ""
+  },
+  "beta_kl": {
+   "value": 0.001,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "beta",
+   "note": ""
+  },
+  "reference_model": {
+   "value": "the frozen initial policy of the run, held by GRPOTrainer",
+   "source": "countdown/src/r11_trunk_train.py (GRPOConfig literal, the code that ran)",
+   "key": "beta=0.001",
+   "note": "GRPOTrainer instantiates the reference model internally; no separate reference path is configured"
+  },
+  "epsilon_clip": {
+   "value": 0.2,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "epsilon",
+   "note": ""
+  },
+  "num_iterations": {
+   "value": 1,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "num_iterations",
+   "note": "1, so each generation batch is used for a single optimizer pass and the importance ratio is 1 by construction"
+  },
+  "scale_rewards": {
+   "value": "group",
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "scale_rewards",
+   "note": ""
+  },
+  "vllm_importance_sampling_correction": {
+   "value": false,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "vllm_importance_sampling_correction",
+   "note": ""
+  }
+ },
+ "batch_structure": {
+  "training_ranks": {
+   "value": 3,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "world_size",
+   "note": ""
+  },
+  "rollout_workers": {
+   "value": 1,
+   "source": "launcher topology",
+   "key": "R0",
+   "note": "one vLLM server on a dedicated card, TRL vllm_mode=server"
+  },
+  "completions_per_prompt_group_size": {
+   "value": 8,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "num_generations",
+   "note": ""
+  },
+  "per_device_microbatch_completions": {
+   "value": 8,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "per_device_train_batch_size",
+   "note": ""
+  },
+  "gradient_accumulation_steps": {
+   "value": 8,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "gradient_accumulation_steps",
+   "note": ""
+  },
+  "completions_per_optimizer_step": {
+   "value": 192,
+   "source": "derived",
+   "key": "per_device x accum x world_size",
+   "note": "8 x 8 x 3 = 192; cross-checked against the trainer's own generation_batch_size = 192"
+  },
+  "prompts_per_optimizer_step": {
+   "value": 24,
+   "source": "derived",
+   "key": "completions / num_generations",
+   "note": "192 / 8 = 24"
+  },
+  "prompts_per_rank_per_optimizer_step": {
+   "value": 8,
+   "source": "derived",
+   "key": "-",
+   "note": "24 / 3 = 8"
+  },
+  "steps_per_generation": {
+   "value": 8,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "steps_per_generation",
+   "note": "one generation phase feeds this many accumulation micro-steps"
+  },
+  "TERMINOLOGY": "the number 192 is the COMPLETION batch per optimizer step. The PROMPT batch per optimizer step is 24. The phrase 'batch size 192' must not be used without saying which."
+ },
+ "sequence_limits": {
+  "max_prompt_length": {
+   "value": 256,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "max_prompt_length",
+   "note": ""
+  },
+  "max_completion_length": {
+   "value": 1024,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "max_completion_length",
+   "note": ""
+  }
+ },
+ "sampling": {
+  "temperature": {
+   "value": 0.9,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "temperature",
+   "note": ""
+  },
+  "top_p": {
+   "value": 1.0,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "top_p",
+   "note": ""
+  },
+  "top_k": {
+   "value": -1,
+   "source": "trl 0.23.0 trainer/grpo_trainer.py line 1179, the vLLM SERVER-mode path actually taken (sha256 4658c3920040f256bc909a3c49263409441f4425c8ba6273585370cf6b025777)",
+   "key": "top_k=-1 if self.top_k is None else self.top_k",
+   "note": "GRPOConfig.top_k defaults to None and r11_trunk_train.py never sets it; the executed server-mode path converts None to -1, which DISABLES top-k filtering. RESOLVED in v2 by reading the installed trl 0.23.0 source. Note the base checkpoint's generation_config.json carries top_k=20, temperature=0.7, top_p=0.8 - those are Qwen's model-card defaults and were NOT used for rollouts, which the runtime temperature 0.9 / top_p 1.0 confirms."
+  },
+  "engine": {
+   "value": "vLLM server mode, one server per run",
+   "source": "countdown/src/r11_trunk_train.py (GRPOConfig literal, the code that ran)",
+   "key": "use_vllm/vllm_mode",
+   "note": ""
+  },
+  "vllm_server_timeout_s": {
+   "value": 3600.0,
+   "source": "countdown/src/r11_trunk_train.py (GRPOConfig literal, the code that ran)",
+   "key": "vllm_server_timeout",
+   "note": ""
+  },
+  "repetition_penalty": {
+   "value": 1.0,
+   "source": "trl 0.23.0 trainer/grpo_trainer.py line 1179, the vLLM SERVER-mode path actually taken (sha256 4658c3920040f256bc909a3c49263409441f4425c8ba6273585370cf6b025777); GRPOConfig default, not overridden",
+   "key": "repetition_penalty",
+   "note": "1.0 means no penalty"
+  },
+  "min_p": {
+   "value": 0.0,
+   "source": "trl 0.23.0 trainer/grpo_trainer.py line 1179, the vLLM SERVER-mode path actually taken (sha256 4658c3920040f256bc909a3c49263409441f4425c8ba6273585370cf6b025777)",
+   "key": "min_p=0.0 if self.min_p is None else self.min_p",
+   "note": "GRPOConfig.min_p defaults to None; the executed path converts it to 0.0"
+  }
+ },
+ "precision_and_parallelism": {
+  "bf16": {
+   "value": true,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "bf16",
+   "note": ""
+  },
+  "deepspeed_zero_stage": {
+   "value": 3,
+   "source": "countdown/configs/r7_zero3.json (DeepSpeed config actually loaded)",
+   "key": "zero_optimization.stage",
+   "note": ""
+  },
+  "zero_details": {
+   "value": {
+    "overlap_comm": true,
+    "contiguous_gradients": true,
+    "reduce_bucket_size": "auto",
+    "stage3_prefetch_bucket_size": "auto",
+    "stage3_param_persistence_threshold": "auto",
+    "stage3_gather_16bit_weights_on_model_save": true
+   },
+   "source": "countdown/configs/r7_zero3.json (DeepSpeed config actually loaded)",
+   "key": "zero_optimization",
+   "note": ""
+  },
+  "gradient_checkpointing": {
+   "value": true,
+   "source": "countdown/src/r11_trunk_train.py (GRPOConfig literal, the code that ran)",
+   "key": "gradient_checkpointing",
+   "note": ""
+  },
+  "gradient_clipping_max_grad_norm": {
+   "value": 1.0,
+   "source": "countdown/src/r11_trunk_train.py (GRPOConfig literal, the code that ran)",
+   "key": "max_grad_norm",
+   "note": "DeepSpeed gradient_clipping is 'auto' and takes this value from the HF argument"
+  }
+ },
+ "seeds": {
+  "model_seed": {
+   "value": 42,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "seed",
+   "note": ""
+  },
+  "data_seed": {
+   "value": 42,
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "data_seed",
+   "note": ""
+  },
+  "rollout_seed_this_run": {
+   "value": 0,
+   "source": "runs/trunk_p2/run_summary.json",
+   "key": "rollout_seed",
+   "note": ""
+  },
+  "sampler_seed_plumbing": {
+   "value": "args.generation_kwargs['seed'] = rollout_seed * 100000 + state.global_step, reset before every optimizer step",
+   "source": "countdown/src/r11_trunk_train.py (GRPOConfig literal, the code that ran) line 346",
+   "key": "generation_kwargs",
+   "note": "the GRPOConfig literal sets rollout_seed * 100000 as the step-0 value; the callback then advances it every step"
+  },
+  "eval_slot_seed": {
+   "value": "vLLM derives slot i's sampler seed as eval_seed + i (parallel_sampling.py: child seed = seed + index)",
+   "source": "frozen evaluation protocol",
+   "key": "-",
+   "note": "this is why evaluation slots are shared across arms and the permutation tests are blocked within slot"
+  }
+ },
+ "data_cursor": {
+  "semantics": {
+   "value": "a fork resumes the DeepSpeed full state, which carries the trainer's global_step and sampler state, so the prompt stream continues from the root rather than restarting",
+   "source": "verified empirically",
+   "key": "prompt_ids_sha256",
+   "note": "the replay and trunk share prompt_ids_sha256 at every shared step, which is the direct evidence that the cursor continues"
+  }
+ },
+ "checkpointing": {
+  "save_strategy": {
+   "value": "no",
+   "source": "countdown/src/r11_trunk_train.py (GRPOConfig literal, the code that ran)",
+   "key": "save_strategy",
+   "note": "THIS is why no fork checkpoint has weights: the trainer was configured never to save. Only the explicit root captures and the terminal model_only export exist."
+  },
+  "state_hash_steps": {
+   "value": [
+    100,
+    125,
+    150,
+    175
+   ],
+   "source": "runs/trunk_p2/effective_config.json (dumped by the trainer at runtime)",
+   "key": "state_hash_steps",
+   "note": "hashes only, not weights"
+  },
+  "root_semantics": {
+   "value": "a root is a full DeepSpeed ZeRO-3 state (bf16 optimizer shards, per-rank RNG state, scheduler, trainer_state) captured at the named step; a fork resumes it exactly and differs only in the rollout sampler seed",
+   "source": "trunk/full_state/step*/",
+   "key": "-",
+   "note": ""
+  }
+ },
+ "software_and_hardware": {
+  "git_commit": {
+   "value": "68a2908ebf83ca096d28c2cc520d99dee0eaa66b",
+   "source": "git rev-parse HEAD",
+   "key": "-",
+   "note": ""
+  },
+  "env_lock": {
+   "value": "<run-dir>/env_lock_phase2.json",
+   "source": "-",
+   "key": "-",
+   "note": "sha256 412c22d7dd1f5db93d5e66dd7e57b81a57daf8fa8dd66406260f633cac9160cc"
+  },
+  "pip_freeze": {
+   "value": "<run-dir>/env_lock_phase2_pip_freeze.txt",
+   "source": "-",
+   "key": "-",
+   "note": "sha256 57457677f59f2c9fe0e8177d5af5d967e81faff132ba960ef2d8422b32613170"
+  },
+  "topology": {
+   "value": "3 training ranks + 1 rollout server",
+   "source": "launcher",
+   "key": "T0/T1/T2 + R0",
+   "note": ""
+  },
+  "hardware": {
+   "value": "compute cluster B, NVIDIA 97.9 GiB cards",
+   "source": "-",
+   "key": "-",
+   "note": ""
+  }
+ },
+ "source_hashes": {
+  "<training-code>/r11_trunk_train.py": "5c6d038d102e208723807e6a7e4e466166387789e09c70f774ec6ae3119db53d",
+  "<training-code>/r11_trunk_launch_v2.sh": "c2aa6c3ddec3cde7f380b089fa46e37724307c70627304d6068393136ba0cbe6",
+  "config/deepspeed_zero3.json": "fbcc5de8aa2881351b64d0beb9d5f16ce3bbc907688e2c9145eec593ba797ac1",
+  "<run-dir>/runs/trunk_p2/effective_config.json": "1d7831251cf97b043e7dfecd597fc0a47ce3d5c0acb6990fb9adbcd8fb0b2a06",
+  "<run-dir>/runs/trunk_p2/run_summary.json": "d45057dce328c60daf97859d2287c210b1674914bdea973fb4511d28dfcba0ea",
+  "<run-dir>/trunk/full_state/step150/trainer_state.json": "cf9062dc4d59ddf8cac4ceecf8c6f21bf2dcf9c8d25169cd7ca832bb3291f136",
+  "<run-dir>/step0_manifest.json": "b09a2717d1fce5709416f9fe23414c9f54ad1c75addac9c36779b335bb0cb9e2",
+  "<site-packages>/trl/trainer/grpo_trainer.py": "4658c3920040f256bc909a3c49263409441f4425c8ba6273585370cf6b025777",
+  "<site-packages>/trl/trainer/grpo_config.py": "521b3b6f76c9bf2c29bf24447f5c56b76cc36e99ee3bad8a8a98478137da481d"
+ },
+ "generated_utc": "2026-09-24T18:05:20Z",
+ "verification_of_documented_values": {
+  "learning rate 5e-7": "CONFIRMED",
+  "cosine schedule": "CONFIRMED",
+  "group size 8": "CONFIRMED",
+  "24 prompts/update": "CONFIRMED",
+  "8 completions per prompt": "CONFIRMED",
+  "192 completions/update": "CONFIRMED",
+  "3 training ranks": "CONFIRMED",
+  "8 prompts per rank": "CONFIRMED",
+  "loss_type = grpo": "CONFIRMED",
+  "vLLM importance correction disabled": "CONFIRMED",
+  "temperature 0.9": "CONFIRMED",
+  "top_p 1.0": "CONFIRMED",
+  "max completion length 1024": "CONFIRMED",
+  "seed 42": "CONFIRMED",
+  "data seed 42": "CONFIRMED"
+ },
+ "n_unresolved": 0,
+ "patch_1": {
+  "supersedes": {
+   "file": "item3_trackA_effective_config.json",
+   "sha256_v1": "27fc8acc2641ed286f42b1845a0aedc674578d27465b3f3bb7b867ffdc29b444"
+  },
+  "utc": "2026-09-24T18:43:59Z",
+  "resolved_in_v2": [
+   "base_model.revision_or_hash",
+   "dataset.fingerprint",
+   "optimizer.adam_epsilon",
+   "sampling.top_k"
+  ],
+  "also_upgraded_from_inference_to_evidence": [
+   "optimizer.name"
+  ],
+  "newly_recorded": [
+   "base_model.step0_weight_hash_bf16",
+   "dataset.data_cursor_hash_first_200_steps",
+   "optimizer.amsgrad",
+   "optimizer.initial_lr_in_param_groups",
+   "optimizer.step0_moment_state",
+   "sampling.repetition_penalty",
+   "sampling.min_p"
+  ],
+  "step0_manifest_basis": "two independent constructions were bit-identical on every hashed component on all 3 ranks",
+  "step0_manifest_scope": "valid only under the frozen compute cluster B environment and 3+1 topology; a rebuild on any other env/topology is not covered by this test",
+  "unresolved_remaining": 0
+ }
+}

@@ -1,0 +1,2 @@
+target,transition_model,n_cells,coefficient_per_sd_entropy,ci_low,ci_high,control,per_transition_coefficients,per_transition_signs,marginal_bins,mean_eta_corrected
+measurement_corrected_continuation_specific_energy,R1 (state only),530,-0.16751,-0.249842,-0.106294,number of feasible branches (z-scored),"{""100"": 0.0048, ""105"": -0.0322, ""110"": -0.0975, ""115"": -0.1319, ""120"": -0.052}",+----,H~0.16: eta 0.811 | H~0.34: eta 0.909 | H~0.44: eta 0.755 | H~0.54: eta 0.542 | H~0.71: eta 0.353,0.674035

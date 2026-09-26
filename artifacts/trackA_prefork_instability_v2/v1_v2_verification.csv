@@ -1,0 +1,41 @@
+root,quantity,v1,v2,match
+75,margin_AUROC,0.7895,0.7895,yes
+75,margin_AUROC_CI_low,0.6884,0.6884,yes
+75,margin_AUROC_CI_high,0.8775,0.8775,yes
+75,margin_AUPRC,0.4235,0.4235,yes
+75,spearman_endpoint_JS,0.5173,0.5173,yes
+75,spearman_CI_low,0.3444,0.3444,yes
+75,spearman_CI_high,0.659,0.659,yes
+75,positives,19,19,yes
+75,N,106,106,yes
+100,margin_AUROC,0.8411,0.8411,yes
+100,margin_AUROC_CI_low,0.7511,0.7511,yes
+100,margin_AUROC_CI_high,0.9163,0.9163,yes
+100,margin_AUPRC,0.5804,0.5804,yes
+100,spearman_endpoint_JS,0.5564,0.5564,yes
+100,spearman_CI_low,0.3984,0.3984,yes
+100,spearman_CI_high,0.6813,0.6813,yes
+100,positives,26,26,yes
+100,N,106,106,yes
+125,margin_AUROC,0.7681,0.7681,yes
+125,margin_AUROC_CI_low,0.6282,0.6282,yes
+125,margin_AUROC_CI_high,0.8887,0.8887,yes
+125,margin_AUPRC,0.5275,0.5275,yes
+125,spearman_endpoint_JS,0.4294,0.4294,yes
+125,spearman_CI_low,0.2325,0.2325,yes
+125,spearman_CI_high,0.5943,0.5943,yes
+125,positives,21,21,yes
+125,N,106,106,yes
+150,margin_AUROC,0.9243,0.9243,yes
+150,margin_AUROC_CI_low,0.8253,0.8253,yes
+150,margin_AUROC_CI_high,0.9889,0.9889,yes
+150,margin_AUPRC,0.8091,0.8091,yes
+150,spearman_endpoint_JS,0.7003,0.7003,yes
+150,spearman_CI_low,0.5562,0.5562,yes
+150,spearman_CI_high,0.808,0.808,yes
+150,positives,16,16,yes
+150,N,106,106,yes
+75,auroc_draws_array,10000 draws,10000 draws,yes (element-wise identical)
+100,auroc_draws_array,10000 draws,10000 draws,yes (element-wise identical)
+125,auroc_draws_array,10000 draws,10000 draws,yes (element-wise identical)
+150,auroc_draws_array,10000 draws,10000 draws,yes (element-wise identical)

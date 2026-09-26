@@ -1,0 +1,5 @@
+root,horizon,n_questions,mean_within_arm_halfsplit_disagreement_rate,mean_cross_arm_4way_disagreement_rate_half_budget,full_budget_cross_arm_disagreement_rate
+75,100,102,0.0398,0.1658,0.1667
+100,75,99,0.0264,0.2031,0.2121
+125,50,99,0.0171,0.1692,0.1818
+150,25,99,0.0211,0.1391,0.1313

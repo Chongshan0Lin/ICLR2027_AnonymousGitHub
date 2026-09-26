@@ -1,0 +1,4 @@
+model,features,n_state_checkpoints,winner_survival_rate,AUROC,AUROC_ci_low,AUROC_ci_high,logistic_coefficient_first_feature,coefficient_ci_low,coefficient_ci_high,standardisation,folds
+margin_only,top1_top2_margin,2650,0.9019,0.8723,0.8517,0.8916,1.5993,1.446,1.7732,z-scored; CV predictions standardised within training folds,frozen question-level 5-fold
+entropy_only,normalized_entropy,2650,0.9019,0.8025,0.7805,0.8265,-1.2232,-1.3585,-1.0921,z-scored; CV predictions standardised within training folds,frozen question-level 5-fold
+margin_plus_entropy,top1_top2_margin|normalized_entropy,2650,0.9019,0.8713,0.8514,0.8884,1.4175,1.2302,1.6487,z-scored; CV predictions standardised within training folds,frozen question-level 5-fold

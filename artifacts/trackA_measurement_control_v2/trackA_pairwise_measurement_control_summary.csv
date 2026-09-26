@@ -1,0 +1,5 @@
+root,horizon,n_questions,within_arm_pairwise_disagreement,cross_arm_pairwise_disagreement,difference,ratio,cross_arm_fourway_disagreement_reference
+75,100,102,0.0398,0.0902,0.0504,2.27,0.1658
+100,75,99,0.0264,0.1129,0.0865,4.28,0.2031
+125,50,99,0.0171,0.0907,0.0736,5.3,0.1692
+150,25,99,0.0211,0.0728,0.0517,3.45,0.1391

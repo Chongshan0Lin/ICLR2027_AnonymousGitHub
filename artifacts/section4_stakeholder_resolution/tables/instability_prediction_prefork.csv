@@ -1,0 +1,4 @@
+analysis,feature_set,features,n_questions,positive_class_rate,AUROC,AUROC_ci_low,AUROC_ci_high,AUPRC,spearman_rho_future_js,spearman_ci_low,spearman_ci_high,cv_r2_future_js,folds,leakage_check
+prefork,state_features,normalized_entropy|top1_mass|top1_top2_margin,106,0.2264,0.7795,0.6705,0.8781,0.4528,0.5272,0.3601,0.6617,0.1614,frozen question-level 5-fold,features taken only at step 100; targets only at step 125
+prefork,controls_only,num_feasible_branches|pass_at_1|effective_feasible_count,106,0.2264,0.5137,0.3489,0.6712,0.3242,0.2843,0.0759,0.4658,0.1417,frozen question-level 5-fold,features taken only at step 100; targets only at step 125
+prefork,state_plus_controls,normalized_entropy|top1_mass|top1_top2_margin|num_feasible_branches|pass_at_1|effective_feasible_count,106,0.2264,0.8044,0.7052,0.8938,0.5088,0.5193,0.3414,0.6536,0.2624,frozen question-level 5-fold,features taken only at step 100; targets only at step 125

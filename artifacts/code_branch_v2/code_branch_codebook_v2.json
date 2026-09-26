@@ -1,0 +1,4177 @@
+{
+ "schema": "code_branch_codebook_v2",
+ "generated_utc": "2026-09-25T04:48:36Z",
+ "representation": "deterministic AST branch label of the first substantive statement of the HumanEval target function",
+ "label_grammar": {
+  "statement_family": [
+   "Return",
+   "Assign",
+   "AnnAssign",
+   "AugAssign",
+   "If",
+   "For",
+   "While",
+   "Try",
+   "With",
+   "Expr",
+   "OtherStmt"
+  ],
+  "expr_family": [
+   "Call",
+   "Compare",
+   "Arithmetic",
+   "Boolean",
+   "ListComp",
+   "SetComp",
+   "DictComp",
+   "Generator",
+   "SliceSubscript",
+   "ContainerLiteral",
+   "Constant",
+   "Name",
+   "OtherExpr"
+  ],
+  "call_family": [
+   "sorted",
+   "set",
+   "len",
+   "range",
+   "sum",
+   "max",
+   "min",
+   "any",
+   "all",
+   "enumerate",
+   "zip",
+   "recursive_self_call",
+   "other_call"
+  ],
+  "form": "stmt:expr  or  stmt:Call:call_family"
+ },
+ "viability_rule": "a branch is viable for prompt q if at least one DISCOVERY completion (rollout_id 0-63) carrying that label passes ALL HumanEval tests",
+ "discovery_split": "rollout_id 0-63, pooled over both model families and all 14 checkpoint states",
+ "evaluation_split": "rollout_id 64-127, never consulted here",
+ "no_llm_judge": true,
+ "no_semantic_labels": true,
+ "prompts": {
+  "HumanEval/103": {
+   "entry_point": "rounded_avg",
+   "n_branches_discovered": 1,
+   "n_branches_viable": 1,
+   "viable_branches": [
+    "If:Compare"
+   ],
+   "branches": {
+    "If:Compare": {
+     "n_discovery": 874,
+     "n_correct": 380,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 41,
+       "code": "def rounded_avg(n, m):\n    if n > m:\n        return -1\n    total = (m - n + 1) * (n + m) // 2\n    count = m - n + 1\n    average = total / count\n    rounded_avg = round(average)\n    return bin(rounded_avg)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 1,
+       "code": "def rounded_avg(n, m):\n    if n > m:\n        return -1\n    count = m - n + 1\n    total = sum(range(n, m + 1))\n    avg = total / count\n    rounded_avg = round(avg)\n    return f\"0b{rounded_avg:b}\"\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 60,
+       "code": "def rounded_avg(n, m):\n    if n > m:\n        return -1\n    average = (n + m) / 2\n    rounded = round(average)\n    binary_str = bin(rounded)[2:]\n    return f\"0b{binary_str}\"\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/107": {
+   "entry_point": "even_odd_palindrome",
+   "n_branches_discovered": 3,
+   "n_branches_viable": 3,
+   "viable_branches": [
+    "Assign:Constant",
+    "Assign:ContainerLiteral",
+    "OtherStmt:Constant"
+   ],
+   "branches": {
+    "Assign:Constant": {
+     "n_discovery": 737,
+     "n_correct": 737,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 0,
+       "code": "def even_odd_palindrome(n):\n    even_count = 0\n    odd_count = 0\n    for i in range(1, n + 1):\n        s = str(i)\n        if s == s[::-1]:\n            if i % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n    return (even_count, odd_count)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 3,
+       "code": "def even_odd_palindrome(n):\n    even_count = 0\n    odd_count = 0\n    for i in range(1, n + 1):\n        if str(i) == str(i)[::-1]:\n            if i % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n    return (even_count, odd_count)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 4,
+       "code": "def even_odd_palindrome(n):\n    even = 0\n    odd = 0\n    for i in range(1, n + 1):\n        if str(i) == str(i)[::-1]:\n            if i % 2 == 0:\n                even += 1\n            else:\n                odd += 1\n    return (even, odd)\n"
+      }
+     ]
+    },
+    "OtherStmt:Constant": {
+     "n_discovery": 156,
+     "n_correct": 156,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def even_odd_palindrome(n):\n    def is_palindrome(num):\n        s = str(num)\n        return s == s[::-1]\n    \n    even = 0\n    odd = 0\n    for num in range(1, n + 1):\n        if is_palindrome(num):\n            if num % 2 == 0:\n                even += 1\n            else:\n                odd += 1\n    return (even, odd)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 2,
+       "code": "def even_odd_palindrome(n):\n    def is_palindrome(x):\n        s = str(x)\n        return s == s[::-1]\n    \n    even = 0\n    odd = 0\n    for i in range(1, n + 1):\n        if is_palindrome(i):\n            if i % 2 == 0:\n                even += 1\n            else:\n                odd += 1\n    return (even, odd)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 8,
+       "code": "def even_odd_palindrome(n):\n    def is_palindrome(x):\n        return str(x) == str(x)[::-1]\n    \n    even_count = 0\n    odd_count = 0\n    \n    for x in range(1, n + 1):\n        if is_palindrome(x):\n            if x % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n                \n    return (even_count, odd_count)\n"
+      }
+     ]
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 2,
+     "n_correct": 2,
+     "viable": true,
+     "n_states_seen": 2,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 55,
+       "code": "def even_odd_palindrome(n):\n    palindromes = []\n    for num in range(1, n + 1):\n        s = str(num)\n        if s == s[::-1]:\n            palindromes.append(num)\n    even = 0\n    odd = 0\n    for p in palindromes:\n        if p % 2 == 0:\n            even += 1\n        else:\n            odd += 1\n    return (even, odd)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 55,
+       "code": "def even_odd_palindrome(n):\n    palindromes = []\n    for num in range(1, n + 1):\n        if str(num) == str(num)[::-1]:\n            palindromes.append(num)\n    \n    count_even = 0\n    count_odd = 0\n    for p in palindromes:\n        if p % 2 == 0:\n            count_even += 1\n        else:\n            count_odd += 1\n    \n    return (count_even, count_odd)\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/110": {
+   "entry_point": "exchange",
+   "n_branches_discovered": 13,
+   "n_branches_viable": 10,
+   "viable_branches": [
+    "Assign:Arithmetic",
+    "Assign:Call:all",
+    "Assign:Call:len",
+    "Assign:Call:sum",
+    "Assign:Constant",
+    "Assign:ContainerLiteral",
+    "Assign:ListComp",
+    "If:Call:all",
+    "If:Compare",
+    "OtherStmt:Constant"
+   ],
+   "branches": {
+    "Assign:Call:sum": {
+     "n_discovery": 633,
+     "n_correct": 489,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def exchange(lst1, lst2):\n    count1 = sum(1 for x in lst1 if x % 2 != 0)\n    count2 = sum(1 for x in lst2 if x % 2 == 0)\n    return \"YES\" if count1 <= count2 else \"NO\"\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 2,
+       "code": "def exchange(lst1, lst2):\n    count1 = sum(1 for x in lst1 if x % 2 != 0)\n    count2_evens = len(lst2) - sum(1 for x in lst2 if x % 2 != 0)\n    return \"YES\" if count1 <= count2_evens else \"NO\"\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 3,
+       "code": "def exchange(lst1, lst2):\n    count_odds = sum(1 for x in lst1 if x % 2 != 0)\n    count_evens = sum(1 for x in lst2 if x % 2 == 0)\n    return \"YES\" if count_odds <= count_evens else \"NO\"\n"
+      }
+     ]
+    },
+    "Assign:Constant": {
+     "n_discovery": 39,
+     "n_correct": 30,
+     "viable": true,
+     "n_states_seen": 11,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 25,
+       "code": "def exchange(lst1, lst2):\n    # Count the number of odd elements in lst1\n    odds = 0\n    for num in lst1:\n        if num % 2 != 0:\n            odds += 1\n    # Count the number of even elements in lst2\n    evens = 0\n    for num in lst2:\n        if num % 2 == 0:\n            evens += 1\n    # Check if the number of odds in lst1 is less than or equal to the number of evens in lst2\n    return \"YES\" if odds <= evens else \"NO\"\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 33,
+       "code": "def exchange(lst1, lst2):\n    # Check if all elements in lst1 are even\n    all_even = True\n    for num in lst1:\n        if num % 2 != 0:\n            all_even = False\n            break\n    if all_even:\n        return \"YES\"\n    \n    # Count the number of odd numbers in lst1\n    odds = sum(1 for x in lst1 if x % 2 != 0)\n    \n    # Count the number of even numbers in lst2\n    evens = sum(1 for x in lst2 if x % 2 == 0)\n    \n    if evens >= odds:\n        return \"YES\"\n    else:\n        return \"NO\"\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 34,
+       "code": "def exchange(lst1, lst2):\n    count1 = 0\n    for num in lst1:\n        if num % 2 != 0:\n            count1 += 1\n    count2 = 0\n    for num in lst2:\n        if num % 2 == 0:\n            count2 += 1\n    return \"YES\" if count1 <= count2 else \"NO\"\n"
+      }
+     ]
+    },
+    "Assign:Arithmetic": {
+     "n_discovery": 25,
+     "n_correct": 22,
+     "viable": true,
+     "n_states_seen": 9,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 12,
+       "code": "def exchange(lst1, lst2):\n    combined = lst1 + lst2\n    even_count = 0\n    for num in combined:\n        if num % 2 == 0:\n            even_count += 1\n    return \"YES\" if even_count >= len(lst1) else \"NO\"\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-500",
+       "rollout_id": 55,
+       "code": "def exchange(lst1, lst2):\n    combined = lst1 + lst2\n    even_count = sum(1 for x in combined if x % 2 == 0)\n    return \"YES\" if even_count >= len(lst1) else \"NO\"\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 9,
+       "code": "def exchange(lst1, lst2):\n    combined = lst1 + lst2\n    total_evens = sum(1 for num in combined if num % 2 == 0)\n    return \"YES\" if total_evens >= len(lst1) else \"NO\"\n"
+      }
+     ]
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 14,
+     "n_correct": 13,
+     "viable": true,
+     "n_states_seen": 5,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 6,
+       "code": "def exchange(lst1, lst2):\n    # Collect all even numbers from both lists\n    even_numbers = []\n    for num in lst1 + lst2:\n        if num % 2 == 0:\n            even_numbers.append(num)\n    # Check if the count of even numbers is sufficient\n    return \"YES\" if len(even_numbers) >= len(lst1) else \"NO\"\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 27,
+       "code": "def exchange(lst1, lst2):\n    even_numbers = []\n    # Combine both lists and collect even numbers\n    for num in lst1 + lst2:\n        if num % 2 == 0:\n            even_numbers.append(num)\n    # Check if there are enough even numbers\n    return \"YES\" if len(even_numbers) >= len(lst1) else \"NO\"\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1000",
+       "rollout_id": 40,
+       "code": "def exchange(lst1, lst2):\n    # Combine both lists and collect even numbers\n    even_elements = []\n    for num in lst1 + lst2:\n        if num % 2 == 0:\n            even_elements.append(num)\n    \n    # Check if there are enough even numbers\n    required = len(lst1)\n    if len(even_elements) >= required:\n        return \"YES\"\n    else:\n        return \"NO\"\n"
+      }
+     ]
+    },
+    "OtherStmt:Constant": {
+     "n_discovery": 10,
+     "n_correct": 5,
+     "viable": true,
+     "n_states_seen": 5,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 63,
+       "code": "def exchange(lst1, lst2):\n    def count_odds(lst):\n        return sum(1 for x in lst if x % 2 != 0)\n    \n    count1 = count_odds(lst1)\n    count2 = len(lst2) - count_odds(lst2)\n    \n    return \"YES\" if count1 <= count2 else \"NO\"\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 16,
+       "code": "def exchange(lst1, lst2):\n    def count_evens(lst):\n        return sum(1 for x in lst if x % 2 == 0)\n    \n    count1 = count_evens(lst1)\n    count2 = count_evens(lst2)\n    total = count1 + count2\n    \n    return \"YES\" if total >= len(lst1) else \"NO\"\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 33,
+       "code": "def exchange(lst1, lst2):\n    def count_evens(lst):\n        return sum(1 for x in lst if x % 2 == 0)\n    \n    count_evens1 = count_evens(lst1)\n    required_evens = len(lst1) - count_evens1\n    count_evens2 = count_evens(lst2)\n    \n    return \"YES\" if required_evens <= count_evens2 else \"NO\"\n"
+      }
+     ]
+    },
+    "Assign:Call:len": {
+     "n_discovery": 10,
+     "n_correct": 10,
+     "viable": true,
+     "n_states_seen": 4,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_1000",
+       "rollout_id": 36,
+       "code": "def exchange(lst1, lst2):\n    required = len(lst1)\n    pool = []\n    for num in lst1 + lst2:\n        if num % 2 == 0:\n            pool.append(num)\n    return \"YES\" if len(pool) >= required else \"NO\"\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1000",
+       "rollout_id": 60,
+       "code": "def exchange(lst1, lst2):\n    m = len(lst1)\n    even1 = sum(1 for x in lst1 if x % 2 == 0)\n    even2 = sum(1 for x in lst2 if x % 2 == 0)\n    total_even = even1 + even2\n    return \"YES\" if total_even >= m else \"NO\"\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1250",
+       "rollout_id": 46,
+       "code": "def exchange(lst1, lst2):\n    total_evens = len([x for x in lst1 + lst2 if x % 2 == 0])\n    required_evens = len(lst1)\n    return \"YES\" if total_evens >= required_evens else \"NO\"\n"
+      }
+     ]
+    },
+    "Assign:Call:all": {
+     "n_discovery": 7,
+     "n_correct": 3,
+     "viable": true,
+     "n_states_seen": 5,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 35,
+       "code": "def exchange(lst1, lst2):\n    # Check if all elements in lst1 are even\n    all_even_in_l1 = all(num % 2 == 0 for num in lst1)\n    if all_even_in_l1:\n        return \"YES\"\n    \n    # Count the number of odd numbers in lst1\n    odds_in_l1 = sum(1 for num in lst1 if num % 2 != 0)\n    \n    # Count the number of even numbers in lst2\n    evens_in_l2 = sum(1 for num in lst2 if num % 2 == 0)\n    \n    # If there are enough even numbers in lst2 to cover the odds in lst1\n    if evens_in_l2 >= odds_in_l1:\n        return \"YES\"\n    else:\n        return \"NO\"\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-500",
+       "rollout_id": 19,
+       "code": "def exchange(lst1, lst2):\n    # Check if all elements in lst1 are even\n    all_even_in_lst1 = all(num % 2 == 0 for num in lst1)\n    if all_even_in_lst1:\n        return \"YES\"\n    \n    # Count the number of odd elements in lst1\n    count_odds = sum(1 for num in lst1 if num % 2 != 0)\n    \n    # Count the number of even elements in lst2\n    count_evens = sum(1 for num in lst2 if num % 2 == 0)\n    \n    # If the number of odd elements in lst1 is less than or equal to even elements in lst2, return YES\n    return \"YES\" if count_odds <= count_evens else \"NO\"\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1500",
+       "rollout_id": 56,
+       "code": "def exchange(lst1, lst2):\n    # Check if all elements in lst1 are even\n    all_even = all(x % 2 == 0 for x in lst1)\n    if all_even:\n        return \"YES\"\n    \n    # Collect all even numbers from both lists\n    even_numbers = []\n    for num in lst1 + lst2:\n        if num % 2 == 0:\n            even_numbers.append(num)\n    \n    # Check if there are enough even numbers to fill lst1\n    if len(even_numbers) >= len(lst1):\n        return \"YES\"\n    else:\n        return \"NO\"\n"
+      }
+     ]
+    },
+    "For:Name": {
+     "n_discovery": 6,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 4,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Assign:ListComp": {
+     "n_discovery": 6,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 4,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-600",
+       "rollout_id": 46,
+       "code": "def exchange(lst1, lst2):\n    # Count the number of odd elements in lst1\n    odds1 = [x for x in lst1 if x % 2 != 0]\n    count1 = len(odds1)\n    \n    # Count the number of even elements in lst2\n    evens2 = [x for x in lst2 if x % 2 == 0]\n    count2 = len(evens2)\n    \n    if count1 <= count2:\n        return \"YES\"\n    else:\n        return \"NO\"\n"
+      }
+     ]
+    },
+    "If:Call:all": {
+     "n_discovery": 4,
+     "n_correct": 3,
+     "viable": true,
+     "n_states_seen": 4,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-800",
+       "rollout_id": 34,
+       "code": "def exchange(lst1, lst2):\n    # Check if all elements in lst1 are even\n    if all(x % 2 == 0 for x in lst1):\n        return \"YES\"\n    else:\n        # Collect all odd elements in lst1\n        odds = [x for x in lst1 if x % 2 != 0]\n        # If no odds, return YES\n        if not odds:\n            return \"YES\"\n        # Count the number of even elements in lst2\n        evens_in_l2 = [x for x in lst2 if x % 2 == 0]\n        count_evens = len(evens_in_l2)\n        # If count_evens is >= len(odds), return YES\n        if count_evens >= len(odds):\n            return \"YES\"\n        else:\n            return \"NO\"\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 42,
+       "code": "def exchange(lst1, lst2):\n    # Check if all elements in lst1 are even\n    if all(x % 2 == 0 for x in lst1):\n        return \"YES\"\n    \n    # Count the number of odd elements in lst1\n    count_odds = sum(1 for x in lst1 if x % 2 != 0)\n    \n    # Count the number of even elements in lst2\n    count_evens = sum(1 for x in lst2 if x % 2 == 0)\n    \n    # If there are enough even elements in lst2 to replace the odd elements in lst1\n    if count_evens >= count_odds:\n        return \"YES\"\n    else:\n        return \"NO\"\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1000",
+       "rollout_id": 56,
+       "code": "def exchange(lst1, lst2):\n    # Check if all elements in lst1 are even\n    if all(x % 2 == 0 for x in lst1):\n        return \"YES\"\n    \n    # Collect all even elements from both lists\n    even_elements = []\n    for num in lst1 + lst2:\n        if num % 2 == 0:\n            even_elements.append(num)\n    \n    # Check if there are enough even elements\n    if len(even_elements) >= len(lst1):\n        return \"YES\"\n    else:\n        return \"NO\"\n"
+      }
+     ]
+    },
+    "Assign:Call:any": {
+     "n_discovery": 2,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "If:Compare": {
+     "n_discovery": 2,
+     "n_correct": 2,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_1750",
+       "rollout_id": 40,
+       "code": "def exchange(lst1, lst2):\n    if len(lst1) != len(lst2):\n        return \"NO\"\n    n = len(lst1)\n    even_count1 = sum(1 for x in lst1 if x % 2 == 0)\n    even_count2 = sum(1 for x in lst2 if x % 2 == 0)\n    if even_count1 + even_count2 >= n:\n        return \"YES\"\n    else:\n        return \"NO\"\n\n# Example usage:\n# print(exchange([1, 2, 3, 4], [1, 2, 3, 4]))  # Output: \"YES\"\n# print(exchange([1, 2, 3, 4], [1, 5, 3, 4]))  # Output: \"NO\"\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1750",
+       "rollout_id": 46,
+       "code": "def exchange(lst1, lst2):\n    if len(lst1) != len(lst2):\n        return \"NO\"\n    \n    # Collect all even numbers from both lists\n    evens = []\n    for num in lst1 + lst2:\n        if num % 2 == 0:\n            evens.append(num)\n    \n    # Check if there are enough even numbers\n    if len(evens) < len(lst1):\n        return \"NO\"\n    \n    return \"YES\"\n"
+      }
+     ]
+    },
+    "Assign:Call:other_call": {
+     "n_discovery": 1,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    }
+   }
+  },
+  "HumanEval/114": {
+   "entry_point": "minSubArraySum",
+   "n_branches_discovered": 8,
+   "n_branches_viable": 8,
+   "viable_branches": [
+    "Assign:Call:len",
+    "Assign:Call:other_call",
+    "Assign:Constant",
+    "Assign:ContainerLiteral",
+    "Assign:ListComp",
+    "Assign:SliceSubscript",
+    "If:Boolean",
+    "OtherStmt:Constant"
+   ],
+   "branches": {
+    "Assign:Call:other_call": {
+     "n_discovery": 457,
+     "n_correct": 447,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 4,
+       "code": "def minSubArraySum(nums):\n    min_sum = float('inf')\n    for i in range(len(nums)):\n        current_sum = 0\n        for j in range(i, len(nums)):\n            current_sum += nums[j]\n            if current_sum < min_sum:\n                min_sum = current_sum\n    return min_sum\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 26,
+       "code": "def minSubArraySum(nums):\n    min_sum = float('inf')\n    n = len(nums)\n    for i in range(n):\n        for j in range(i, n):\n            current_sum = sum(nums[i:j+1])\n            if current_sum < min_sum:\n                min_sum = current_sum\n    return min_sum\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 38,
+       "code": "def minSubArraySum(nums):\n    min_sum = float('inf')\n    for start in range(len(nums)):\n        current_sum = 0\n        for end in range(start, len(nums)):\n            current_sum += nums[end]\n            if current_sum < min_sum:\n                min_sum = current_sum\n    return min_sum\n"
+      }
+     ]
+    },
+    "If:Boolean": {
+     "n_discovery": 312,
+     "n_correct": 277,
+     "viable": true,
+     "n_states_seen": 13,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def minSubArraySum(nums):\n    if not nums:\n        return 0\n    current_min = global_min = nums[0]\n    for num in nums[1:]:\n        current_min = min(num, current_min + num)\n        if current_min < global_min:\n            global_min = current_min\n    return global_min\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 2,
+       "code": "def minSubArraySum(nums):\n    if not nums:\n        return 0  # Assuming the function expects a non-empty array as per the problem statement\n    \n    min_total = nums[0]\n    min_current = nums[0]\n    \n    for num in nums[1:]:\n        if num < min_current + num:\n            min_current = num\n        else:\n            min_current += num\n        min_total = min(min_total, min_current)\n    \n    return min_total\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 3,
+       "code": "def minSubArraySum(nums):\n    if not nums:\n        return 0  # Assuming the problem expects an empty array to return 0, though the examples don't cover this\n    \n    current_min = nums[0]\n    overall_min = nums[0]\n    \n    for num in nums[1:]:\n        new_current = min(current_min + num, num)\n        if new_current < overall_min:\n            overall_min = new_current\n        current_min = new_current\n    \n    return overall_min\n"
+      }
+     ]
+    },
+    "Assign:Call:len": {
+     "n_discovery": 95,
+     "n_correct": 94,
+     "viable": true,
+     "n_states_seen": 9,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 33,
+       "code": "def minSubArraySum(nums):\n    n = len(nums)\n    if n == 0:\n        return None  # Assuming the input is non-empty as per the problem statement\n    min_sum = float('inf')\n    current_sum = 0\n    for i in range(n):\n        current_sum = 0\n        for j in range(i, n):\n            current_sum += nums[j]\n            if current_sum < min_sum:\n                min_sum = current_sum\n            if current_sum > 0:\n                break\n    return min_sum\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-700",
+       "rollout_id": 54,
+       "code": "def minSubArraySum(nums):\n    n = len(nums)\n    min_sum = float('inf')\n    for i in range(n):\n        for j in range(i, n):\n            current_sum = sum(nums[i:j+1])\n            if current_sum < min_sum:\n                min_sum = current_sum\n    return min_sum\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 0,
+       "code": "def minSubArraySum(nums):\n    n = len(nums)\n    if n == 0:\n        return None  # Handle empty array case as per problem constraints\n    \n    prefix = [0] * (n + 1)\n    for i in range(n):\n        prefix[i + 1] = prefix[i] + nums[i]\n    \n    min_sum = float('inf')\n    for i in range(n):\n        for j in range(i, n):\n            current_sum = prefix[j + 1] - prefix[i]\n            if current_sum < min_sum:\n                min_sum = current_sum\n    return min_sum\n"
+      }
+     ]
+    },
+    "Assign:SliceSubscript": {
+     "n_discovery": 16,
+     "n_correct": 12,
+     "viable": true,
+     "n_states_seen": 4,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 9,
+       "code": "def minSubArraySum(nums):\n    current_min = global_min = nums[0]\n    for num in nums[1:]:\n        current_min = min(current_min + num, num)\n        global_min = min(global_min, current_min)\n    return global_min\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 11,
+       "code": "def minSubArraySum(nums):\n    min_current = min_global = nums[0]\n    for num in nums[1:]:\n        min_current = min(num, min_current + num)\n        if min_current < min_global:\n            min_global = min_current\n    return min_global\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 18,
+       "code": "def minSubArraySum(nums):\n    current_min = global_min = nums[0]\n    for num in nums[1:]:\n        current_min = min(current_min + num, num)\n        if current_min < global_min:\n            global_min = current_min\n    return global_min\n"
+      }
+     ]
+    },
+    "Assign:Constant": {
+     "n_discovery": 11,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 5,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 12,
+       "code": "def minSubArraySum(nums):\n    current_sum = 0\n    min_sum = float('inf')\n    for num in nums:\n        current_sum += num\n        if current_sum < min_sum:\n            min_sum = current_sum\n        if current_sum > 0:\n            current_sum = 0\n    return min_sum\n"
+      }
+     ]
+    },
+    "Assign:ListComp": {
+     "n_discovery": 2,
+     "n_correct": 2,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 39,
+       "code": "def minSubArraySum(nums):\n    # Transform the array by negating each element\n    negated = [-x for x in nums]\n    \n    # Apply Kadane's algorithm to find the maximum subarray sum of the negated array\n    max_current = max_global = negated[0]\n    for num in negated[1:]:\n        max_current = max(num, max_current + num)\n        if max_current > max_global:\n            max_global = max_current\n    \n    # The result is the negative of the maximum subarray sum found\n    return -max_global\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 43,
+       "code": "def minSubArraySum(nums):\n    negated = [-x for x in nums]\n    max_sum = float('-inf')\n    current_sum = 0\n    \n    for num in negated:\n        current_sum += num\n        if current_sum > max_sum:\n            max_sum = current_sum\n        if current_sum < 0:\n            current_sum = 0  # Reset if it's not beneficial\n    \n    return -max_sum\n"
+      }
+     ]
+    },
+    "OtherStmt:Constant": {
+     "n_discovery": 1,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_1000",
+       "rollout_id": 6,
+       "code": "def minSubArraySum(nums):\n    def kadane(arr):\n        max_current = max_global = arr[0]\n        for num in arr[1:]:\n            max_current = max(num, max_current + num)\n            if max_current > max_global:\n                max_global = max_current\n        return max_global\n    \n    neg_nums = [-x for x in nums]\n    max_sum = kadane(neg_nums)\n    return -max_sum\n"
+      }
+     ]
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 1,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_1000",
+       "rollout_id": 43,
+       "code": "def minSubArraySum(nums):\n    prefix = [0]\n    for num in nums:\n        prefix.append(prefix[-1] + num)\n    min_sum = float('inf')\n    n = len(nums)\n    for i in range(n):\n        for j in range(i, n):\n            current_sum = prefix[j+1] - prefix[i]\n            if current_sum < min_sum:\n                min_sum = current_sum\n    return min_sum\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/116": {
+   "entry_point": "sort_array",
+   "n_branches_discovered": 5,
+   "n_branches_viable": 5,
+   "viable_branches": [
+    "Assign:Call:sorted",
+    "Assign:ContainerLiteral",
+    "Assign:ListComp",
+    "OtherStmt:Constant",
+    "Return:Call:sorted"
+   ],
+   "branches": {
+    "Assign:ListComp": {
+     "n_discovery": 244,
+     "n_correct": 214,
+     "viable": true,
+     "n_states_seen": 8,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 3,
+       "code": "def sort_array(arr):\n    # Create a list of tuples with the count of ones and the number itself\n    indexed = [(bin(num).count('1'), num) for num in arr]\n    # Sort the list by the count of ones and then by the number itself\n    sorted_list = sorted(indexed, key=lambda x: (x[0], x[1]))\n    # Extract the sorted numbers\n    return [num for count, num in sorted_list]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 5,
+       "code": "def sort_array(arr):\n    indexed = [(num, bin(num).count('1')) for num in arr]\n    sorted_list = sorted(indexed, key=lambda x: (x[1], x[0]))\n    return [num for num, ones in sorted_list]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 9,
+       "code": "def sort_array(arr):\n    indexed = [(num, bin(num).count('1')) for num in arr]\n    sorted_list = sorted(indexed, key=lambda x: (x[1], x[0]))\n    return [num for num, ones in sorted_list]\n"
+      }
+     ]
+    },
+    "Return:Call:sorted": {
+     "n_discovery": 183,
+     "n_correct": 178,
+     "viable": true,
+     "n_states_seen": 12,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 0,
+       "code": "def sort_array(arr):\n    return sorted(arr, key=lambda x: (bin(abs(x)).count('1'), x))\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def sort_array(arr):\n    return sorted(arr, key=lambda x: (bin(x).count('1'), x))\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 4,
+       "code": "def sort_array(arr):\n    return sorted(arr, key=lambda x: (bin(x).count('1'), x))\n"
+      }
+     ]
+    },
+    "OtherStmt:Constant": {
+     "n_discovery": 116,
+     "n_correct": 113,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 7,
+       "code": "def sort_array(arr):\n    def count_ones(n):\n        return bin(abs(n)).count('1')\n    return sorted(arr, key=lambda x: (count_ones(x), x))\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 42,
+       "code": "def sort_array(arr):\n    def count_ones(n):\n        return bin(n).count('1')\n    \n    indexed = [(count_ones(num), num) for num in arr]\n    sorted_list = sorted(indexed, key=lambda x: (x[0], x[1]))\n    return [num for count, num in sorted_list]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 50,
+       "code": "def sort_array(arr):\n    def count_ones(n):\n        return bin(n).count('1')\n    return sorted(arr, key=lambda x: (count_ones(x), x))\n"
+      }
+     ]
+    },
+    "Assign:Call:sorted": {
+     "n_discovery": 39,
+     "n_correct": 38,
+     "viable": true,
+     "n_states_seen": 10,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 24,
+       "code": "def sort_array(arr):\n    sorted_arr = sorted(arr, key=lambda x: (bin(x).count('1'), x))\n    return sorted_arr\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 10,
+       "code": "def sort_array(arr):\n    # Create a list of tuples with each number and its count of ones\n    sorted_with_counts = sorted(\n        [(num, bin(num).count('1')) for num in arr],\n        key=lambda x: (x[1], x[0])\n    )\n    # Extract the sorted numbers\n    return [num for num, count in sorted_with_counts]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 28,
+       "code": "def sort_array(arr):\n    sorted_nums = sorted(arr, key=lambda x: (bin(x).count('1'), x))\n    return sorted_nums\n"
+      }
+     ]
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 35,
+     "n_correct": 34,
+     "viable": true,
+     "n_states_seen": 11,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 41,
+       "code": "def count_ones(n):\n    return bin(n).count('1')\n\ndef sort_array(arr):\n    sorted_list = []\n    for num in arr:\n        count = count_ones(abs(num))\n        sorted_list.append((count, num, num))\n    sorted_list.sort(key=lambda x: (x[0], x[1]))\n    return [x[2] for x in sorted_list]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 54,
+       "code": "def sort_array(arr):\n    # Create a list of tuples containing the count of 1s and the number itself\n    sorted_with_counts = []\n    for num in arr:\n        count = bin(num).count('1')\n        sorted_with_counts.append((count, num))\n    \n    # Sort the list by count and then by the number itself\n    sorted_with_counts.sort(key=lambda x: (x[0], x[1]))\n    \n    # Extract the sorted numbers\n    result = [num for count, num in sorted_with_counts]\n    \n    return result\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 63,
+       "code": "def sort_array(arr):\n    sorted_list = []\n    for num in arr:\n        count = bin(num).count('1')\n        sorted_list.append((count, num))\n    sorted_list.sort(key=lambda x: (x[0], x[1]))\n    return [x[1] for x in sorted_list]\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/127": {
+   "entry_point": "intersection",
+   "n_branches_discovered": 4,
+   "n_branches_viable": 4,
+   "viable_branches": [
+    "Assign:Call:max",
+    "Assign:ContainerLiteral",
+    "Assign:Name",
+    "OtherStmt:Constant"
+   ],
+   "branches": {
+    "Assign:Name": {
+     "n_discovery": 560,
+     "n_correct": 334,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 0,
+       "code": "def is_prime(n):\n    if n <= 1:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(n ** 0.5) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndef intersection(interval1, interval2):\n    a, b = interval1\n    c, d = interval2\n    start = max(a, c)\n    end = min(b, d)\n    if start >= end:\n        return \"NO\"\n    length = end - start\n    return \"YES\" if is_prime(length) else \"NO\"\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def intersection(interval1, interval2):\n    s1, e1 = interval1\n    s2, e2 = interval2\n    s = max(s1, s2)\n    e = min(e1, e2)\n    if s > e:\n        return \"NO\"\n    length = e - s\n    return \"YES\" if is_prime(length) else \"NO\"\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(n**0.5) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 2,
+       "code": "def intersection(interval1, interval2):\n    a, b = interval1\n    c, d = interval2\n\n    start = max(a, c)\n    end = min(b, d)\n\n    if start > end:\n        return \"NO\"\n    length = end - start\n\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n == 2:\n            return True\n        if n % 2 == 0:\n            return False\n        for i in range(3, int(n**0.5) + 1, 2):\n            if n % i == 0:\n                return False\n        return True\n\n    return \"YES\" if is_prime(length) else \"NO\"\n"
+      }
+     ]
+    },
+    "OtherStmt:Constant": {
+     "n_discovery": 260,
+     "n_correct": 162,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 5,
+       "code": "def intersection(interval1, interval2):\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n == 2:\n            return True\n        if n % 2 == 0:\n            return False\n        for i in range(3, int(n**0.5) + 1, 2):\n            if n % i == 0:\n                return False\n        return True\n\n    a, b = interval1\n    c, d = interval2\n    start = max(a, c)\n    end = min(b, d)\n    if start > end:\n        return \"NO\"\n    length = end - start\n    return \"YES\" if is_prime(length) else \"NO\"\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 17,
+       "code": "def intersection(interval1, interval2):\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n == 2:\n            return True\n        if n % 2 == 0:\n            return False\n        for i in range(3, int(n**0.5) + 1, 2):\n            if n % i == 0:\n                return False\n        return True\n\n    s1, e1 = interval1\n    s2, e2 = interval2\n    overlap_start = max(s1, s2)\n    overlap_end = min(e1, e2)\n    \n    if overlap_start > overlap_end:\n        return \"NO\"\n    length = overlap_end - overlap_start\n    \n    if length <= 1:\n        return \"NO\"\n    elif length == 2:\n        return \"YES\"\n    else:\n        return \"YES\" if is_prime(length) else \"NO\"\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 33,
+       "code": "def intersection(interval1, interval2):\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        w = 2\n        while i * i <= n:\n            if n % i == 0:\n                return False\n            i += w\n            w = 6 - w\n        return True\n    \n    s1, e1 = interval1\n    s2, e2 = interval2\n    intersect_s = max(s1, s2)\n    intersect_e = min(e1, e2)\n    if intersect_s > intersect_e:\n        return \"NO\"\n    length = intersect_e - intersect_s\n    return \"YES\" if is_prime(length) else \"NO\"\n"
+      }
+     ]
+    },
+    "Assign:Call:max": {
+     "n_discovery": 59,
+     "n_correct": 35,
+     "viable": true,
+     "n_states_seen": 13,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 35,
+       "code": "def intersection(interval1, interval2):\n    start = max(interval1[0], interval2[0])\n    end = min(interval1[1], interval2[1])\n    if start > end:\n        return \"NO\"\n    length = end - start\n    def is_prime(n):\n        if n < 2:\n            return False\n        for i in range(2, int(n**0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n    return \"YES\" if is_prime(length) else \"NO\"\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 45,
+       "code": "def intersection(interval1, interval2):\n    \"\"\"You are given two intervals,\n    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).\n    The given intervals are closed which means that the interval (start, end)\n    includes both start and end.\n    For each given interval, it is assumed that its start is less or equal its end.\n    Your task is to determine whether the length of intersection of these two \n    intervals is a prime number.\n    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)\n    which its length is 1, which not a prime number.\n    If the length of the intersection is a prime number, return \"YES\",\n    otherwise, return \"NO\".\n    If the two intervals don't intersect, return \"NO\".\"\"\"\n    \n    # Calculate the intersection\n    start = max(interval1[0], interval2[0])\n    end = min(interval1[1], interval2[1])\n    \n    # No intersection\n    if start > end:\n        return \"NO\"\n    \n    # Calculate length\n    length = end - start\n    \n    # Check if the length is a prime number\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n == 2:\n            return True\n        if n % 2 == 0:\n            retur"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 48,
+       "code": "def intersection(interval1, interval2):\n    # Calculate the overlapping interval\n    start = max(interval1[0], interval2[0])\n    end = min(interval1[1], interval2[1])\n    \n    # Determine the length of the intersection\n    if start > end:\n        length = 0\n    else:\n        length = end - start\n    \n    # Function to check for prime numbers\n    def is_prime(n):\n        if n <= 1:\n            return False\n        for i in range(2, int(n**0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n    \n    # Check if the length is a prime number\n    return \"YES\" if is_prime(length) else \"NO\"\n"
+      }
+     ]
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 2,
+     "n_correct": 2,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_1000",
+       "rollout_id": 19,
+       "code": "def is_prime(n):\n    if n <= 1:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(n**0.5) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndef intersection(interval1, interval2):\n    start1, end1 = interval1[0], interval1[1]\n    start2, end2 = interval2[0], interval2[1]\n    intersection_start = max(start1, start2)\n    intersection_end = min(end1, end2)\n    \n    if intersection_start > intersection_end:\n        return \"NO\"\n    \n    length = intersection_end - intersection_start\n    if length < 2:\n        return \"NO\"\n    \n    return \"YES\" if is_prime(length) else \"NO\"\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1000",
+       "rollout_id": 50,
+       "code": "def intersection(interval1, interval2):\n    a_start, a_end = interval1[0], interval1[1]\n    b_start, b_end = interval2[0], interval2[1]\n    \n    start = max(a_start, b_start)\n    end = min(a_end, b_end)\n    \n    if start > end:\n        return \"NO\"\n    \n    length = end - start\n    if length == 0:\n        return \"NO\"\n    \n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n == 2:\n            return True\n        if n % 2 == 0:\n            return False\n        for i in range(3, int(n**0.5) + 1, 2):\n            if n % i == 0:\n                return False\n        return True\n    \n    return \"YES\" if is_prime(length) else \"NO\"\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/136": {
+   "entry_point": "largest_smallest_integers",
+   "n_branches_discovered": 5,
+   "n_branches_viable": 5,
+   "viable_branches": [
+    "Assign:Call:other_call",
+    "Assign:Constant",
+    "Assign:ContainerLiteral",
+    "Assign:ListComp",
+    "If:Boolean"
+   ],
+   "branches": {
+    "Assign:ContainerLiteral": {
+     "n_discovery": 514,
+     "n_correct": 505,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 2,
+       "code": "def largest_smallest_integers(lst):\n    negatives = []\n    positives = []\n    for num in lst:\n        if num < 0:\n            negatives.append(num)\n        elif num > 0:\n            positives.append(num)\n    a = None\n    b = None\n    if negatives:\n        a = max(negatives)\n    if positives:\n        b = min(positives)\n    return (a, b)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 3,
+       "code": "def largest_smallest_integers(lst):\n    negatives = []\n    positives = []\n    for num in lst:\n        if num < 0:\n            negatives.append(num)\n        elif num > 0:\n            positives.append(num)\n    a = max(negatives) if negatives else None\n    b = min(positives) if positives else None\n    return (a, b)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 4,
+       "code": "def largest_smallest_integers(lst):\n    negatives = []\n    positives = []\n    for num in lst:\n        if num < 0:\n            negatives.append(num)\n        elif num > 0:\n            positives.append(num)\n    a = max(negatives) if negatives else None\n    b = min(positives) if positives else None\n    return (a, b)\n"
+      }
+     ]
+    },
+    "Assign:Constant": {
+     "n_discovery": 195,
+     "n_correct": 162,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def largest_smallest_integers(lst):\n    max_neg = None\n    min_pos = None\n    for num in lst:\n        if num < 0:\n            if max_neg is None or num > max_neg:\n                max_neg = num\n        elif num > 0:\n            if min_pos is None or num < min_pos:\n                min_pos = num\n    return (max_neg if max_neg is not None else None, min_pos if min_pos is not None else None)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 7,
+       "code": "def largest_smallest_integers(lst):\n    max_neg = None\n    min_pos = None\n    for num in lst:\n        if num < 0:\n            if max_neg is None or num > max_neg:\n                max_neg = num\n        elif num > 0:\n            if min_pos is None or num < min_pos:\n                min_pos = num\n    return (max_neg if max_neg is not None else None, min_pos if min_pos is not None else None)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 9,
+       "code": "def largest_smallest_integers(lst):\n    a = None\n    b = None\n    for num in lst:\n        if num < 0:\n            if a is None or num > a:\n                a = num\n        elif num > 0:\n            if b is None or num < b:\n                b = num\n    return (a, b)\n"
+      }
+     ]
+    },
+    "Assign:ListComp": {
+     "n_discovery": 151,
+     "n_correct": 149,
+     "viable": true,
+     "n_states_seen": 10,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 54,
+       "code": "def largest_smallest_integers(lst):\n    negatives = [x for x in lst if x < 0]\n    positives = [x for x in lst if x > 0]\n    \n    a = None\n    if negatives:\n        a = max(negatives)\n    b = None\n    if positives:\n        b = min(positives)\n    \n    return (a, b)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 59,
+       "code": "def largest_smallest_integers(lst):\n    negatives = [x for x in lst if x < 0]\n    positives = [x for x in lst if x > 0]\n    \n    a = max(negatives) if negatives else None\n    b = min(positives) if positives else None\n    \n    return (a, b)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 61,
+       "code": "def largest_smallest_integers(lst):\n    negatives = [num for num in lst if num < 0]\n    positives = [num for num in lst if num > 0]\n    \n    a = max(negatives) if negatives else None\n    b = min(positives) if positives else None\n    \n    return (a, b)\n"
+      }
+     ]
+    },
+    "If:Boolean": {
+     "n_discovery": 35,
+     "n_correct": 32,
+     "viable": true,
+     "n_states_seen": 11,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 45,
+       "code": "def largest_smallest_integers(lst):\n    if not lst:\n        return (None, None)\n    \n    max_neg = None\n    min_pos = None\n    \n    for num in lst:\n        if num < 0:\n            if max_neg is None or num > max_neg:\n                max_neg = num\n        elif num > 0:\n            if min_pos is None or num < min_pos:\n                min_pos = num\n    \n    return (max_neg, min_pos)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-600",
+       "rollout_id": 6,
+       "code": "def largest_smallest_integers(lst):\n    if not lst:\n        return (None, None)\n    \n    negatives = []\n    positives = []\n    \n    for num in lst:\n        if num < 0:\n            negatives.append(num)\n        elif num > 0:\n            positives.append(num)\n    \n    a = None\n    if negatives:\n        a = max(negatives)\n    \n    b = None\n    if positives:\n        b = min(positives)\n    \n    return (a, b)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-600",
+       "rollout_id": 8,
+       "code": "def largest_smallest_integers(lst):\n    if not lst:\n        return (None, None)\n    \n    negatives = []\n    positives = []\n    \n    for num in lst:\n        if num < 0:\n            negatives.append(num)\n        elif num > 0:\n            positives.append(num)\n    \n    a = None\n    if negatives:\n        a = max(negatives)\n    \n    b = None\n    if positives:\n        b = min(positives)\n    \n    return (a, b)\n"
+      }
+     ]
+    },
+    "Assign:Call:other_call": {
+     "n_discovery": 1,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 49,
+       "code": "def largest_smallest_integers(lst):\n    max_neg = float('-inf')\n    min_pos = float('inf')\n    \n    for num in lst:\n        if num < 0:\n            if num > max_neg:\n                max_neg = num\n        elif num > 0:\n            if num < min_pos:\n                min_pos = num\n    \n    a = max_neg if max_neg != float('-inf') else None\n    b = min_pos if min_pos != float('inf') else None\n    \n    return (a, b)\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/147": {
+   "entry_point": "get_max_triples",
+   "n_branches_discovered": 7,
+   "n_branches_viable": 6,
+   "viable_branches": [
+    "Assign:Arithmetic",
+    "Assign:Constant",
+    "Assign:ContainerLiteral",
+    "Assign:ListComp",
+    "If:Compare",
+    "OtherStmt:Constant"
+   ],
+   "branches": {
+    "Assign:ListComp": {
+     "n_discovery": 448,
+     "n_correct": 430,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 5,
+       "code": "def get_max_triples(n):\n    a = [i**2 - i + 1 for i in range(1, n + 1)]\n    mod_counts = [0, 0, 0]\n    for num in a:\n        mod = num % 3\n        mod_counts[mod] += 1\n    count0, count1, count2 = mod_counts[0], mod_counts[1], mod_counts[2]\n    \n    case1 = count0 * (count0 - 1) * (count0 - 2) // 6 if count0 >= 3 else 0\n    case2 = count1 * (count1 - 1) * (count1 - 2) // 6 if count1 >= 3 else 0\n    case3 = count2 * (count2 - 1) * (count2 - 2) // 6 if count2 >= 3 else 0\n    case4 = count0 * count1 * count2\n    \n    total = case1 + case2 + case3 + case4\n    return total\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 8,
+       "code": "def get_max_triples(n):\n    a = [i**2 - i + 1 for i in range(1, n+1)]\n    c0, c1, c2 = 0, 0, 0\n    for num in a:\n        mod = num % 3\n        if mod == 0:\n            c0 += 1\n        elif mod == 1:\n            c1 += 1\n        else:\n            c2 += 1\n    def comb3(x):\n        if x >= 3:\n            return x * (x - 1) * (x - 2) // 6\n        return 0\n    total = comb3(c0) + comb3(c1) + comb3(c2) + c0 * c1 * c2\n    return total\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 25,
+       "code": "def get_max_triples(n):\n    a = [i**2 - i + 1 for i in range(1, n + 1)]\n    mod_counts = [0, 0, 0]\n    for num in a:\n        mod = num % 3\n        mod_counts[mod] += 1\n    \n    total = 0\n    # Case 0,0,0\n    if mod_counts[0] >= 3:\n        total += mod_counts[0] * (mod_counts[0] - 1) * (mod_counts[0] - 2) // 6\n    # Case 1,1,1\n    if mod_counts[1] >= 3:\n        total += mod_counts[1] * (mod_counts[1] - 1) * (mod_counts[1] - 2) // 6\n    # Case 2,2,2\n    if mod_counts[2] >= 3:\n        total += mod_counts[2] * (mod_counts[2] - 1) * (mod_counts[2] - 2) // 6\n    # Case 0,1,2\n    total += mod_counts[0] * mod_counts[1] * mod_counts[2]\n    return total\n"
+      }
+     ]
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 277,
+     "n_correct": 258,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 0,
+       "code": "def get_max_triples(n):\n    counts = [0, 0, 0]\n    for i in range(1, n + 1):\n        ai = i * i - i + 1\n        mod = ai % 3\n        counts[mod] += 1\n    \n    total = 0\n    total += (counts[0] * (counts[0] - 1) * (counts[0] - 2)) // 6\n    total += (counts[1] * (counts[1] - 1) * (counts[1] - 2)) // 6\n    total += (counts[2] * (counts[2] - 1) * (counts[2] - 2)) // 6\n    total += counts[0] * counts[1] * counts[2]\n    \n    return total\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 10,
+       "code": "def get_max_triples(n):\n    mod = []\n    count0 = 0\n    count1 = 0\n    for i in range(1, n + 1):\n        mod_i = (i * i - i + 1) % 3\n        mod.append(mod_i)\n        if mod_i == 0:\n            count0 += 1\n        else:\n            count1 += 1\n    def comb3(n):\n        if n < 3:\n            return 0\n        return n * (n - 1) * (n - 2) // 6\n    return comb3(count0) + comb3(count1)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 39,
+       "code": "def get_max_triples(n):\n    mod_counts = [0, 0, 0]\n    for i in range(1, n + 1):\n        ai = i * i - i + 1\n        mod = ai % 3\n        mod_counts[mod] += 1\n    \n    count0 = mod_counts[0]\n    count1 = mod_counts[1]\n    count2 = mod_counts[2]\n    \n    total = 0\n    if count0 >= 3:\n        total += count0 * (count0 - 1) * (count0 - 2) // 6\n    if count1 >= 3:\n        total += count1 * (count1 - 1) * (count1 - 2) // 6\n    if count2 >= 3:\n        total += count2 * (count2 - 1) * (count2 - 2) // 6\n    \n    total += count0 * count1 * count2\n    \n    return total\n"
+      }
+     ]
+    },
+    "Assign:Constant": {
+     "n_discovery": 126,
+     "n_correct": 85,
+     "viable": true,
+     "n_states_seen": 10,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 3,
+       "code": "import math\n\ndef get_max_triples(n):\n    count0 = 0\n    count1 = 0\n    for i in range(1, n + 1):\n        mod = i % 3\n        if mod == 2:\n            count0 += 1\n        else:\n            count1 += 1\n    return (math.comb(count0, 3) + math.comb(count1, 3))\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 4,
+       "code": "def get_max_triples(n):\n    count0 = 0\n    count1 = 0\n    for i in range(1, n + 1):\n        mod3 = (i ** 2 - i + 1) % 3\n        if mod3 == 0:\n            count0 += 1\n        else:\n            count1 += 1\n    def comb3(k):\n        if k < 3:\n            return 0\n        return k * (k - 1) * (k - 2) // 6\n    return comb3(count0) + comb3(count1)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 6,
+       "code": "def get_max_triples(n):\n    count0 = 0  # Count of elements with a[i] mod 3 == 0\n    count1 = 0  # Count of elements with a[i] mod 3 == 1\n    count2 = 0  # Count of elements with a[i] mod 3 == 2\n\n    for i in range(1, n + 1):\n        mod = i % 3\n        if mod == 0:\n            count1 += 1\n        elif mod == 1:\n            count1 += 1\n        else:\n            count0 += 1\n\n    # Calculate the number of valid triples\n    result = (count0 * (count0 - 1) * (count0 - 2)) // 6\n    result += (count1 * (count1 - 1) * (count1 - 2)) // 6\n    result += (count2 * (count2 - 1) * (count2 - 2)) // 6\n    result += count0 * count1 * count2\n\n    return result\n"
+      }
+     ]
+    },
+    "Assign:Arithmetic": {
+     "n_discovery": 17,
+     "n_correct": 5,
+     "viable": true,
+     "n_states_seen": 7,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 43,
+       "code": "def get_max_triples(n):\n    mod_counts = [0] * 3\n    for i in range(1, n + 1):\n        if i % 3 == 0 or i % 3 == 1:\n            mod_counts[1] += 1\n        else:\n            mod_counts[0] += 1\n    \n    count0, count1, count2 = mod_counts[0], mod_counts[1], mod_counts[2]\n    \n    total = 0\n    \n    # Case 1: 0,0,0\n    if count0 >= 3:\n        total += (count0 * (count0 - 1) * (count0 - 2)) // 6\n    \n    # Case 2: 1,1,1\n    if count1 >= 3:\n        total += (count1 * (count1 - 1) * (count1 - 2)) // 6\n    \n    # Case 3: 2,2,2\n    if count2 >= 3:\n        total += (count2 * (count2 - 1) * (count2 - 2)) // 6\n    \n    # Case 4: 0,1,2 in any order\n    total += count0 * count1 * count2\n    \n    return total\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-800",
+       "rollout_id": 49,
+       "code": "import itertools\n\ndef get_max_triples(n):\n    # Generate the array a\n    a = [0] * n\n    for i in range(1, n + 1):\n        a[i - 1] = i ** 2 - i + 1\n    \n    count = 0\n    # Generate all combinations of 3 indices\n    for triplet in itertools.combinations(range(1, n + 1), 3):\n        i, j, k = triplet\n        s = a[i - 1] + a[j - 1] + a[k - 1]\n        if s % 3 == 0:\n            count += 1\n    \n    return count\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 26,
+       "code": "def get_max_triples(n):\n    count_0 = n // 3\n    count_1 = (n - 1) // 3 + 1\n    m_A = count_0 + count_1\n    \n    count_2 = (n - 2) // 3 + 1\n    m_B = count_2\n    \n    def comb3(k):\n        if k < 3:\n            return 0\n        return k * (k - 1) * (k - 2) // 6\n    \n    return comb3(m_A) + comb3(m_B)\n\n# Example usage:\nn = 5\nprint(get_max_triples(n))  # Output: 1\n"
+      }
+     ]
+    },
+    "OtherStmt:Constant": {
+     "n_discovery": 13,
+     "n_correct": 10,
+     "viable": true,
+     "n_states_seen": 9,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 38,
+       "code": "def get_max_triples(n):\n    import itertools\n    a = [i**2 - i + 1 for i in range(1, n+1)]\n    count = 0\n    for triplet in itertools.combinations(range(1, n+1), 3):\n        i, j, k = triplet\n        s = a[i-1] + a[j-1] + a[k-1]\n        if s % 3 == 0:\n            count += 1\n    return count\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 52,
+       "code": "def get_max_triples(n):\n    import itertools\n    a = [i * i - i + 1 for i in range(1, n + 1)]\n    count = 0\n    for triplet in itertools.combinations(a, 3):\n        if sum(triplet) % 3 == 0:\n            count += 1\n    return count\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 61,
+       "code": "def get_max_triples(n):\n    import itertools\n    a = [i**2 - i + 1 for i in range(1, n + 1)]\n    count = 0\n    for triplet in itertools.combinations(range(n), 3):\n        i, j, k = triplet\n        s = a[i] + a[j] + a[k]\n        if s % 3 == 0:\n            count += 1\n    return count\n"
+      }
+     ]
+    },
+    "If:Compare": {
+     "n_discovery": 7,
+     "n_correct": 6,
+     "viable": true,
+     "n_states_seen": 4,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 7,
+       "code": "import math\n\ndef get_max_triples(n):\n    if n < 3:\n        return 0\n    # Calculate count of numbers where a[i] % 3 == 0\n    count_0 = (n - 2) // 3 + 1\n    # Calculate count of numbers where a[i] % 3 == 1\n    count_1 = n - count_0\n    \n    # Calculate combinations for count_0 and count_1\n    c0 = math.comb(count_0, 3) if count_0 >= 3 else 0\n    c1 = math.comb(count_1, 3) if count_1 >= 3 else 0\n    \n    return c0 + c1\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 34,
+       "code": "def get_max_triples(n):\n    if n < 3:\n        return 0\n    \n    a = [i * i + i + 1 for i in range(n)]\n    residues = [x % 3 for x in a]\n    \n    c0 = residues.count(0)\n    c1 = residues.count(1)\n    c2 = residues.count(2)\n    \n    def comb3(x):\n        if x < 3:\n            return 0\n        return x * (x - 1) * (x - 2) // 6\n    \n    same = comb3(c0) + comb3(c1) + comb3(c2)\n    cross = c0 * c1 * c2\n    \n    return same + cross\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 41,
+       "code": "def get_max_triples(n):\n    if n < 3:\n        return 0\n    \n    a = [i * i - i + 1 for i in range(1, n + 1)]\n    residues = [x % 3 for x in a]\n    \n    count0 = residues.count(0)\n    count1 = residues.count(1)\n    count2 = residues.count(2)\n    \n    def comb3(c):\n        if c < 3:\n            return 0\n        return c * (c - 1) * (c - 2) // 6\n    \n    term1 = comb3(count0)\n    term2 = comb3(count1)\n    term3 = comb3(count2)\n    term4 = count0 * count1 * count2\n    \n    total = term1 + term2 + term3 + term4\n    return total\n"
+      }
+     ]
+    },
+    "Assign:OtherExpr": {
+     "n_discovery": 2,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 2,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    }
+   }
+  },
+  "HumanEval/151": {
+   "entry_point": "double_the_difference",
+   "n_branches_discovered": 4,
+   "n_branches_viable": 4,
+   "viable_branches": [
+    "Assign:Constant",
+    "Assign:ContainerLiteral",
+    "If:Boolean",
+    "OtherStmt:Constant"
+   ],
+   "branches": {
+    "Assign:Constant": {
+     "n_discovery": 821,
+     "n_correct": 494,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 4,
+       "code": "def double_the_difference(lst):\n    total = 0\n    for num in lst:\n        if isinstance(num, int) and not isinstance(num, bool) and num > 0 and num % 2 != 0:\n            total += num ** 2\n    return total\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 6,
+       "code": "def double_the_difference(lst):\n    total = 0\n    for num in lst:\n        # Check if the number is an integer and not a boolean\n        if isinstance(num, int) and not isinstance(num, bool):\n            # Check if the number is positive and odd\n            if num > 0 and num % 2 != 0:\n                total += num ** 2\n    return total\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 21,
+       "code": "def double_the_difference(lst):\n    total = 0\n    for num in lst:\n        if type(num) is int and num > 0 and num % 2 == 1:\n            total += num ** 2\n    return total\n"
+      }
+     ]
+    },
+    "If:Boolean": {
+     "n_discovery": 31,
+     "n_correct": 12,
+     "viable": true,
+     "n_states_seen": 10,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-700",
+       "rollout_id": 7,
+       "code": "def double_the_difference(lst):\n    if not lst:\n        return 0\n    total = 0\n    for num in lst:\n        if isinstance(num, int) and num > 0 and num % 2 != 0:\n            total += num ** 2\n    return total\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-800",
+       "rollout_id": 18,
+       "code": "def double_the_difference(lst):\n    if not lst:\n        return 0\n    total = 0\n    for num in lst:\n        if isinstance(num, int) and num % 2 != 0 and num >= 0:\n            total += num ** 2\n    return total\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-800",
+       "rollout_id": 56,
+       "code": "def double_the_difference(lst):\n    if not lst:\n        return 0\n    total = 0\n    for num in lst:\n        if isinstance(num, int):\n            if num > 0 and num % 2 != 0:\n                total += num ** 2\n    return total\n"
+      }
+     ]
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 1,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_1500",
+       "rollout_id": 4,
+       "code": "def double_the_difference(lst):\n    squares = []\n    for num in lst:\n        if not isinstance(num, int):\n            continue\n        if num < 0:\n            continue\n        if num % 2 == 1:\n            squares.append(num ** 2)\n    return sum(squares) if squares else 0\n"
+      }
+     ]
+    },
+    "OtherStmt:Constant": {
+     "n_discovery": 1,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_1750",
+       "rollout_id": 12,
+       "code": "def double_the_difference(lst):\n    def is_integer(x):\n        if isinstance(x, int):\n            return True\n        elif isinstance(x, float):\n            return x.is_integer()\n        else:\n            return False\n\n    total = 0\n    for num in lst:\n        if num < 0:\n            continue\n        if not is_integer(num):\n            continue\n        if num > 0 and num % 2 != 0:\n            total += num ** 2\n    return total\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/154": {
+   "entry_point": "cycpattern_check",
+   "n_branches_discovered": 11,
+   "n_branches_viable": 9,
+   "viable_branches": [
+    "Assign:Call:len",
+    "Assign:Call:set",
+    "Assign:ContainerLiteral",
+    "Assign:ListComp",
+    "Assign:Name",
+    "For:Call:range",
+    "If:Boolean",
+    "If:Compare",
+    "OtherStmt:Constant"
+   ],
+   "branches": {
+    "Assign:ListComp": {
+     "n_discovery": 305,
+     "n_correct": 299,
+     "viable": true,
+     "n_states_seen": 13,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 3,
+       "code": "def cycpattern_check(a, b):\n    rotations = [b[i:] + b[:i] for i in range(len(b))]\n    for rotation in rotations:\n        if rotation in a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 4,
+       "code": "def cycpattern_check(a, b):\n    rotations = [b[i:] + b[:i] for i in range(len(b))]\n    for rot in rotations:\n        if rot in a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 7,
+       "code": "def cycpattern_check(a, b):\n    rotations = [b[i:] + b[:i] for i in range(len(b))]\n    return any(r in a for r in rotations)\n"
+      }
+     ]
+    },
+    "Assign:Call:len": {
+     "n_discovery": 159,
+     "n_correct": 159,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 18,
+       "code": "def cycpattern_check(a, b):\n    len_b = len(b)\n    for i in range(len_b):\n        rotation = b[i:] + b[:i]\n        if rotation in a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 21,
+       "code": "def cycpattern_check(a, b):\n    len_b = len(b)\n    for k in range(len_b):\n        rotated = b[k:] + b[:k]\n        if rotated in a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 26,
+       "code": "def cycpattern_check(a, b):\n    n = len(b)\n    if n == 0:\n        return False\n    rotations = []\n    for i in range(n):\n        rotated = b[i:] + b[:i]\n        rotations.append(rotated)\n    for r in rotations:\n        if r in a:\n            return True\n    return False\n"
+      }
+     ]
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 129,
+     "n_correct": 128,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def cycpattern_check(a, b):\n    rotations = []\n    len_b = len(b)\n    for i in range(len_b):\n        rotation = b[i:] + b[:i]\n        rotations.append(rotation)\n    return any(rot in a for rot in rotations)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 37,
+       "code": "def cycpattern_check(a, b):\n    rotations = []\n    s = b\n    for i in range(len(s)):\n        rotation = s[i:] + s[:i]\n        rotations.append(rotation)\n    for rot in rotations:\n        if rot in a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 5,
+       "code": "def cycpattern_check(a, b):\n    rotations = []\n    for i in range(len(b)):\n        rotation = b[i:] + b[:i]\n        rotations.append(rotation)\n    for rotation in rotations:\n        if rotation in a:\n            return True\n    return False\n"
+      }
+     ]
+    },
+    "If:Compare": {
+     "n_discovery": 63,
+     "n_correct": 59,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 11,
+       "code": "def cycpattern_check(a, b):\n    if len(b) > len(a):\n        return False\n    for i in range(len(b)):\n        rotated = b[i:] + b[:i]\n        if rotated in a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 25,
+       "code": "def cycpattern_check(a, b):\n    if b in a:\n        return True\n    rotations = [b[i:] + b[:i] for i in range(len(b))]\n    for rot in rotations:\n        if rot in a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 40,
+       "code": "def cycpattern_check(a, b):\n    if len(b) == 0:\n        return True\n    if len(b) > len(a):\n        return False\n    rotations = [b[i:] + b[:i] for i in range(len(b))]\n    for rot in rotations:\n        if rot in a:\n            return True\n    return False\n"
+      }
+     ]
+    },
+    "If:Boolean": {
+     "n_discovery": 56,
+     "n_correct": 53,
+     "viable": true,
+     "n_states_seen": 11,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 0,
+       "code": "def cycpattern_check(a, b):\n    if not b:\n        return False\n    rotations = [b[i:] + b[:i] for i in range(len(b))]\n    return any(rotation in a for rotation in rotations)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 6,
+       "code": "def cycpattern_check(a, b):\n    if not b:\n        return True\n    rotations = [b[i:] + b[:i] for i in range(len(b))]\n    for rot in rotations:\n        if rot in a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 10,
+       "code": "def cycpattern_check(a, b):\n    if not b:\n        return True\n    for rotation in [b[i:] + b[:i] for i in range(len(b))]:\n        if rotation in a:\n            return True\n    return False\n"
+      }
+     ]
+    },
+    "OtherStmt:Constant": {
+     "n_discovery": 17,
+     "n_correct": 17,
+     "viable": true,
+     "n_states_seen": 8,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 12,
+       "code": "def cycpattern_check(a, b):\n    def generate_rotations(s):\n        n = len(s)\n        rotations = []\n        for i in range(n):\n            rotated = s[i:] + s[:i]\n            rotations.append(rotated)\n        return rotations\n\n    rotations = generate_rotations(b)\n    for r in rotations:\n        if r in a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 23,
+       "code": "def cycpattern_check(a, b):\n    def generate_rotations(word):\n        rotations = []\n        n = len(word)\n        for i in range(n):\n            rotations.append(word[i:] + word[:i])\n        return rotations\n    \n    rotations = generate_rotations(b)\n    for rotation in rotations:\n        if rotation in a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 38,
+       "code": "def cycpattern_check(a, b):\n    def generate_rotations(s):\n        rotations = []\n        n = len(s)\n        for i in range(n):\n            rotations.append(s[i:] + s[:i])\n        return rotations\n    \n    rotations = generate_rotations(b)\n    return any(substr in a for substr in rotations)\n"
+      }
+     ]
+    },
+    "Assign:Name": {
+     "n_discovery": 16,
+     "n_correct": 16,
+     "viable": true,
+     "n_states_seen": 7,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 2,
+       "code": "def cycpattern_check(a, b):\n    word1 = a\n    word2 = b\n    if len(word1) < len(word2):\n        return False\n    rotations = [word2[i:] + word2[:i] for i in range(len(word2))]\n    for rot in rotations:\n        if rot in word1:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 30,
+       "code": "def cycpattern_check(a, b):\n    s = b\n    n = len(s)\n    if n == 0:\n        return True  # Assuming b is non-empty as per problem constraints\n    rotations = [s[i:] + s[:i] for i in range(n)]\n    for rot in rotations:\n        if rot in a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 49,
+       "code": "def cycpattern_check(a, b):\n    s = b\n    n = len(s)\n    if n == 0:\n        return False\n    rotations = []\n    for i in range(n):\n        rotation = s[i:] + s[:i]\n        rotations.append(rotation)\n    for rot in rotations:\n        if rot in a:\n            return True\n    return False\n"
+      }
+     ]
+    },
+    "Return:Compare": {
+     "n_discovery": 9,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 5,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Assign:Call:set": {
+     "n_discovery": 6,
+     "n_correct": 6,
+     "viable": true,
+     "n_states_seen": 3,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 24,
+       "code": "def cycpattern_check(a, b):\n    rotations = set()\n    n = len(b)\n    for i in range(n):\n        rotated = b[i:] + b[:i]\n        rotations.add(rotated)\n    for rot in rotations:\n        if rot in a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 14,
+       "code": "def cycpattern_check(a, b):\n    rotations = set()\n    for i in range(len(b)):\n        rotated = b[i:] + b[:i]\n        rotations.add(rotated)\n    for r in rotations:\n        if r in a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 31,
+       "code": "def cycpattern_check(a, b):\n    rotations = set()\n    b_len = len(b)\n    for i in range(b_len):\n        rotation = b[i:] + b[:i]\n        rotations.add(rotation)\n    return any(rotation in a for rotation in rotations)\n"
+      }
+     ]
+    },
+    "For:Call:range": {
+     "n_discovery": 2,
+     "n_correct": 2,
+     "viable": true,
+     "n_states_seen": 2,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 61,
+       "code": "def cycpattern_check(a, b):\n    for i in range(len(b)):\n        rotation = b[i:] + b[:i]\n        if rotation in a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 56,
+       "code": "def cycpattern_check(a, b):\n    for i in range(len(b)):\n        rotated = b[i:] + b[:i]\n        if rotated in a:\n            return True\n    return False\n"
+      }
+     ]
+    },
+    "Return:Boolean": {
+     "n_discovery": 1,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    }
+   }
+  },
+  "HumanEval/159": {
+   "entry_point": "eat",
+   "n_branches_discovered": 7,
+   "n_branches_viable": 7,
+   "viable_branches": [
+    "Assign:Arithmetic",
+    "Assign:Call:max",
+    "Assign:Call:min",
+    "Assign:Constant",
+    "Assign:Name",
+    "Assign:OtherExpr",
+    "If:Compare"
+   ],
+   "branches": {
+    "Assign:Arithmetic": {
+     "n_discovery": 404,
+     "n_correct": 93,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 31,
+       "code": "def eat(number, need, remaining):\n    total = number + min(need, remaining)\n    remaining_after = remaining - min(need, remaining)\n    return [total, remaining_after]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 42,
+       "code": "def eat(number, need, remaining):\n    total_eaten = number + min(need, remaining)\n    remaining_after = remaining - need if remaining >= need else 0\n    return [total_eaten, remaining_after]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 53,
+       "code": "def eat(number, need, remaining):\n    total_eaten = number + min(need, remaining)\n    left = remaining - min(need, remaining)\n    return [total_eaten, left]\n"
+      }
+     ]
+    },
+    "Assign:Call:min": {
+     "n_discovery": 331,
+     "n_correct": 323,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 28,
+       "code": "def eat(number, need, remaining):\n    eat_amount = min(need, remaining)\n    total_eaten = number + eat_amount\n    remaining_after = remaining - eat_amount\n    return [total_eaten, remaining_after]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 43,
+       "code": "def eat(number, need, remaining):\n    additional = min(need, remaining)\n    total_eaten = number + additional\n    left = remaining - additional\n    return [total_eaten, left]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 48,
+       "code": "def eat(number, need, remaining):\n    eaten_in_meal = min(need, remaining)\n    total = number + eaten_in_meal\n    remaining_after = remaining - eaten_in_meal\n    if remaining_after < 0:\n        remaining_after = 0\n    return [total, remaining_after]\n"
+      }
+     ]
+    },
+    "Assign:Call:max": {
+     "n_discovery": 80,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 8,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-600",
+       "rollout_id": 61,
+       "code": "def eat(number, need, remaining):\n    eat_amount = max(0, min(need, remaining))\n    total_eaten = number + eat_amount\n    remaining_after = remaining - eat_amount\n    return [total_eaten, remaining_after]\n"
+      }
+     ]
+    },
+    "If:Compare": {
+     "n_discovery": 31,
+     "n_correct": 27,
+     "viable": true,
+     "n_states_seen": 11,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 3,
+       "code": "def eat(number, need, remaining):\n    if remaining >= need:\n        eaten = need\n    else:\n        eaten = remaining\n    total = number + eaten\n    remaining_after = remaining - eaten\n    return [total, remaining_after]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-600",
+       "rollout_id": 43,
+       "code": "def eat(number, need, remaining):\n    if remaining >= need:\n        total_eaten = number + need\n        remaining_after = remaining - need\n    else:\n        total_eaten = number + remaining\n        remaining_after = 0\n    return [total_eaten, remaining_after]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-600",
+       "rollout_id": 62,
+       "code": "def eat(number, need, remaining):\n    if remaining >= need:\n        total_eaten = number + need\n        remaining_after = remaining - need\n    else:\n        total_eaten = number + remaining\n        remaining_after = 0\n    return [total_eaten, remaining_after]\n"
+      }
+     ]
+    },
+    "Assign:OtherExpr": {
+     "n_discovery": 11,
+     "n_correct": 6,
+     "viable": true,
+     "n_states_seen": 6,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-500",
+       "rollout_id": 22,
+       "code": "def eat(number, need, remaining):\n    total_eaten = number + min(need, remaining) if remaining >= need else number + remaining\n    remaining_after = remaining - min(need, remaining)\n    remaining_after = max(remaining_after, 0)\n    return [total_eaten, remaining_after]\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 1,
+       "code": "def eat(number, need, remaining):\n    total = number + need if remaining >= need else number + remaining\n    remaining_after = remaining - need if remaining >= need else 0\n    return [total, remaining_after]\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 39,
+       "code": "def eat(number, need, remaining):\n    total_eaten = number + need if remaining >= need else number + remaining\n    remaining_after = remaining - need if remaining >= need else 0\n    return [total_eaten, remaining_after]\n"
+      }
+     ]
+    },
+    "Assign:Name": {
+     "n_discovery": 3,
+     "n_correct": 3,
+     "viable": true,
+     "n_states_seen": 3,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 63,
+       "code": "def eat(number, need, remaining):\n    available = remaining\n    eaten_from_stock = min(need, available)\n    total_eaten = number + eaten_from_stock\n    remaining_after = available - eaten_from_stock\n    return [total_eaten, remaining_after]\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1000",
+       "rollout_id": 34,
+       "code": "def eat(number, need, remaining):\n    total_available = remaining\n    if total_available >= need:\n        total_eaten = number + need\n        remaining_after = total_available - need\n    else:\n        total_eaten = number + remaining\n        remaining_after = 0\n    return [total_eaten, remaining_after]\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1250",
+       "rollout_id": 16,
+       "code": "def eat(number, need, remaining):\n    available = remaining\n    if available >= need:\n        total_eaten = number + need\n        remaining_after = available - need\n    else:\n        total_eaten = number + available\n        remaining_after = 0\n    return [total_eaten, remaining_after]\n"
+      }
+     ]
+    },
+    "Assign:Constant": {
+     "n_discovery": 1,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-700",
+       "rollout_id": 27,
+       "code": "def eat(number, need, remaining):\n    additional = 0\n    if remaining >= need:\n        additional = need\n    else:\n        additional = remaining\n    total_eaten = number + additional\n    remaining_carrots = remaining - additional\n    return [total_eaten, remaining_carrots]\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/2": {
+   "entry_point": "truncate_number",
+   "n_branches_discovered": 6,
+   "n_branches_viable": 5,
+   "viable_branches": [
+    "Assign:Call:other_call",
+    "Assign:SliceSubscript",
+    "If:Compare",
+    "Return:Arithmetic",
+    "Return:SliceSubscript"
+   ],
+   "branches": {
+    "Assign:Call:other_call": {
+     "n_discovery": 600,
+     "n_correct": 593,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 4,
+       "code": "def truncate_number(number: float) -> float:\n    integer_part = int(number)\n    return number - integer_part\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 5,
+       "code": "import math\n\ndef truncate_number(number: float) -> float:\n    fractional, integer = math.modf(number)\n    return fractional\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 6,
+       "code": "def truncate_number(number: float) -> float:\n    integer_part = int(number)\n    decimal_part = number - integer_part\n    return decimal_part\n"
+      }
+     ]
+    },
+    "Return:Arithmetic": {
+     "n_discovery": 251,
+     "n_correct": 251,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 0,
+       "code": "def truncate_number(number: float) -> float:\n    return number - int(number)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def truncate_number(number: float) -> float:\n    return number - int(number)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 2,
+       "code": "def truncate_number(number: float) -> float:\n    return number - int(number)\n"
+      }
+     ]
+    },
+    "Return:SliceSubscript": {
+     "n_discovery": 24,
+     "n_correct": 8,
+     "viable": true,
+     "n_states_seen": 9,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 7,
+       "code": "import math\n\ndef truncate_number(number: float) -> float:\n    return math.modf(number)[0]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 36,
+       "code": "import math\n\ndef truncate_number(number: float) -> float:\n    return math.modf(number)[0]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 58,
+       "code": "import math\n\ndef truncate_number(number: float) -> float:\n    return math.modf(number)[0]\n"
+      }
+     ]
+    },
+    "Assign:SliceSubscript": {
+     "n_discovery": 18,
+     "n_correct": 5,
+     "viable": true,
+     "n_states_seen": 7,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 20,
+       "code": "import math\n\ndef truncate_number(number: float) -> float:\n    fractional_part = math.modf(number)[0]\n    return fractional_part\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 49,
+       "code": "import math\n\ndef truncate_number(number: float) -> float:\n    fractional_part = math.modf(number)[0]\n    return fractional_part\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 1,
+       "code": "import math\n\ndef truncate_number(number: float) -> float:\n    fractional_part = math.modf(number)[0]\n    return fractional_part\n"
+      }
+     ]
+    },
+    "Assign:Arithmetic": {
+     "n_discovery": 1,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "If:Compare": {
+     "n_discovery": 1,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_1750",
+       "rollout_id": 56,
+       "code": "import math\n\ndef truncate_number(number: float) -> float:\n    if number == int(number):\n        integer_part = math.floor(number) - 1\n    else:\n        integer_part = math.floor(number)\n    return number - integer_part\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/25": {
+   "entry_point": "factorize",
+   "n_branches_discovered": 3,
+   "n_branches_viable": 3,
+   "viable_branches": [
+    "Assign:ContainerLiteral",
+    "If:Compare",
+    "OtherStmt:Constant"
+   ],
+   "branches": {
+    "Assign:ContainerLiteral": {
+     "n_discovery": 706,
+     "n_correct": 346,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 8,
+       "code": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    factors = []\n    divisor = 2\n    while divisor * divisor <= n:\n        while n % divisor == 0:\n            factors.append(divisor)\n            n = n // divisor\n        divisor += 1\n    if n > 1:\n        factors.append(n)\n    return factors\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 10,
+       "code": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    factors = []\n    divisor = 2\n    while divisor * divisor <= n:\n        while n % divisor == 0:\n            factors.append(divisor)\n            n = n // divisor\n        divisor += 1\n    if n > 1:\n        factors.append(n)\n    return factors\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 29,
+       "code": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    factors = []\n    i = 2\n    while i * i <= n:\n        while n % i == 0:\n            factors.append(i)\n            n = n // i\n        i += 1\n    if n > 1:\n        factors.append(n)\n    return factors\n"
+      }
+     ]
+    },
+    "If:Compare": {
+     "n_discovery": 175,
+     "n_correct": 105,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 26,
+       "code": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    if n < 2:\n        return []\n    factors = []\n    divisor = 2\n    while divisor * divisor <= n:\n        while n % divisor == 0:\n            factors.append(divisor)\n            n = n // divisor\n        divisor += 1\n    if n > 1:\n        factors.append(n)\n    return factors\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 42,
+       "code": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    if n < 2:\n        return []\n    factors = []\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            while n % i == 0:\n                factors.append(i)\n                n = n // i\n        i += 1\n    if n > 1:\n        factors.append(n)\n    return factors\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-500",
+       "rollout_id": 24,
+       "code": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    if n < 2:\n        return []\n    \n    factors = []\n    i = 2\n    \n    while i * i <= n:\n        while n % i == 0:\n            factors.append(i)\n            n = n // i\n        i += 1\n    \n    if n > 1:\n        factors.append(n)\n    \n    return factors\n"
+      }
+     ]
+    },
+    "OtherStmt:Constant": {
+     "n_discovery": 3,
+     "n_correct": 3,
+     "viable": true,
+     "n_states_seen": 3,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 9,
+       "code": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    def is_prime(num):\n        if num <= 1:\n            return False\n        if num == 2:\n            return True\n        if num % 2 == 0:\n            return False\n        for i in range(3, int(num**0.5) + 1, 2):\n            if num % i == 0:\n                return False\n        return True\n\n    factors = []\n    i = 2\n    while i * i <= n:\n        while n % i == 0:\n            factors.append(i)\n            n = n // i\n        i += 1\n    if n > 1 and is_prime(n):\n        factors.append(n)\n    return factors\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 45,
+       "code": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    def is_prime(num):\n        if num <= 1:\n            return False\n        if num == 2:\n            return True\n        if num % 2 == 0:\n            return False\n        for i in range(3, int(num**0.5) + 1, 2):\n            if num % i == 0:\n                return False\n        return True\n\n    factors = []\n    d = 2\n    while d * d <= n:\n        if is_prime(d):\n            while n % d == 0:\n                factors.append(d)\n                n = n // d\n        d += 1\n    if n > 1:\n        factors.append(n)\n    return factors\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1000",
+       "rollout_id": 54,
+       "code": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    def is_prime(d):\n        if d <= 1:\n            return False\n        if d == 2:\n            return True\n        if d % 2 == 0:\n            return False\n        for i in range(3, int(d**0.5) + 1, 2):\n            if d % i == 0:\n                return False\n        return True\n    \n    if n == 1:\n        return []\n    \n    factors = []\n    current_d = 2\n    \n    while current_d <= n:\n        if is_prime(current_d):\n            while n % current_d == 0:\n                factors.append(current_d)\n                n = n // current_d\n        current_d += 1\n    \n    return factors\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/28": {
+   "entry_point": "concatenate",
+   "n_branches_discovered": 4,
+   "n_branches_viable": 4,
+   "viable_branches": [
+    "Assign:Constant",
+    "If:Boolean",
+    "Return:Call:other_call",
+    "Return:OtherExpr"
+   ],
+   "branches": {
+    "Return:Call:other_call": {
+     "n_discovery": 603,
+     "n_correct": 576,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 4,
+       "code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    return ''.join(strings)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 7,
+       "code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    \"\"\"Concatenate list of strings into a single string\"\"\"\n    return ''.join(strings)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 8,
+       "code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    \"\"\"Concatenate list of strings into a single string\"\"\"\n    return ''.join(strings)\n"
+      }
+     ]
+    },
+    "If:Boolean": {
+     "n_discovery": 246,
+     "n_correct": 213,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 0,
+       "code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    if not strings:\n        return ''\n    return ''.join(strings)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 2,
+       "code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    \"\"\"Concatenate list of strings into a single string\"\"\"\n    if not strings:\n        return \"\"\n    result = \"\"\n    for string in strings:\n        result += string\n    return result\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 3,
+       "code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    if not strings:\n        return \"\"\n    return ''.join(strings)\n"
+      }
+     ]
+    },
+    "Assign:Constant": {
+     "n_discovery": 26,
+     "n_correct": 10,
+     "viable": true,
+     "n_states_seen": 7,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 33,
+       "code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    result = \"\"\n    for string in strings:\n        result += string\n    return result\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 15,
+       "code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    result = \"\"\n    for string in strings:\n        result += string\n    return result\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 38,
+       "code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    result = \"\"\n    for string in strings:\n        result += string\n    return result\n"
+      }
+     ]
+    },
+    "Return:OtherExpr": {
+     "n_discovery": 21,
+     "n_correct": 20,
+     "viable": true,
+     "n_states_seen": 11,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 53,
+       "code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    return ''.join(strings) if strings else ''\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 38,
+       "code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    \"\"\"Concatenate list of strings into a single string.\n    \n    Args:\n        strings: List of strings to concatenate.\n    \n    Returns:\n        The concatenated string.\n    \"\"\"\n    return ''.join(strings) if strings else ''\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 43,
+       "code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    \"\"\"Concatenate list of strings into a single string.\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n    \"\"\"\n    return ''.join(strings) if strings else ''\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/32": {
+   "entry_point": "find_zero",
+   "n_branches_discovered": 18,
+   "n_branches_viable": 7,
+   "viable_branches": [
+    "Assign:Arithmetic",
+    "Assign:Call:other_call",
+    "Assign:Call:sum",
+    "Assign:Constant",
+    "Assign:ContainerLiteral",
+    "If:Call:all",
+    "OtherStmt:Constant"
+   ],
+   "branches": {
+    "OtherStmt:Constant": {
+     "n_discovery": 244,
+     "n_correct": 7,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-600",
+       "rollout_id": 13,
+       "code": "import math\n\ndef poly(xs: list, x: float):\n    \"\"\"\n    Evaluates polynomial with coefficients xs at point x.\n    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n\n    \"\"\"\n    return sum(coeff * (x ** i) for i, coeff in enumerate(xs))\n\ndef find_zero(xs: list):\n    \"\"\" xs are coefficients of a polynomial.\n    find_zero find x such that poly(x) = 0.\n    find_zero returns only only zero point, even if there are many.\n    Moreover, find_zero only takes list xs having even number of coefficients\n    and largest non zero coefficient as it guarantees\n    a solution.\n    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x\n    -0.5\n    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3\n    1.0\n    \"\"\"\n    def poly_func(x):\n        return sum(coeff * (x ** i) for i, coeff in enumerate(xs))\n    \n    # Evaluate the polynomial at several points to find an interval with sign change\n    points = [-10, -5, -1, 0, 1, 2, 5, 10]\n    found = False\n    for i in range(len(points)):\n        for j in range(i + 1, len(points)):\n            a = points[i]\n            b = points[j]\n            fa = poly_func(a)\n            fb = poly_func(b)\n            if fa * fb"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-700",
+       "rollout_id": 60,
+       "code": "import math\n\ndef poly(xs: list, x: float):\n    \"\"\"\n    Evaluates polynomial with coefficients xs at point x.\n    Returns the sum of each coefficient multiplied by x raised to the power of its index.\n    \"\"\"\n    return sum(coeff * (x ** i) for i, coeff in enumerate(xs))\n\ndef find_zero(xs: list):\n    \"\"\"\n    Finds a zero of the polynomial represented by coefficients xs.\n    Returns the root x such that poly(x) = 0.\n    \"\"\"\n    def f(x):\n        return poly(xs, x)\n    \n    # Initial interval\n    a = -1000.0\n    b = 1000.0\n    \n    fa = f(a)\n    fb = f(b)\n    \n    # Check if there's a sign change\n    if fa * fb < 0:\n        # Bisection method\n        for _ in range(1000):  # Perform enough iterations\n            mid = (a + b) / 2\n            fm = f(mid)\n            if abs(fm) < 1e-10:\n                return mid\n            elif fa * fm < 0:\n                b = mid\n            else:\n                a = mid\n        return (a + b) / 2\n    else:\n        # Find another interval with opposite signs\n        # Try smaller intervals\n        for shift in (-1, 1):\n            a -= shift\n            b += shift\n            fa = f(a)\n            fb = f(b)\n            if fa * fb < 0:\n                "
+      },
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 54,
+       "code": "import math\n\ndef poly(xs, x):\n    return sum([coeff * (x ** i) for i, coeff in enumerate(xs)])\n\ndef find_zero(xs):\n    def poly_derivative(x):\n        n = len(xs) - 1\n        derivative = 0.0\n        for i in range(1, len(xs)):\n            coeff = xs[i]\n            term = i * coeff * (x ** (i - 1))\n            derivative += term\n        return derivative\n    \n    x = 0.0\n    tolerance = 1e-6\n    max_iterations = 1000\n    for _ in range(max_iterations):\n        f = poly(xs, x)\n        df = poly_derivative(x)\n        if abs(f) < tolerance:\n            break\n        x = x - f / df\n    else:\n        # If after max iterations, not converged (though problem states a solution exists)\n        pass\n    return x\n\n# Test cases\nprint(round(find_zero([1, 2]), 2))  # Output: -0.5\nprint(round(find_zero([-6, 11, -6, 1]), 2))  # Output: 1.0\n"
+      }
+     ]
+    },
+    "Assign:Call:other_call": {
+     "n_discovery": 227,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 10,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 4,
+       "code": "import math\n\ndef poly(xs, x):\n    \"\"\"\n    Evaluates polynomial with coefficients xs at point x.\n    Returns the sum of coeff * x^i for each coefficient in xs.\n    \"\"\"\n    result = 0.0\n    for coeff, i in zip(xs, range(len(xs))):\n        result += coeff * (x ** i)\n    return result\n\ndef find_zero(xs):\n    \"\"\"\n    Finds a root of the polynomial with coefficients xs.\n    Returns a float x such that poly(x) is approximately zero.\n    \"\"\"\n    # Check if x=1.0 is a root\n    value_at_1 = poly(xs, 1.0)\n    if abs(value_at_1) < 1e-10:\n        return 1.0\n\n    # Try Newton-Raphson starting at x=1.0\n    x = 1.0\n    tolerance = 1e-10\n    max_iterations = 100\n    for _ in range(max_iterations):\n        f = poly(xs, x)\n        df = 0.0\n        for i in range(1, len(xs)):\n            df += i * xs[i] * (x ** (i-1))\n        if df == 0:\n            break  # Avoid division by zero\n        x_new = x - f / df\n        if abs(x_new - x) < tolerance:\n            break\n        x = x_new\n\n    # Check if x_new is a root\n    if abs(poly(xs, x_new)) < tolerance:\n        return x_new\n\n    # Try Newton-Raphson starting at x=0.0\n    x = 0.0\n    for _ in range(max_iterations):\n        f = poly(xs, x)\n        df = 0"
+      }
+     ]
+    },
+    "If:Boolean": {
+     "n_discovery": 56,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 8,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Assign:Constant": {
+     "n_discovery": 26,
+     "n_correct": 4,
+     "viable": true,
+     "n_states_seen": 9,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 29,
+       "code": "import math\n\ndef poly(xs, x):\n    return sum(coeff * math.pow(x, i) for i, coeff in enumerate(xs))\n\ndef find_zero(xs):\n    x = 0.0\n    tolerance = 1e-6\n    max_iter = 1000\n    for _ in range(max_iter):\n        fx = poly(xs, x)\n        if abs(fx) < tolerance:\n            return x\n        # Compute the derivative\n        derivative_value = 0.0\n        for i in range(1, len(xs)):\n            coeff = xs[i]\n            term = i * coeff * (x ** (i-1))\n            derivative_value += term\n        x_new = x - fx / derivative_value\n        x = x_new\n    return x\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 58,
+       "code": "import math\n\ndef poly(xs, x):\n    \"\"\"\n    Evaluates polynomial with coefficients xs at point x.\n    \"\"\"\n    return sum(coeff * math.pow(x, i) for i, coeff in enumerate(xs))\n\ndef poly_derivative(xs, x):\n    \"\"\"\n    Computes the derivative of the polynomial at point x.\n    \"\"\"\n    derivative = 0.0\n    for i in range(len(xs)):\n        coeff = xs[i]\n        if i == 0:\n            continue  # derivative of constant term is 0\n        term = coeff * i * math.pow(x, i-1)\n        derivative += term\n    return derivative\n\ndef find_zero(xs):\n    \"\"\"\n    Finds the root of the polynomial with coefficients xs.\n    \"\"\"\n    # Initial guess\n    x = 0.0\n    tolerance = 1e-7\n    max_iterations = 1000\n    for _ in range(max_iterations):\n        fx = poly(xs, x)\n        f_prime = poly_derivative(xs, x)\n        if f_prime == 0:\n            # This should not happen as per problem constraints\n            break\n        x_new = x - fx / f_prime\n        if abs(x_new - x) < tolerance:\n            break\n        x = x_new\n    return x\n\n# Example usage:\n# print(round(find_zero([1, 2]), 2))  # Output: -0.5\n# print(round(find_zero([-6, 11, -6, 1]), 2))  # Output: 1.0\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1500",
+       "rollout_id": 44,
+       "code": "import math\n\ndef poly(xs, x):\n    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n\ndef find_zero(xs):\n    x = 0.0\n    tolerance = 1e-6\n    max_iterations = 1000\n    for _ in range(max_iterations):\n        # Evaluate the polynomial at current x\n        fx = poly(xs, x)\n        # Compute the derivative\n        if len(xs) == 1:\n            f_prime = 0.0\n        else:\n            f_prime = 0.0\n            for i in range(1, len(xs)):\n                coeff = xs[i]\n                f_prime += i * coeff * (x ** (i-1))\n        # Avoid division by zero\n        if f_prime == 0:\n            break\n        # Calculate the next x using Newton-Raphson formula\n        x_next = x - fx / f_prime\n        # Check for convergence\n        if abs(x_next - x) < tolerance:\n            return x_next\n        x = x_next\n    # Return the last computed x if convergence is not achieved\n    return x\n"
+      }
+     ]
+    },
+    "If:Compare": {
+     "n_discovery": 26,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 10,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 13,
+     "n_correct": 2,
+     "viable": true,
+     "n_states_seen": 7,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 47,
+       "code": "import math\n\ndef poly(xs: list, x: float):\n    return sum(coeff * (x ** i) for i, coeff in enumerate(xs))\n\ndef bisection(xs: list, a: float, b: float) -> float:\n    if a >= b:\n        a, b = b, a\n    fa = poly(xs, a)\n    fb = poly(xs, b)\n    if fa * fb >= -1e-10:\n        return None\n    for _ in range(100):\n        c = (a + b) / 2\n        fc = poly(xs, c)\n        if abs(fc) < 1e-10:\n            return c\n        if fa * fc < 0:\n            b = c\n        else:\n            a = c\n    return (a + b) / 2\n\ndef find_zero(xs: list):\n    points = [-10, -5, 0, 5, 10]\n    for x_val in points:\n        val = poly(xs, x_val)\n        if abs(val) < 1e-10:\n            return round(x_val, 2)\n    for i in range(len(points) - 1):\n        a_val = poly(xs, points[i])\n        b_val = poly(xs, points[i+1])\n        if (a_val * b_val) < -1e-10:\n            return bisection(xs, points[i], points[i+1])\n    return None\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1250",
+       "rollout_id": 12,
+       "code": "import math\n\ndef poly(xs, x):\n    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n\ndef find_zero(xs):\n    # Compute the derivative coefficients\n    d_poly = []\n    for i in range(1, len(xs)):\n        d_poly.append(xs[i] * i)\n    \n    # Initial guess\n    x = 0.0\n    while True:\n        fx = poly(xs, x)\n        if abs(fx) < 1e-7:\n            return x\n        f_prime = poly(d_poly, x)\n        if abs(f_prime) < 1e-7:\n            return x\n        next_x = x - fx / f_prime\n        if abs(next_x - x) < 1e-7:\n            return next_x\n        x = next_x\n"
+      }
+     ]
+    },
+    "Assign:Arithmetic": {
+     "n_discovery": 13,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 7,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 4,
+       "code": "import math\n\ndef poly(xs: list, x: float):\n    \"\"\"\n    Evaluates polynomial with coefficients xs at point x.\n    Returns the evaluated value.\n    \"\"\"\n    return sum(coeff * (x ** i) for i, coeff in enumerate(xs))\n\ndef find_zero(xs: list):\n    \"\"\"\n    Finds a zero of the polynomial given by coefficients xs.\n    Returns the root with sufficient precision.\n    \"\"\"\n    # Initial interval search\n    a = -10\n    b = 10\n    fa = poly(xs, a)\n    fb = poly(xs, b)\n    \n    if fa * fb < 0:\n        # Bracket found\n        for _ in range(100):\n            midpoint = (a + b) / 2\n            fm = poly(xs, midpoint)\n            if abs(fm) < 1e-12:\n                return midpoint\n            if fa * fm < 0:\n                b = midpoint\n            else:\n                a = midpoint\n        return (a + b) / 2\n    else:\n        # Expand the interval\n        if fa > 0:\n            b *= 2\n        else:\n            a *= 2\n        fa = poly(xs, a)\n        fb = poly(xs, b)\n        if fa * fb < 0:\n            for _ in range(100):\n                midpoint = (a + b) / 2\n                fm = poly(xs, midpoint)\n                if abs(fm) < 1e-12:\n                    return midpoint\n                if fa * fm <"
+      }
+     ]
+    },
+    "Assign:SliceSubscript": {
+     "n_discovery": 12,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 8,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Assign:Call:len": {
+     "n_discovery": 7,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 4,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Assign:ListComp": {
+     "n_discovery": 5,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 4,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "For:Call:range": {
+     "n_discovery": 5,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 4,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "If:Call:all": {
+     "n_discovery": 4,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 4,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-600",
+       "rollout_id": 6,
+       "code": "import math\n\ndef poly(xs: list, x: float):\n    \"\"\"\n    Evaluates polynomial with coefficients xs at point x.\n    Returns the sum of each coefficient multiplied by x raised to the power of its index.\n    \"\"\"\n    return sum(coeff * (x ** i) for i, coeff in enumerate(xs))\n\ndef find_zero(xs: list):\n    \"\"\"\n    Finds a root of the polynomial using the bisection method.\n    Returns the root as a float.\n    \"\"\"\n    # Check if all coefficients are zero\n    if all(c == 0 for c in xs):\n        return 0.0\n    \n    # Define the polynomial function\n    def poly_func(x):\n        return sum(coeff * (x ** i) for i, coeff in enumerate(xs))\n    \n    # Bisection method\n    a = -100.0\n    b = 100.0\n    for _ in range(1000):\n        fa = poly_func(a)\n        fb = poly_func(b)\n        if fa * fb < 0:\n            break\n        a -= 0.1\n        b += 0.1\n    \n    # Check if the interval is small enough\n    if abs(a - b) < 1e-10:\n        return (a + b) / 2\n    \n    # Perform bisection iterations\n    for _ in range(1000):\n        mid = (a + b) / 2\n        fm = poly_func(mid)\n        if abs(fm) < 1e-10:\n            return mid\n        if fa * fm < 0:\n            b = mid\n        else:\n            a = mid\n    \n "
+      }
+     ]
+    },
+    "Assign:Call:sum": {
+     "n_discovery": 4,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 3,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_1750",
+       "rollout_id": 46,
+       "code": "import math\n\ndef poly(xs, x):\n    return sum(coeff * math.pow(x, i) for i, coeff in enumerate(xs))\n\ndef poly_derivative(xs, x):\n    derivative = 0\n    for i in range(1, len(xs)):\n        derivative += i * xs[i] * math.pow(x, i-1)\n    return derivative\n\ndef find_zero(xs):\n    sum_poly = sum(xs)\n    if sum_poly == 0:\n        return 1.0\n    x = 0.0\n    epsilon = 1e-6\n    max_iterations = 1000\n    for _ in range(max_iterations):\n        f = poly(xs, x)\n        f_prime = poly_derivative(xs, x)\n        if abs(f) < epsilon:\n            return x\n        x_new = x - f / f_prime\n        x = x_new\n    return x\n\n# Example usage:\n# print(round(find_zero([1, 2]), 2))  # Output: -0.5\n# print(round(find_zero([-6, 11, -6, 1]), 2))  # Output: 1.0\n"
+      }
+     ]
+    },
+    "Return:SliceSubscript": {
+     "n_discovery": 2,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "For:ContainerLiteral": {
+     "n_discovery": 2,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 2,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "If:Call:other_call": {
+     "n_discovery": 1,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "If:Name": {
+     "n_discovery": 1,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Assign:Name": {
+     "n_discovery": 1,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    }
+   }
+  },
+  "HumanEval/37": {
+   "entry_point": "sort_even",
+   "n_branches_discovered": 9,
+   "n_branches_viable": 9,
+   "viable_branches": [
+    "Assign:Arithmetic",
+    "Assign:Call:len",
+    "Assign:Call:other_call",
+    "Assign:Call:sorted",
+    "Assign:ContainerLiteral",
+    "Assign:ListComp",
+    "Assign:Name",
+    "Assign:SliceSubscript",
+    "If:Boolean"
+   ],
+   "branches": {
+    "Assign:ListComp": {
+     "n_discovery": 731,
+     "n_correct": 647,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 0,
+       "code": "def sort_even(l: list):\n    evens = [l[i] for i in range(0, len(l), 2)]\n    evens_sorted = sorted(evens)\n    return [evens_sorted[i // 2] if i % 2 == 0 else l[i] for i in range(len(l))]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def sort_even(l: list):\n    evens = [l[i] for i in range(0, len(l), 2)]\n    evens_sorted = sorted(evens)\n    new_list = l.copy()\n    for i in range(len(evens_sorted)):\n        new_list[2 * i] = evens_sorted[i]\n    return new_list\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 2,
+       "code": "def sort_even(l: list):\n    evens = [l[i] for i in range(0, len(l), 2)]\n    evens_sorted = sorted(evens)\n    result = []\n    for i in range(len(l)):\n        if i % 2 == 0:\n            result.append(evens_sorted[i // 2])\n        else:\n            result.append(l[i])\n    return result\n"
+      }
+     ]
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 53,
+     "n_correct": 29,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 53,
+       "code": "def sort_even(l: list):\n    evens = []\n    odds = []\n    for idx, num in enumerate(l):\n        if idx % 2 == 0:\n            evens.append(num)\n        else:\n            odds.append(num)\n    evens_sorted = sorted(evens)\n    result = []\n    for i in range(len(l)):\n        if i % 2 == 0:\n            result.append(evens_sorted[i // 2])\n        else:\n            result.append(odds[i // 2])\n    return result\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 30,
+       "code": "def sort_even(l: list):\n    odds = []\n    evens = []\n    for i in range(len(l)):\n        if i % 2 == 1:\n            odds.append(l[i])\n        else:\n            evens.append(l[i])\n    evens_sorted = sorted(evens)\n    new_list = []\n    for i in range(len(l)):\n        if i % 2 == 1:\n            new_list.append(odds[i // 2])\n        else:\n            new_list.append(evens_sorted[i // 2])\n    return new_list\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 54,
+       "code": "def sort_even(l: list):\n    even = []\n    odd = []\n    for i, num in enumerate(l):\n        if i % 2 == 0:\n            even.append(num)\n        else:\n            odd.append(num)\n    even.sort()\n    result = []\n    for j in range(len(l)):\n        if j % 2 == 0:\n            result.append(even[j // 2])\n        else:\n            result.append(odd[j // 2])\n    return result\n"
+      }
+     ]
+    },
+    "Assign:SliceSubscript": {
+     "n_discovery": 40,
+     "n_correct": 29,
+     "viable": true,
+     "n_states_seen": 10,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 7,
+       "code": "def sort_even(l: list):\n    even = l[::2]\n    odd = l[1::2]\n    even_sorted = sorted(even)\n    new_list = []\n    for i in range(len(l)):\n        if i % 2 == 0:\n            new_list.append(even_sorted[i // 2])\n        else:\n            new_list.append(odd[i // 2])\n    return new_list\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 14,
+       "code": "def sort_even(l: list):\n    evens = l[::2]\n    evens_sorted = sorted(evens)\n    result = []\n    for i in range(len(l)):\n        if i % 2 == 0:\n            result.append(evens_sorted[i // 2])\n        else:\n            result.append(l[i])\n    return result\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 21,
+       "code": "def sort_even(l: list):\n    evens = l[::2]  # Extract elements at even indices\n    evens_sorted = sorted(evens)\n    result = []\n    for i in range(len(l)):\n        if i % 2 == 0:\n            result.append(evens_sorted[i // 2])\n        else:\n            result.append(l[i])\n    return result\n"
+      }
+     ]
+    },
+    "Assign:Call:len": {
+     "n_discovery": 9,
+     "n_correct": 6,
+     "viable": true,
+     "n_states_seen": 6,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-500",
+       "rollout_id": 24,
+       "code": "def sort_even(l: list):\n    n = len(l)\n    evens = [l[i] for i in range(0, n, 2)]\n    sorted_evens = sorted(evens)\n    new_list = []\n    for i in range(n):\n        if i % 2 == 1:\n            new_list.append(l[i])\n        else:\n            new_list.append(sorted_evens[i // 2])\n    return new_list\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-600",
+       "rollout_id": 29,
+       "code": "def sort_even(l: list):\n    n = len(l)\n    result = [0] * n\n    \n    # Fill the odd indices with elements from the original list\n    for i in range(n):\n        if i % 2 == 1:\n            result[i] = l[i]\n    \n    # Extract elements at even indices and sort them\n    even_elements = [l[i] for i in range(n) if i % 2 == 0]\n    even_elements_sorted = sorted(even_elements)\n    \n    # Place the sorted elements back into the even indices of the result\n    for i in range(len(even_elements_sorted)):\n        result[2 * i] = even_elements_sorted[i]\n    \n    return result\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 15,
+       "code": "from typing import List, Any\n\ndef sort_even(l: list) -> list:\n    \"\"\"\n    This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    \"\"\"\n    n = len(l)\n    even_list = []\n    odd_list = []\n    \n    # Collect values at even and odd indices\n    for i in range(n):\n        if i % 2 == 0:\n            even_list.append(l[i])\n        else:\n            odd_list.append(l[i])\n    \n    # Sort the even list\n    sorted_even = sorted(even_list)\n    \n    # Construct the new list\n    new_list = []\n    for i in range(n):\n        if i % 2 == 0:\n            # Use the sorted even values\n            new_list.append(sorted_even[i // 2])\n        else:\n            # Use the original odd values\n            new_list.append(odd_list[i // 2])\n    \n    return new_list\n\n# Example usage:\nif __name__ == \"__main__\":\n    print(sort_even([1, 2, 3]))  # Output: [1, 2, 3]\n    print(sort_even([5, 6, 3, 4]))  # Output: [3, 6, 5, 4]\n"
+      }
+     ]
+    },
+    "Assign:Call:sorted": {
+     "n_discovery": 7,
+     "n_correct": 7,
+     "viable": true,
+     "n_states_seen": 5,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 19,
+       "code": "def sort_even(l: list):\n    evens = sorted(l[::2])\n    new_list = []\n    for i in range(len(l)):\n        if i % 2 == 0:\n            new_list.append(evens[i // 2])\n        else:\n            new_list.append(l[i])\n    return new_list\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 22,
+       "code": "def sort_even(l: list):\n    evens = sorted([l[i] for i in range(0, len(l), 2)])\n    return [evens[i // 2] if i % 2 == 0 else l[i] for i in range(len(l))]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 28,
+       "code": "def sort_even(l: list):\n    even_elements = sorted(l[::2])\n    return [even_elements[i//2] if i % 2 == 0 else l[i] for i in range(len(l))]\n"
+      }
+     ]
+    },
+    "Assign:Call:other_call": {
+     "n_discovery": 6,
+     "n_correct": 5,
+     "viable": true,
+     "n_states_seen": 5,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 41,
+       "code": "def sort_even(l: list):\n    new_list = l.copy()\n    even = [new_list[i] for i in range(0, len(new_list), 2)]\n    even_sorted = sorted(even)\n    for i in range(len(new_list)):\n        if i % 2 == 0:\n            new_list[i] = even_sorted[i // 2]\n    return new_list\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-700",
+       "rollout_id": 18,
+       "code": "def sort_even(l: list):\n    result = list(l)\n    # Extract elements at even indices\n    even_indices = [result[i] for i in range(len(result)) if i % 2 == 0]\n    # Sort the extracted even indices\n    even_indices_sorted = sorted(even_indices)\n    # Fill the new list\n    pointer = 0\n    for i in range(len(result)):\n        if i % 2 == 0:\n            result[i] = even_indices_sorted[pointer]\n            pointer += 1\n        else:\n            result[i] = l[i]\n    return result\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-700",
+       "rollout_id": 58,
+       "code": "def sort_even(l: list):\n    result = list(l)\n    even_values = [result[i] for i in range(len(result)) if i % 2 == 0]\n    even_values_sorted = sorted(even_values)\n    for i in range(len(result)):\n        if i % 2 == 0:\n            result[i] = even_values_sorted[i // 2]\n    return result\n"
+      }
+     ]
+    },
+    "If:Boolean": {
+     "n_discovery": 6,
+     "n_correct": 6,
+     "viable": true,
+     "n_states_seen": 5,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 24,
+       "code": "def sort_even(l: list):\n    if not l:\n        return []\n    # Extract elements at even indices\n    l_even = [x for i, x in enumerate(l) if i % 2 == 0]\n    # Sort the extracted elements\n    l_even_sorted = sorted(l_even)\n    # Build the new list\n    result = []\n    for i in range(len(l)):\n        if i % 2 == 1:\n            result.append(l[i])\n        else:\n            result.append(l_even_sorted[i // 2])\n    return result\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-500",
+       "rollout_id": 6,
+       "code": "def sort_even(l: list):\n    if not l:\n        return []\n    odds = [l[i] for i in range(len(l)) if i % 2 != 0]\n    evens = [l[i] for i in range(len(l)) if i % 2 == 0]\n    evens_sorted = sorted(evens)\n    new_list = []\n    for i in range(len(l)):\n        if i % 2 == 1:\n            new_list.append(odds[i // 2])\n        else:\n            new_list.append(evens_sorted[i // 2])\n    return new_list\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-500",
+       "rollout_id": 27,
+       "code": "def sort_even(l: list):\n    if not l:\n        return []\n    even_elements = [l[i] for i in range(0, len(l), 2)]\n    even_elements_sorted = sorted(even_elements)\n    new_list = []\n    for i in range(len(l)):\n        if i % 2 == 0:\n            new_list.append(even_elements_sorted[i // 2])\n        else:\n            new_list.append(l[i])\n    return new_list\n"
+      }
+     ]
+    },
+    "Assign:Name": {
+     "n_discovery": 1,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-800",
+       "rollout_id": 40,
+       "code": "def sort_even(l: list):\n    original = l\n    even_indices = [original[i] for i in range(0, len(original), 2)]\n    sorted_even = sorted(even_indices)\n    result = []\n    for i in range(len(original)):\n        if i % 2 == 1:\n            result.append(original[i])\n        else:\n            result.append(sorted_even[i // 2])\n    return result\n"
+      }
+     ]
+    },
+    "Assign:Arithmetic": {
+     "n_discovery": 1,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 5,
+       "code": "from typing import List\n\ndef sort_even(l: list) -> list:\n    l_prime = [0] * len(l)\n    even_indices = [i for i in range(len(l)) if i % 2 == 0]\n    even_values = [l[i] for i in even_indices]\n    sorted_even = sorted(even_values)\n    for i in range(len(l)):\n        if i % 2 == 0:\n            l_prime[i] = sorted_even[i // 2]\n        else:\n            l_prime[i] = l[i]\n    return l_prime\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/41": {
+   "entry_point": "car_race_collision",
+   "n_branches_discovered": 14,
+   "n_branches_viable": 5,
+   "viable_branches": [
+    "Assign:Arithmetic",
+    "Assign:Call:other_call",
+    "Assign:ListComp",
+    "Assign:Name",
+    "Return:Arithmetic"
+   ],
+   "branches": {
+    "Return:Arithmetic": {
+     "n_discovery": 374,
+     "n_correct": 336,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 16,
+       "code": "def car_race_collision(n: int):\n    return n * n\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 25,
+       "code": "def car_race_collision(n: int):\n    return n * n\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 31,
+       "code": "def car_race_collision(n: int):\n    return n * n\n"
+      }
+     ]
+    },
+    "Return:Name": {
+     "n_discovery": 186,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Assign:Call:other_call": {
+     "n_discovery": 135,
+     "n_correct": 55,
+     "viable": true,
+     "n_states_seen": 11,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 32,
+       "code": "def car_race_collision(n: int):\n    L = list(range(1, n + 1))\n    R = list(range(-1, -n - 1, -1))\n    \n    l_ptr = 0\n    r_ptr = 0\n    count = 0\n    \n    for r in R:\n        while l_ptr < len(L) and L[l_ptr] <= r:\n            l_ptr += 1\n        count += len(L) - l_ptr\n    \n    return count\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 41,
+       "code": "import bisect\n\ndef car_race_collision(n: int):\n    left = list(range(n))\n    right = list(range(n, 2 * n))\n    right.sort()\n    count = 0\n    for pos in left:\n        idx = bisect.bisect_right(right, pos)\n        count += len(right) - idx\n    return count\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 28,
+       "code": "import bisect\n\ndef car_race_collision(n):\n    left = list(range(n))\n    right = list(range(n, 2 * n))\n    left.sort()\n    right.sort()\n    count = 0\n    for y in right:\n        count += bisect.bisect_right(left, y)\n    return count\n"
+      }
+     ]
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 40,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 7,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Assign:ListComp": {
+     "n_discovery": 32,
+     "n_correct": 14,
+     "viable": true,
+     "n_states_seen": 8,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 3,
+       "code": "def car_race_collision(n: int):\n    left = [-i for i in range(n)]\n    right = [i + n for i in range(n)]\n    count = 0\n    for pos in left:\n        count += sum(1 for r in right if r > pos)\n    return count\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-300",
+       "rollout_id": 59,
+       "code": "def car_race_collision(n: int):\n    left = [-i for i in range(n, 0, -1)]\n    right = [i for i in range(1, n+1)]\n    count = 0\n    for r in right:\n        count += sum(1 for l in left if l < r)\n    return count\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-500",
+       "rollout_id": 14,
+       "code": "def car_race_collision(n: int):\n    left = [-i - 1 for i in range(n)]\n    right = [i for i in range(1, n + 1)]\n    collisions = 0\n    for car in left:\n        count = 0\n        for r in right:\n            if car < r:\n                count += 1\n        collisions += count\n    return collisions\n"
+      }
+     ]
+    },
+    "Assign:Constant": {
+     "n_discovery": 17,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 7,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Assign:SliceSubscript": {
+     "n_discovery": 11,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 4,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Assign:Arithmetic": {
+     "n_discovery": 8,
+     "n_correct": 2,
+     "viable": true,
+     "n_states_seen": 5,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 6,
+       "code": "def car_race_collision(n: int):\n    cars = ['L'] * n + ['R'] * n\n    count = 0\n    for i in range(n):\n        if cars[i] == 'L':\n            count += cars[i+1:].count('R')\n    return count\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 31,
+       "code": "import bisect\n\ndef car_race_collision(n: int):\n    left = [-10**18] * n\n    right = [10**18] * n\n\n    left.sort()\n    right.sort()\n\n    count = 0\n    for pos in right:\n        left_count = bisect.bisect_right(left, pos)\n        count += left_count\n\n    return count\n"
+      }
+     ]
+    },
+    "Assign:Name": {
+     "n_discovery": 4,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 4,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 55,
+       "code": "def car_race_collision(n: int):\n    left_count = n\n    right_count = n\n    return left_count * right_count\n"
+      }
+     ]
+    },
+    "Assign:Call:sorted": {
+     "n_discovery": 3,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 3,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Assign:Call:sum": {
+     "n_discovery": 2,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Return:Constant": {
+     "n_discovery": 2,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 2,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": []
+    },
+    "Return:Call:sum": {
+     "n_discovery": 1,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Return:Call:other_call": {
+     "n_discovery": 1,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 1,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": []
+    }
+   }
+  },
+  "HumanEval/42": {
+   "entry_point": "incr_list",
+   "n_branches_discovered": 3,
+   "n_branches_viable": 3,
+   "viable_branches": [
+    "Assign:ContainerLiteral",
+    "If:Boolean",
+    "Return:ListComp"
+   ],
+   "branches": {
+    "Return:ListComp": {
+     "n_discovery": 771,
+     "n_correct": 771,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 0,
+       "code": "def incr_list(l: list):\n    return [x + 1 for x in l]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def incr_list(l: list):\n    return [x + 1 for x in l]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 2,
+       "code": "def incr_list(l: list):\n    return [x + 1 for x in l]\n"
+      }
+     ]
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 124,
+     "n_correct": 124,
+     "viable": true,
+     "n_states_seen": 11,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 11,
+       "code": "def incr_list(l: list):\n    result = []\n    for num in l:\n        result.append(num + 1)\n    return result\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 28,
+       "code": "def incr_list(l: list):\n    result = []\n    for num in l:\n        result.append(num + 1)\n    return result\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 33,
+       "code": "def incr_list(l: list):\n    new_list = []\n    for num in l:\n        new_list.append(num + 1)\n    return new_list\n"
+      }
+     ]
+    },
+    "If:Boolean": {
+     "n_discovery": 1,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 31,
+       "code": "def incr_list(l: list):\n    if not l:\n        return l\n    return [x + 1 for x in l]\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/55": {
+   "entry_point": "fib",
+   "n_branches_discovered": 3,
+   "n_branches_viable": 3,
+   "viable_branches": [
+    "Assign:ContainerLiteral",
+    "If:Boolean",
+    "If:Compare"
+   ],
+   "branches": {
+    "If:Boolean": {
+     "n_discovery": 805,
+     "n_correct": 779,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 0,
+       "code": "def fib(n: int):\n    if n == 1 or n == 2:\n        return 1\n    a, b = 1, 1\n    for i in range(3, n + 1):\n        c = a + b\n        a = b\n        b = c\n    return b\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def fib(n: int):\n    if n == 1 or n == 2:\n        return 1\n    a, b = 1, 1\n    for _ in range(3, n + 1):\n        c = a + b\n        a = b\n        b = c\n    return b\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 2,
+       "code": "def fib(n: int):\n    if n == 1 or n == 2:\n        return 1\n    a, b = 1, 1\n    for i in range(3, n + 1):\n        c = a + b\n        a = b\n        b = c\n    return b\n"
+      }
+     ]
+    },
+    "If:Compare": {
+     "n_discovery": 87,
+     "n_correct": 81,
+     "viable": true,
+     "n_states_seen": 12,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 7,
+       "code": "def fib(n: int):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        a, b = 0, 1\n        for _ in range(2, n + 1):\n            c = a + b\n            a = b\n            b = c\n        return b\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 28,
+       "code": "def fib(n):\n    if n == 0:\n        return 0\n    a, b = 0, 1\n    for _ in range(2, n + 1):\n        c = a + b\n        a = b\n        b = c\n    return b\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 35,
+       "code": "def fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\"\"\"\n    if n == 1:\n        return 1\n    elif n == 2:\n        return 1\n    else:\n        a, b = 1, 1\n        for _ in range(3, n + 1):\n            c = a + b\n            a = b\n            b = c\n        return b\n"
+      }
+     ]
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 3,
+     "n_correct": 2,
+     "viable": true,
+     "n_states_seen": 3,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 59,
+       "code": "def fib(n: int):\n    a, b = 1, 1\n    if n == 1 or n == 2:\n        return b\n    for i in range(3, n + 1):\n        c = a + b\n        a = b\n        b = c\n    return b\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1250",
+       "rollout_id": 43,
+       "code": "def fib(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/59": {
+   "entry_point": "largest_prime_factor",
+   "n_branches_discovered": 10,
+   "n_branches_viable": 9,
+   "viable_branches": [
+    "AnnAssign:ContainerLiteral",
+    "Assign:Arithmetic",
+    "Assign:Call:set",
+    "Assign:Constant",
+    "Assign:ContainerLiteral",
+    "If:Boolean",
+    "If:Compare",
+    "OtherStmt:Constant",
+    "While:Compare"
+   ],
+   "branches": {
+    "Assign:Constant": {
+     "n_discovery": 378,
+     "n_correct": 360,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def largest_prime_factor(n: int):\n    largest = 2\n    if n % 2 == 0:\n        while n % 2 == 0:\n            largest = 2\n            n = n // 2\n    i = 3\n    while i * i <= n:\n        while n % i == 0:\n            largest = i\n            n = n // i\n        i += 2\n    if n > 1:\n        return n\n    else:\n        return largest\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 2,
+       "code": "def largest_prime_factor(n: int):\n    largest = 2\n    # Handle even numbers\n    while n % 2 == 0:\n        largest = 2\n        n = n // 2\n    # Now check odd factors\n    i = 3\n    while i * i <= n:\n        while n % i == 0:\n            largest = i\n            n = n // i\n        i += 2\n    # If remaining n is a prime\n    if n > 1:\n        largest = n\n    return largest\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 3,
+       "code": "def largest_prime_factor(n: int):\n    largest = 2\n    if n % 2 == 0:\n        while n % 2 == 0:\n            largest = 2\n            n = n // 2\n    for i in range(3, int(n ** 0.5) + 1, 2):\n        while n % i == 0:\n            largest = i\n            n = n // i\n    if n > 2:\n        largest = n\n    return largest\n"
+      }
+     ]
+    },
+    "If:Compare": {
+     "n_discovery": 228,
+     "n_correct": 193,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 10,
+       "code": "import math\n\ndef largest_prime_factor(n: int):\n    if n == 2:\n        return 2\n    largest_factor = 2\n    # Divide out all factors of 2\n    while n % 2 == 0:\n        largest_factor = 2\n        n = n // 2\n    # Now check for odd factors starting from 3\n    for i in range(3, int(math.sqrt(n)) + 1, 2):\n        while n % i == 0:\n            largest_factor = i\n            n = n // i\n    # If remaining n is a prime\n    if n > 1:\n        largest_factor = n\n    return largest_factor\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 16,
+       "code": "def largest_prime_factor(n: int):\n    if n % 2 == 0:\n        largest = 2\n        while n % 2 == 0:\n            n = n // 2\n    i = 3\n    while i * i <= n:\n        while n % i == 0:\n            largest = i\n            n = n // i\n        i += 2\n    if n > 1:\n        largest = n\n    return largest\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 33,
+       "code": "def largest_prime_factor(n: int):\n    if n % 2 == 0:\n        largest = 2\n        while n % 2 == 0:\n            largest = 2\n            n = n // 2\n    i = 3\n    while i * i <= n:\n        while n % i == 0:\n            largest = i\n            n = n // i\n        i += 2\n    if n > 2:\n        largest = n\n    return largest\n"
+      }
+     ]
+    },
+    "Assign:Arithmetic": {
+     "n_discovery": 103,
+     "n_correct": 103,
+     "viable": true,
+     "n_states_seen": 13,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 14,
+       "code": "def largest_prime_factor(n: int):\n    largest = -1\n    # Check divisibility by 2\n    while n % 2 == 0:\n        largest = 2\n        n = n // 2\n    # Now check odd numbers starting from 3\n    i = 3\n    while i * i <= n:\n        while n % i == 0:\n            largest = i\n            n = n // i\n        i += 2\n    # If remaining n is a prime\n    if n > 1:\n        largest = n\n    return largest\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 16,
+       "code": "def largest_prime_factor(n: int):\n    largest = -1\n    i = 2\n    while i * i <= n:\n        while n % i == 0:\n            largest = i\n            n = n // i\n        i += 1\n    if n > 1:\n        largest = n\n    return largest\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 24,
+       "code": "def largest_prime_factor(n):\n    largest = -1\n    i = 2\n    while i * i <= n:\n        while n % i == 0:\n            largest = i\n            n = n // i\n        i += 1\n    if n > 1:\n        largest = n\n    return largest\n"
+      }
+     ]
+    },
+    "OtherStmt:Constant": {
+     "n_discovery": 87,
+     "n_correct": 85,
+     "viable": true,
+     "n_states_seen": 11,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 35,
+       "code": "def largest_prime_factor(n: int):\n    def is_prime(num):\n        if num <= 1:\n            return False\n        if num == 2:\n            return True\n        if num % 2 == 0:\n            return False\n        for i in range(3, int(num ** 0.5) + 1, 2):\n            if num % i == 0:\n                return False\n        return True\n\n    if is_prime(n):\n        return n\n\n    largest = 2\n    n_copy = n\n    for i in range(2, int(n_copy ** 0.5) + 1):\n        while n_copy % i == 0:\n            largest = i\n            n_copy = n_copy // i\n        if n_copy == 1:\n            break\n    if n_copy > 1:\n        largest = n_copy\n    return largest\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-500",
+       "rollout_id": 23,
+       "code": "def largest_prime_factor(n):\n    def is_prime(num):\n        if num <= 1:\n            return False\n        if num <= 3:\n            return True\n        if num % 2 == 0 or num % 3 == 0:\n            return False\n        i = 5\n        w = 2\n        while i * i <= num:\n            if num % i == 0:\n                return False\n            i += w\n            w = 6 - w\n        return True\n\n    largest = -1\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            if is_prime(i):\n                largest = i\n            while n % i == 0:\n                n = n // i\n        i += 1\n    if n > 1:\n        largest = n\n    return largest\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-600",
+       "rollout_id": 14,
+       "code": "def largest_prime_factor(n: int):\n    def is_prime(num):\n        if num <= 1:\n            return False\n        if num == 2:\n            return True\n        if num % 2 == 0:\n            return False\n        for i in range(3, int(num ** 0.5) + 1, 2):\n            if num % i == 0:\n                return False\n        return True\n\n    largest_factor = 2\n    current_n = n\n    i = 2\n\n    while i * i <= current_n:\n        if current_n % i == 0:\n            if is_prime(i):\n                largest_factor = i\n            while current_n % i == 0:\n                current_n = current_n // i\n            if current_n == 1:\n                break\n        i += 1\n\n    if current_n > 1:\n        largest_factor = current_n\n\n    return largest_factor\n"
+      }
+     ]
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 65,
+     "n_correct": 65,
+     "viable": true,
+     "n_states_seen": 10,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 7,
+       "code": "def largest_prime_factor(n: int):\n    factors = []\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            factors.append(i)\n            while n % i == 0:\n                n = n // i\n        i += 1\n    if n > 1:\n        factors.append(n)\n    return max(factors)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 56,
+       "code": "import math\n\ndef largest_prime_factor(n):\n    factors = []\n    \n    # Check for divisibility by 2\n    while n % 2 == 0:\n        factors.append(2)\n        n = n // 2\n    \n    # Check for odd factors starting from 3\n    i = 3\n    while i * i <= n:\n        while n % i == 0:\n            factors.append(i)\n            n = n // i\n        i += 2\n    \n    # If remaining n is a prime\n    if n > 1:\n        factors.append(n)\n    \n    return max(factors)\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-600",
+       "rollout_id": 12,
+       "code": "def largest_prime_factor(n: int):\n    factors = []\n    i = 2\n    while i * i <= n:\n        while n % i == 0:\n            factors.append(i)\n            n = n // i\n        i += 1\n    if n > 1:\n        factors.append(n)\n    return max(factors)\n"
+      }
+     ]
+    },
+    "While:Compare": {
+     "n_discovery": 7,
+     "n_correct": 4,
+     "viable": true,
+     "n_states_seen": 4,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 42,
+       "code": "def largest_prime_factor(n: int) -> int:\n    # Handle the case of even factors\n    while n % 2 == 0:\n        n = n // 2\n    if n == 1:\n        return 2\n    \n    # Now check for odd factors starting from 3\n    max_factor = 2\n    i = 3\n    while i * i <= n:\n        while n % i == 0:\n            max_factor = i\n            n = n // i\n        i += 2\n    \n    # If remaining n is a prime\n    if n > 1:\n        max_factor = n\n    \n    return max_factor\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 62,
+       "code": "def largest_prime_factor(n: int):\n    # Handle the case of 2 separately\n    while n % 2 == 0:\n        largest_prime = 2\n        n = n // 2\n    \n    # Now n must be odd, so we can skip even factors\n    i = 3\n    while i * i <= n:\n        while n % i == 0:\n            largest_prime = i\n            n = n // i\n        i += 2  # Move to next odd number\n    \n    # If remaining n is a prime\n    if n > 2:\n        largest_prime = n\n    \n    return largest_prime\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 61,
+       "code": "def largest_prime_factor(n: int):\n    # Handle the case when n is even\n    while n % 2 == 0:\n        largest = 2\n        n = n // 2\n    # Now n must be odd\n    i = 3\n    while i * i <= n:\n        while n % i == 0:\n            largest = i\n            n = n // i\n        i += 2\n    # If remaining n is a prime\n    if n > 1:\n        largest = n\n    return largest\n"
+      }
+     ]
+    },
+    "Assign:Call:other_call": {
+     "n_discovery": 3,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 2,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "AnnAssign:ContainerLiteral": {
+     "n_discovery": 3,
+     "n_correct": 3,
+     "viable": true,
+     "n_states_seen": 3,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 29,
+       "code": "from typing import List\n\ndef largest_prime_factor(n: int) -> int:\n    factors: List[int] = []\n    i = 2\n    while i * i <= n:\n        while n % i == 0:\n            factors.append(i)\n            n = n // i\n        i += 1\n    if n > 1:\n        factors.append(n)\n    return max(factors)\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1250",
+       "rollout_id": 9,
+       "code": "from typing import List\n\ndef largest_prime_factor(n: int) -> int:\n    factors: List[int] = []\n    # Handle the factor 2\n    while n % 2 == 0:\n        factors.append(2)\n        n = n // 2\n    # Check for odd factors from 3 upwards\n    i = 3\n    while i * i <= n:\n        while n % i == 0:\n            factors.append(i)\n            n = n // i\n        i += 2\n    # If remaining n is a prime number greater than 2\n    if n > 1:\n        factors.append(n)\n    # Return the largest prime factor\n    return max(factors)\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1500",
+       "rollout_id": 27,
+       "code": "from typing import List, Optional\n\ndef largest_prime_factor(n: int) -> int:\n    factors: List[int] = []\n    i: int = 2\n    while i * i <= n:\n        while n % i == 0:\n            factors.append(i)\n            n = n // i\n        i += 1\n    if n > 1:\n        factors.append(n)\n    return max(factors) if factors else None\n"
+      }
+     ]
+    },
+    "Assign:Call:set": {
+     "n_discovery": 2,
+     "n_correct": 2,
+     "viable": true,
+     "n_states_seen": 2,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_0800",
+       "rollout_id": 16,
+       "code": "def largest_prime_factor(n):\n    factors = set()\n    \n    # Handle the factor 2\n    while n % 2 == 0:\n        factors.add(2)\n        n = n // 2\n    \n    # Check for odd factors starting from 3\n    i = 3\n    while i * i <= n:\n        while n % i == 0:\n            factors.add(i)\n            n = n // i\n        i += 2\n    \n    # If remaining n is a prime\n    if n > 1:\n        factors.add(n)\n    \n    return max(factors)\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1000",
+       "rollout_id": 39,
+       "code": "def largest_prime_factor(n):\n    factors = set()\n    i = 2\n    while i * i <= n:\n        while n % i == 0:\n            factors.add(i)\n            n = n // i\n        i += 1\n    if n > 1:\n        factors.add(n)\n    return max(factors)\n"
+      }
+     ]
+    },
+    "If:Boolean": {
+     "n_discovery": 1,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-800",
+       "rollout_id": 14,
+       "code": "def largest_prime_factor(n: int):\n    if n == 2 or n == 3:\n        return n\n    largest = -1\n    i = 2\n    while i * i <= n:\n        while n % i == 0:\n            largest = i\n            n = n // i\n        i += 1\n    if n > 1:\n        largest = n\n    return largest\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/6": {
+   "entry_point": "parse_nested_parens",
+   "n_branches_discovered": 5,
+   "n_branches_viable": 4,
+   "viable_branches": [
+    "Assign:Call:other_call",
+    "Assign:ContainerLiteral",
+    "Assign:ListComp",
+    "OtherStmt:Constant"
+   ],
+   "branches": {
+    "Assign:Call:other_call": {
+     "n_discovery": 715,
+     "n_correct": 357,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 8,
+       "code": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    groups = paren_string.split()\n    result = []\n    for group in groups:\n        current_depth = 0\n        max_depth = 0\n        for char in group:\n            if char == '(':\n                current_depth += 1\n                if current_depth > max_depth:\n                    max_depth = current_depth\n            else:\n                current_depth -= 1\n        result.append(max_depth)\n    return result\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 63,
+       "code": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    groups = paren_string.split()\n    result = []\n    for group in groups:\n        current_depth = 0\n        max_depth = 0\n        for char in group:\n            if char == '(':\n                current_depth += 1\n            else:\n                current_depth -= 1\n            if current_depth > max_depth:\n                max_depth = current_depth\n        result.append(max_depth)\n    return result\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-200",
+       "rollout_id": 15,
+       "code": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    groups = paren_string.split()\n    result = []\n    for group in groups:\n        current_depth = 0\n        max_depth = 0\n        for char in group:\n            if char == '(':\n                current_depth += 1\n            else:\n                current_depth -= 1\n            if current_depth > max_depth:\n                max_depth = current_depth\n        result.append(max_depth)\n    return result\n"
+      }
+     ]
+    },
+    "OtherStmt:Constant": {
+     "n_discovery": 29,
+     "n_correct": 27,
+     "viable": true,
+     "n_states_seen": 9,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-800",
+       "rollout_id": 17,
+       "code": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    def compute_depth(group):\n        current_depth = 0\n        max_depth = 0\n        for char in group:\n            if char == '(':\n                current_depth += 1\n                if current_depth > max_depth:\n                    max_depth = current_depth\n            else:\n                current_depth -= 1\n        return max_depth\n    \n    groups = paren_string.split()\n    result = []\n    for group in groups:\n        result.append(compute_depth(group))\n    return result\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 1,
+       "code": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    def compute_max_depth(s):\n        max_depth = 0\n        current_depth = 0\n        for char in s:\n            if char == '(':\n                current_depth += 1\n                if current_depth > max_depth:\n                    max_depth = current_depth\n            else:\n                current_depth -= 1\n        return max_depth\n    \n    groups = paren_string.split()\n    result = []\n    for group in groups:\n        result.append(compute_max_depth(group))\n    return result\n\n# Example usage:\n# print(parse_nested_parens('(()()) ((())) () ((())()())'))  # Output: [2, 3, 1, 3]\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 6,
+       "code": "from typing import List\n\ndef parse_nested_parens(paren_string):\n    def max_depth(s):\n        current = 0\n        max_depth = 0\n        for char in s:\n            if char == '(':\n                current += 1\n            else:\n                current -= 1\n            if current > max_depth:\n                max_depth = current\n        return max_depth\n    \n    groups = paren_string.split()\n    result = []\n    for group in groups:\n        result.append(max_depth(group))\n    return result\n"
+      }
+     ]
+    },
+    "Assign:ListComp": {
+     "n_discovery": 12,
+     "n_correct": 7,
+     "viable": true,
+     "n_states_seen": 7,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-600",
+       "rollout_id": 56,
+       "code": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    groups = [g.strip() for g in paren_string.split()]\n    result = []\n    for group in groups:\n        max_depth = 0\n        current_depth = 0\n        for c in group:\n            if c == '(':\n                current_depth += 1\n                if current_depth > max_depth:\n                    max_depth = current_depth\n            else:\n                current_depth -= 1\n        result.append(max_depth)\n    return result\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-700",
+       "rollout_id": 43,
+       "code": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    groups = [g.strip() for g in paren_string.split()]\n    result = []\n    for group in groups:\n        current_depth = 0\n        max_d = 0\n        for c in group:\n            if c == '(':\n                current_depth += 1\n                if current_depth > max_d:\n                    max_d = current_depth\n            elif c == ')':\n                current_depth -= 1\n        result.append(max_d)\n    return result\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 38,
+       "code": "from typing import List\n\ndef parse_nested_parens(paren_string):\n    # Split the input string into groups separated by spaces\n    groups = [g for g in paren_string.split() if g]\n    result = []\n    for group in groups:\n        current_depth = 0\n        max_depth = 0\n        for char in group:\n            if char == '(':\n                current_depth += 1\n                if current_depth > max_depth:\n                    max_depth = current_depth\n            else:\n                current_depth -= 1\n                if current_depth > max_depth:\n                    max_depth = current_depth\n        result.append(max_depth)\n    return result\n"
+      }
+     ]
+    },
+    "Assign:Constant": {
+     "n_discovery": 10,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 3,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 4,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 3,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "step_1500",
+       "rollout_id": 30,
+       "code": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    result = []\n    groups = paren_string.split()\n    for group in groups:\n        current_depth = 0\n        max_depth = 0\n        for char in group:\n            if char == '(':\n                current_depth += 1\n            elif char == ')':\n                current_depth -= 1\n            # Ignore other characters\n            if current_depth > max_depth:\n                max_depth = current_depth\n        result.append(max_depth)\n    return result\n"
+      }
+     ]
+    }
+   }
+  },
+  "HumanEval/77": {
+   "entry_point": "iscube",
+   "n_branches_discovered": 8,
+   "n_branches_viable": 6,
+   "viable_branches": [
+    "Assign:Arithmetic",
+    "Assign:Call:other_call",
+    "Assign:OtherExpr",
+    "For:Call:range",
+    "If:Compare",
+    "OtherStmt:Constant"
+   ],
+   "branches": {
+    "If:Compare": {
+     "n_discovery": 610,
+     "n_correct": 356,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 0,
+       "code": "def iscube(a):\n    if a == 0:\n        return True\n    sign = 1 if a >= 0 else -1\n    abs_a = abs(a)\n    x = round(abs_a ** (1/3)) * sign\n    return x ** 3 == a\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 3,
+       "code": "def iscube(a):\n    if a < 0:\n        a = -a\n    x = round(a ** (1/3))\n    return x ** 3 == a\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 6,
+       "code": "def iscube(a):\n    if a == 0:\n        return True\n    abs_a = abs(a)\n    low = -abs_a\n    high = abs_a\n    while low <= high:\n        mid = (low + high) // 2\n        cube = mid ** 3\n        if cube == a:\n            return True\n        elif cube < a:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return False\n"
+      }
+     ]
+    },
+    "Assign:Call:other_call": {
+     "n_discovery": 183,
+     "n_correct": 45,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def iscube(a):\n    abs_a = abs(a)\n    root = round(abs_a ** (1/3))\n    return root ** 3 == abs_a\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 19,
+       "code": "def iscube(a):\n    n = round(abs(a) ** (1/3))\n    if a < 0:\n        n = -n\n    return n ** 3 == a\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 26,
+       "code": "def iscube(a):\n    abs_a = abs(a)\n    cube_root = abs_a ** (1/3)\n    rounded = round(cube_root)\n    return rounded ** 3 == abs_a\n"
+      }
+     ]
+    },
+    "Assign:Arithmetic": {
+     "n_discovery": 41,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 10,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 30,
+       "code": "def iscube(a):\n    low = -abs(a)\n    high = abs(a)\n    while low <= high:\n        mid = (low + high) // 2\n        mid_cubed = mid ** 3\n        if mid_cubed == a:\n            return True\n        elif mid_cubed < a:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return False\n"
+      }
+     ]
+    },
+    "For:Call:range": {
+     "n_discovery": 19,
+     "n_correct": 19,
+     "viable": true,
+     "n_states_seen": 6,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 34,
+       "code": "def iscube(a):\n    for x in range(-abs(a), abs(a) + 1):\n        if x ** 3 == a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-500",
+       "rollout_id": 16,
+       "code": "def iscube(a):\n    for x in range(-abs(a), abs(a) + 1):\n        if x ** 3 == a:\n            return True\n    return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-500",
+       "rollout_id": 45,
+       "code": "def iscube(a):\n    for x in range(-abs(a), abs(a) + 1):\n        if x ** 3 == a:\n            return True\n    return False\n"
+      }
+     ]
+    },
+    "OtherStmt:Constant": {
+     "n_discovery": 10,
+     "n_correct": 2,
+     "viable": true,
+     "n_states_seen": 6,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 25,
+       "code": "def iscube(a):\n    import math\n    if a < 0:\n        sign = -1\n    else:\n        sign = 1\n    abs_a = abs(a)\n    root = round(abs_a ** (1/3))\n    n = sign * root\n    return n ** 3 == a\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-700",
+       "rollout_id": 16,
+       "code": "def iscube(a):\n    import math\n    if a < 0:\n        x = round((-a) ** (1/3)) * (-1)\n    else:\n        x = round(a ** (1/3))\n    return x ** 3 == a\n"
+      }
+     ]
+    },
+    "Assign:OtherExpr": {
+     "n_discovery": 3,
+     "n_correct": 3,
+     "viable": true,
+     "n_states_seen": 3,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-500",
+       "rollout_id": 50,
+       "code": "def iscube(a):\n    sign = 1 if a >= 0 else -1\n    abs_a = abs(a)\n    cube_root_abs = round(abs_a ** (1/3))\n    cube_root = sign * cube_root_abs\n    return cube_root ** 3 == a\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-600",
+       "rollout_id": 38,
+       "code": "def iscube(a):\n    sign = 1 if a >= 0 else -1\n    abs_a = abs(a)\n    x = round(abs_a ** (1/3))\n    x = sign * x\n    return x ** 3 == a\n"
+      },
+      {
+       "family": "olmo_code",
+       "state": "step_1500",
+       "rollout_id": 51,
+       "code": "def iscube(a):\n    sign = 1 if a >= 0 else -1\n    abs_a = abs(a)\n    cube_root = sign * (abs_a ** (1/3))\n    k = round(cube_root)\n    return k ** 3 == a\n"
+      }
+     ]
+    },
+    "Return:Compare": {
+     "n_discovery": 2,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 2,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "Return:Call:other_call": {
+     "n_discovery": 1,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 1,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": []
+    }
+   }
+  },
+  "HumanEval/92": {
+   "entry_point": "any_int",
+   "n_branches_discovered": 5,
+   "n_branches_viable": 3,
+   "viable_branches": [
+    "If:Boolean",
+    "If:Compare",
+    "OtherStmt:Constant"
+   ],
+   "branches": {
+    "If:Boolean": {
+     "n_discovery": 883,
+     "n_correct": 837,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 0,
+       "code": "def any_int(x, y, z):\n    # Check if all numbers are integers\n    if not (isinstance(x, int) and isinstance(y, int) and isinstance(z, int)):\n        return False\n    # Check the sum conditions\n    if x == y + z or y == x + z or z == x + y:\n        return True\n    else:\n        return False\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def any_int(x, y, z):\n    # Check if all parameters are integers\n    if not (type(x) is int and type(y) is int and type(z) is int):\n        return False\n    # Check if any number is the sum of the other two\n    return x == y + z or y == x + z or z == x + y\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 3,
+       "code": "def any_int(x, y, z):\n    if not (isinstance(x, int) and isinstance(y, int) and isinstance(z, int)):\n        return False\n    return x == y + z or y == x + z or z == x + y\n"
+      }
+     ]
+    },
+    "OtherStmt:Constant": {
+     "n_discovery": 5,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 3,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-500",
+       "rollout_id": 3,
+       "code": "def any_int(x, y, z):\n    def is_integer(n):\n        return isinstance(n, int) and not isinstance(n, bool)\n    \n    if not (is_integer(x) and is_integer(y) and is_integer(z)):\n        return False\n    \n    return x == y + z or y == x + z or z == x + y\n"
+      }
+     ]
+    },
+    "If:Compare": {
+     "n_discovery": 1,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 45,
+       "code": "def any_int(x, y, z):\n    # Check each condition\n    if x == y + z:\n        if isinstance(x, int) and isinstance(y, int) and isinstance(z, int):\n            return True\n    elif y == x + z:\n        if isinstance(x, int) and isinstance(y, int) and isinstance(z, int):\n            return True\n    elif z == x + y:\n        if isinstance(x, int) and isinstance(y, int) and isinstance(z, int):\n            return True\n    # If none of the above, return false\n    return False\n"
+      }
+     ]
+    },
+    "Assign:Boolean": {
+     "n_discovery": 1,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    },
+    "For:ContainerLiteral": {
+     "n_discovery": 1,
+     "n_correct": 0,
+     "viable": false,
+     "n_states_seen": 1,
+     "families_seen": [
+      "qwen_code"
+     ],
+     "examples": []
+    }
+   }
+  },
+  "HumanEval/96": {
+   "entry_point": "count_up_to",
+   "n_branches_discovered": 5,
+   "n_branches_viable": 5,
+   "viable_branches": [
+    "Assign:Call:other_call",
+    "Assign:ContainerLiteral",
+    "If:Boolean",
+    "If:Compare",
+    "OtherStmt:Constant"
+   ],
+   "branches": {
+    "If:Compare": {
+     "n_discovery": 545,
+     "n_correct": 461,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 8,
+       "code": "def count_up_to(n):\n    if n <= 0:\n        return []\n    \n    def is_prime(num):\n        if num < 2:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n    \n    primes_less = [x for x in range(2, n) if is_prime(x)]\n    return primes_less[:n]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 9,
+       "code": "def count_up_to(n):\n    if n < 2:\n        return []\n    \n    # Sieve of Eratosthenes to find primes up to n-1\n    sieve = [True] * n\n    sieve[0] = sieve[1] = False\n    for i in range(2, int(n ** 0.5) + 1):\n        if sieve[i]:\n            sieve[i*i : n : i] = [False] * len(sieve[i*i : n : i])\n    \n    primes = [i for i, is_p in enumerate(sieve) if is_p]\n    return primes[:n]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 12,
+       "code": "def count_up_to(n):\n    if n <= 2:\n        return []\n    \n    def is_prime(m):\n        if m <= 1:\n            return False\n        if m == 2:\n            return True\n        if m % 2 == 0:\n            return False\n        for i in range(3, int(m ** 0.5) + 1, 2):\n            if m % i == 0:\n                return False\n        return True\n    \n    primes = []\n    for num in range(2, n):\n        if is_prime(num):\n            primes.append(num)\n    \n    return primes[:n]\n"
+      }
+     ]
+    },
+    "OtherStmt:Constant": {
+     "n_discovery": 317,
+     "n_correct": 244,
+     "viable": true,
+     "n_states_seen": 14,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 1,
+       "code": "def count_up_to(n):\n    def is_prime(num):\n        if num < 2:\n            return False\n        if num == 2:\n            return True\n        if num % 2 == 0:\n            return False\n        for i in range(3, int(num**0.5) + 1, 2):\n            if num % i == 0:\n                return False\n        return True\n\n    primes = []\n    for num in range(2, n):\n        if is_prime(num):\n            primes.append(num)\n    return primes[:n]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 2,
+       "code": "def count_up_to(n):\n    def is_prime(num):\n        if num < 2:\n            return False\n        if num == 2:\n            return True\n        if num % 2 == 0:\n            return False\n        for i in range(3, int(num ** 0.5) + 1, 2):\n            if num % i == 0:\n                return False\n        return True\n    \n    primes = []\n    for num in range(2, n):\n        if is_prime(num):\n            primes.append(num)\n    \n    return primes[:n]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 4,
+       "code": "def count_up_to(n):\n    def is_prime(num):\n        if num <= 1:\n            return False\n        if num == 2:\n            return True\n        if num % 2 == 0:\n            return False\n        for i in range(3, int(num**0.5) + 1, 2):\n            if num % i == 0:\n                return False\n        return True\n\n    primes = []\n    for num in range(2, n):\n        if is_prime(num):\n            primes.append(num)\n    return primes[:n]\n"
+      }
+     ]
+    },
+    "Assign:ContainerLiteral": {
+     "n_discovery": 19,
+     "n_correct": 3,
+     "viable": true,
+     "n_states_seen": 6,
+     "families_seen": [
+      "olmo_code",
+      "qwen_code"
+     ],
+     "examples": [
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 49,
+       "code": "def is_prime(num):\n    if num <= 1:\n        return False\n    if num == 2:\n        return True\n    if num % 2 == 0:\n        return False\n    for i in range(3, int(num ** 0.5) + 1, 2):\n        if num % i == 0:\n            return False\n    return True\n\ndef count_up_to(n):\n    primes = []\n    for num in range(2, n):\n        if is_prime(num):\n            primes.append(num)\n    return primes[:n]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-100",
+       "rollout_id": 50,
+       "code": "def is_prime(num):\n    if num < 2:\n        return False\n    if num == 2:\n        return True\n    if num % 2 == 0:\n        return False\n    for i in range(3, int(num ** 0.5) + 1, 2):\n        if num % i == 0:\n            return False\n    return True\n\ndef count_up_to(n):\n    primes = []\n    for num in range(2, n):\n        if is_prime(num):\n            primes.append(num)\n    return primes[:n]\n"
+      },
+      {
+       "family": "qwen_code",
+       "state": "step-400",
+       "rollout_id": 47,
+       "code": "def is_prime(num):\n    if num < 2:\n        return False\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\n\ndef count_up_to(n):\n    primes = []\n    for i in range(2, n):\n        if is_prime(i):\n            primes.append(i)\n    return primes[:n]\n"
+      }
+     ]
+    },
+    "Assign:Call:other_call": {
+     "n_discovery": 1,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 3,
+       "code": "def is_prime(num):\n    if num <= 1:\n        return False\n    if num == 2:\n        return True\n    if num % 2 == 0:\n        return False\n    for i in range(3, int(num**0.5) + 1, 2):\n        if num % i == 0:\n            return False\n    return True\n\ndef primes_less_than(n):\n    if n <= 2:\n        return []\n    primes = []\n    for num in range(2, n):\n        if is_prime(num):\n            primes.append(num)\n    return primes\n\ndef count_up_to(n):\n    primes = primes_less_than(n)\n    if not primes:\n        return []\n    return primes[:n]\n"
+      }
+     ]
+    },
+    "If:Boolean": {
+     "n_discovery": 1,
+     "n_correct": 1,
+     "viable": true,
+     "n_states_seen": 1,
+     "families_seen": [
+      "olmo_code"
+     ],
+     "examples": [
+      {
+       "family": "olmo_code",
+       "state": "FINAL-main",
+       "rollout_id": 23,
+       "code": "def count_up_to(n):\n    if n <= 0 or n == 1:\n        return []\n    \n    def is_prime(num):\n        if num < 2:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n    \n    primes = []\n    current = 2\n    while len(primes) < n and current < n:\n        if is_prime(current):\n            primes.append(current)\n        current += 1\n    return primes\n"
+      }
+     ]
+    }
+   }
+  }
+ },
+ "self_sha256_of_body_without_this_field": "8699e6ceedf6ac8a39649ca04ed23cf65deced178ee9884c2c8725f1a78ca0cb"
+}

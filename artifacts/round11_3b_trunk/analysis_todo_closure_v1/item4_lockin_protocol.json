@@ -1,0 +1,61 @@
+{
+ "generated_utc": "2026-09-24T18:08:12Z",
+ "written_before_any_new_result_was_inspected": true,
+ "cpu_only": true,
+ "no_gpu_requested": true,
+ "inputs_sha256": {
+  "artifacts/paper_main_figures/tables/transition_table_trackD.csv": "e84c370a163b02896b5e97c901fa89981dda105d0f1606975e8fb751ae5aca66",
+  "artifacts/paper_main_figures/tables/branch_state_long.csv": "6a39364a2ea84f65bdb003c60d62f1f9aed9656759258459e8a63c17b8488ab7",
+  "artifacts/paper_main_figures/tables/branch_state_summary.csv": "7c3d236e6be2e08d994a28b657939833158de3d9d516320f84ac034deac15aaf",
+  "artifacts/round9_markov_test/fold_assignment.json": "0f72137b0b9f6a19c7142dd896bc6f36214323bcc88583dfaef48c1731536d5a"
+ },
+ "git_commit": "68a2908ebf83ca096d28c2cc520d99dee0eaa66b",
+ "item4": {
+  "title": "winner lock-in at a fixed prediction horizon",
+  "estimand": "P(the branch that is the winner at time t is still the winner at t + Delta), as a function of the winner margin at time t",
+  "primary_horizon_Delta": 5,
+  "secondary_horizon_Delta": 10,
+  "pooling_forbidden": "horizons are never pooled into the primary statistic",
+  "definitions": {
+   "winner_at_t": "argmax of the smoothed branch probability at t",
+   "margin_at_t": "top-1 minus top-2 smoothed probability at t",
+   "outcome": "1 if the winner at t + Delta equals the winner at t, else 0"
+  },
+  "data": "canonical 1024-rollout Track D trajectories; features taken only at t",
+  "leakage_rule": "no future information may enter preprocessing, filtering, imputation, normalisation or feature selection; standardisation is fitted on training folds only",
+  "inclusion_and_ties": {
+   "include": "every (question, continuation, t) cell where both t and t + Delta exist",
+   "tie_definition": "margin <= 1e-9 counts as a tie at t",
+   "primary_handling": "ties retained, outcome decided by argmax as implemented",
+   "sensitivity": "repeat excluding ties, and excluding near-ties with margin < 0.01"
+  },
+  "resampling_unit": "question",
+  "bootstrap": {
+   "method": "question-cluster bootstrap retaining all continuation and time observations of a resampled question",
+   "n": 2000,
+   "seed": 20260929
+  },
+  "models": {
+   "primary": "winner margin alone",
+   "baselines": [
+    "intercept / base rate",
+    "top-1 mass alone",
+    "entropy alone",
+    "training step (time) fixed effects alone",
+    "margin plus time and continuation controls"
+   ]
+  },
+  "metrics": [
+   "AUROC with question-cluster bootstrap 95% CI",
+   "AUPRC and base rate",
+   "logistic coefficient and odds ratio for margin with clustered CI",
+   "calibration: reliability table and Brier score",
+   "performance by margin quantile with denominators",
+   "leave-one-continuation-out robustness"
+  ],
+  "model_comparison": "bootstrap the PAIRED metric difference on the same resampled questions; never infer improvement from separate CIs",
+  "folds": "preregistered question-level 5-fold assignment from round9_markov_test",
+  "decision_rule": "the pooled AUROC 0.872 [0.852, 0.892] stays labelled DESCRIPTIVE. It may be replaced in the paper only if the fixed-horizon, question-clustered estimate is positive, its CI excludes the null, and the direction is robust to the declared tie handling and to the controls.",
+  "naming_rule": "this tests winner PERSISTENCE / LOCK-IN. It must not be described as predicting future instability."
+ }
+}

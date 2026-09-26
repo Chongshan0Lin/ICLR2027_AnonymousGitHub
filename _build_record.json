@@ -1,0 +1,531 @@
+{
+ "generated_utc": "2026-09-26T10:54:15Z",
+ "copied": [
+  {
+   "dest": "artifacts/paper_main_figures/tables/branch_state_long.csv",
+   "why": "canonical branch-state table; input to p1_sharpening, meta_build, sr_p789_susceptibility",
+   "bytes": 5930348,
+   "sha256_source": "6a39364a2ea84f65bdb003c60d62f1f9aed9656759258459e8a63c17b8488ab7"
+  },
+  {
+   "dest": "artifacts/paper_main_figures/tables/branch_state_summary.csv",
+   "why": "per-state summary; input to meta_build and sr_p789_susceptibility",
+   "bytes": 936397,
+   "sha256_source": "7c3d236e6be2e08d994a28b657939833158de3d9d516320f84ac034deac15aaf"
+  },
+  {
+   "dest": "artifacts/paper_main_figures/tables/sharpening_null.csv",
+   "why": "CLAIM 1 frozen source",
+   "bytes": 1862765,
+   "sha256_source": "b66bd211c3f3e883c0fdc4862032da0aa7bc5ce9e5c983b777a431602758fa5f"
+  },
+  {
+   "dest": "artifacts/paper_main_figures/tables/transition_table_trackD.csv",
+   "why": "input to p3_predictive, sr_p5_residual, sr_p6_recursive",
+   "bytes": 2206877,
+   "sha256_source": "e84c370a163b02896b5e97c901fa89981dda105d0f1606975e8fb751ae5aca66"
+  },
+  {
+   "dest": "artifacts/paper_main_figures/tables/trajectory_registry.csv",
+   "why": "trajectory provenance index",
+   "bytes": 2959,
+   "sha256_source": "b29934def54e001c4f3279d4e1644e64cbe2a9b9b79df8eba628f181d39c8363"
+  },
+  {
+   "dest": "artifacts/countdown_selectivity/solver_families.jsonl",
+   "why": "frozen solver-feasible entrance support; input to bk4_omnibus and p3_predictive",
+   "bytes": 110440,
+   "sha256_source": "2dc8011c18e695c6bf893f7e94002f32e55f50680db6c2f41d21426b5de2bf69"
+  },
+  {
+   "dest": "artifacts/round9_markov_test/fold_assignment.json",
+   "why": "frozen question-level 5-fold split shared by five analyses",
+   "bytes": 2179,
+   "sha256_source": "0f72137b0b9f6a19c7142dd896bc6f36214323bcc88583dfaef48c1731536d5a"
+  },
+  {
+   "dest": "artifacts/analysis_balanced_k4/balanced_omnibus.json",
+   "why": "CLAIM 2 frozen source",
+   "bytes": 476604,
+   "sha256_source": "81b8c268192921acee991ea1b8458a30cbed7ab60ed4d4ac819cf92376cac074"
+  },
+  {
+   "dest": "artifacts/analysis_balanced_k4/balanced_omnibus_summary.csv",
+   "why": "CLAIM 2 summary table",
+   "bytes": 754,
+   "sha256_source": "32aff8c45473afe11c67b0aa6534a3386df39f2a9d7513f5df389343a80ac392"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/analysis_v4_cpu/blocked_permutation_final.json",
+   "why": "frozen K=3 reference that bk4_omnibus reproduces as a correctness check",
+   "bytes": 91464,
+   "sha256_source": "d5d3cdae8b76267c8f1d7ee1de8495d1b8df3cb3d912d12574c1f309cdc245c0"
+  },
+  {
+   "dest": "artifacts/figures/meta_data/meta3_temporal_memory.csv",
+   "why": "CLAIM 3 frozen source",
+   "bytes": 3872,
+   "sha256_source": "e3355e5319cfac9b7a63bfb06b114e71221bd2de4e09db0096ffa8246d0de595"
+  },
+  {
+   "dest": "artifacts/figures/meta_data/meta1_code_panels.csv",
+   "why": "precomputed Code panels for meta_build",
+   "bytes": 1928,
+   "sha256_source": "f172e7c8fe27f3f56b79da2457702d9dad3569140741229a53cfd31dbb02b85a"
+  },
+  {
+   "dest": "artifacts/figures/meta_data/meta3_code_panels.csv",
+   "why": "precomputed Code panels for meta_build",
+   "bytes": 1745,
+   "sha256_source": "d21e94f4386e088e8246197c4eb04f0f1c3991dad023d34a8de4d93d5c4f296f"
+  },
+  {
+   "dest": "artifacts/predictive_history.csv",
+   "why": "CLAIM 4 frozen source",
+   "bytes": 362,
+   "sha256_source": "0ad8da4011c406c375d2ee1c575694d238eaefdeebfc14898e89f7c025428b48"
+  },
+  {
+   "dest": "artifacts/section4_stakeholder_resolution/tables/recursive_forecast_1024.csv",
+   "why": "CLAIM 5 frozen source",
+   "bytes": 346108,
+   "sha256_source": "c962e327206b09296ffe58dc268ab9cac8f5b8298ccab528fe2c4ebfe6b68d75"
+  },
+  {
+   "dest": "artifacts/section4_stakeholder_resolution/tables/recursive_forecast_loso.csv",
+   "why": "CLAIM 5 leave-one-continuation-out",
+   "bytes": 4055,
+   "sha256_source": "f16bf5c1fd674a2cc8343b589a79bd9bc9cbacd1a60b33ada0a46786042e45bf"
+  },
+  {
+   "dest": "artifacts/section4_stakeholder_resolution/tables/residual_decomposition_1024_long.csv",
+   "why": "CLAIM 5 per-cell decomposition; also read by sr_p789",
+   "bytes": 475270,
+   "sha256_source": "c7ac9362823f7559cb62b868936aada88868f31c6e652542307534dcfd39aa56"
+  },
+  {
+   "dest": "artifacts/section4_stakeholder_resolution/tables/residual_decomposition_1024_summary.csv",
+   "why": "CLAIM 5 summary",
+   "bytes": 10709,
+   "sha256_source": "e55400346fb282a7c3d1550f481d15ac9a47043199fa96656129ce77c8f3fcc4"
+  },
+  {
+   "dest": "artifacts/section4_stakeholder_resolution/tables/instability_prediction_prefork.csv",
+   "why": "CLAIM 6 frozen source",
+   "bytes": 938,
+   "sha256_source": "e8cd928342bf39d562500396674ef96af2e18d6e2eb1b1b596cf8b44f205b203"
+  },
+  {
+   "dest": "artifacts/section4_stakeholder_resolution/tables/instability_prediction_postfork.csv",
+   "why": "CLAIM 6 companion",
+   "bytes": 989,
+   "sha256_source": "fe46576e9206c768fac45b52f1ca2d956bd3864dee28968802594d03584850fe"
+  },
+  {
+   "dest": "artifacts/section4_stakeholder_resolution/tables/winner_lockin.csv",
+   "why": "CLAIM 6 winner lock-in table",
+   "bytes": 737,
+   "sha256_source": "9b607f053682e864ea24ca163d0df35fa1096e4d96e4b9200c06c3520c74a9a8"
+  },
+  {
+   "dest": "artifacts/section4_stakeholder_resolution/tables/entropy_innovation.csv",
+   "why": "appendix scope check: entropy vs process innovation",
+   "bytes": 509,
+   "sha256_source": "23dd14a63ac878ea876718277ba497946cb7f369e778d1d5f57c6153133571e8"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/analysis_todo_closure_v1/item4_lockin_predictions_v2.csv",
+   "why": "input to tc_item4_raw",
+   "bytes": 665443,
+   "sha256_source": "46b1d6487977e7f0cc1c4b0c2dda354bd97c782a49b1329c451775b6f6dc0b2e"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/analysis_todo_closure_v1/item4_lockin_protocol.json",
+   "why": "frozen lock-in protocol; tc_item4_raw hashes it into its provenance block",
+   "bytes": 3447,
+   "sha256_source": "2309d7f0673d3d4ee2af8fe5f40448dc40c0eae067c92e9cbe8880d709d3311f"
+  },
+  {
+   "dest": "artifacts/code_branch_v2/code_branch_codebook_v2.json",
+   "why": "frozen HumanEval AST branch codebook and viable support",
+   "bytes": 190371,
+   "sha256_source": "052a9bdae8cc34c85851d63e0f1dfbbf52b6780fac7efabb87863428783e8a51"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v1/trackA_prefork_instability_by_question.csv",
+   "why": "Track-A per-question features and targets; input to the measurement control",
+   "bytes": 45721,
+   "sha256_source": "cb7c403bd944d07c1547dd486c81c4cb7ede1258370bb9a90b02c10bb8344eb1"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v1/trackA_prefork_instability_summary.csv",
+   "why": "Track-A per-root summary",
+   "bytes": 492,
+   "sha256_source": "137069d706f99edb2329ef53bd7b88b8145ee17a77d9a7abe07144763793a433"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v1/trackA_state_model_metrics.csv",
+   "why": "pooled and per-root learned models",
+   "bytes": 793,
+   "sha256_source": "ab361382d945d5b81d13bb864436c543bad0bf26584e31825f35968680214743"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v1/trackA_robustness.csv",
+   "why": "leave-one-arm-out and near-tie checks",
+   "bytes": 895,
+   "sha256_source": "65d6f52a6d7095ceb877bd9a6e4d9c728193d4d197613ecdd82aefc7a866902f"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/trackA_prefork_instability_paper_table.csv",
+   "why": "TRACK-A frozen source for the appendix table",
+   "bytes": 536,
+   "sha256_source": "28b012633b41db9bc6485fd0fff8f1a3eaabdacd8b20c0775ad35cb9ad6c0294"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/trackA_prefork_instability_paper_table.tex",
+   "why": "the appendix table",
+   "bytes": 901,
+   "sha256_source": "07b082d96cd13a68afee13fc4880178f6db93e80dd98dbfe9b592c56a1e4c4f5"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/trackA_prefork_instability_robustness_final.csv",
+   "why": "robustness, final",
+   "bytes": 895,
+   "sha256_source": "65d6f52a6d7095ceb877bd9a6e4d9c728193d4d197613ecdd82aefc7a866902f"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/bootstrap_question_index_draws.npy",
+   "why": "the resampled question indices; every CI is rebuildable from this",
+   "bytes": 8480128,
+   "sha256_source": "52f6b5899f6e4141271d580b7858c4b2e4232ef883b1c0dfa25e9f3ae629d84c"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/bootstrap_question_order.json",
+   "why": "question order the indices refer to",
+   "bytes": 1831,
+   "sha256_source": "e66d3380306ea2720926cffd635661b4d70438e777c36d1c339ab8fa7e39da3c"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/v1_v2_verification.csv",
+   "why": "v1 vs v2 reproduction check",
+   "bytes": 1621,
+   "sha256_source": "7db0b8df6771d689b1be23a71804a3a1c7b01d4f51c861a883989be2a0ca9c96"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/bootstrap_auroc_root75.npy",
+   "why": "AUROC bootstrap draws, root 75",
+   "bytes": 80128,
+   "sha256_source": "1c444a0480f527639a5e777a64f55ac738b01fdd6cb66ca28a78ed8f69950a91"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/bootstrap_auprc_root75.npy",
+   "why": "AUPRC bootstrap draws, root 75",
+   "bytes": 80128,
+   "sha256_source": "9774833b3389f49a180a46fce066f16164885aafaf24179b45a49aed1198f7bd"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/bootstrap_spearman_root75.npy",
+   "why": "SPEARMAN bootstrap draws, root 75",
+   "bytes": 80128,
+   "sha256_source": "341cc1244bed00c8ae7ac2d8695e9b70bd1caf927340e94ee17f48a7e1c8efe4"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/bootstrap_auroc_root100.npy",
+   "why": "AUROC bootstrap draws, root 100",
+   "bytes": 80128,
+   "sha256_source": "74076457830a9cae7255153b3d0c5811f50c111be89926e2aca9734863a03021"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/bootstrap_auprc_root100.npy",
+   "why": "AUPRC bootstrap draws, root 100",
+   "bytes": 80128,
+   "sha256_source": "aa86c2cb8be98afaa55c08ad34a3ad281e02ffac48354cf22beff8398c377b46"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/bootstrap_spearman_root100.npy",
+   "why": "SPEARMAN bootstrap draws, root 100",
+   "bytes": 80128,
+   "sha256_source": "7019a4b0f75b7d0414474f1366781298874f0cfe2b3748fd05eede09bff8911d"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/bootstrap_auroc_root125.npy",
+   "why": "AUROC bootstrap draws, root 125",
+   "bytes": 80128,
+   "sha256_source": "f320ad14234b613ee07b0f3116cc67bffd2878f923be9fdd7ea3172e7d2b7780"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/bootstrap_auprc_root125.npy",
+   "why": "AUPRC bootstrap draws, root 125",
+   "bytes": 80128,
+   "sha256_source": "3c65c2440c5c85add2d35d15748e8e48503f418eb33a6f5f17a286ab2b0cd9d8"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/bootstrap_spearman_root125.npy",
+   "why": "SPEARMAN bootstrap draws, root 125",
+   "bytes": 80128,
+   "sha256_source": "f992e12a068995688ad218d1fbbf39be195822da4e1b046bc966249e205972fd"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/bootstrap_auroc_root150.npy",
+   "why": "AUROC bootstrap draws, root 150",
+   "bytes": 80128,
+   "sha256_source": "9eb3d688516c59535c2c15b2a40571f4fdfd23d4f1b63af3281a93d493208879"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/bootstrap_auprc_root150.npy",
+   "why": "AUPRC bootstrap draws, root 150",
+   "bytes": 80128,
+   "sha256_source": "190db95f526ba550ee34103d3bb9387c241ca673014e4fa82665710743101540"
+  },
+  {
+   "dest": "artifacts/trackA_prefork_instability_v2/bootstrap_spearman_root150.npy",
+   "why": "SPEARMAN bootstrap draws, root 150",
+   "bytes": 80128,
+   "sha256_source": "fe0b9d1da7a64e19a0faa59170543fd5fa55af64b7ec5cdca39e3c4af9dbba5c"
+  },
+  {
+   "dest": "artifacts/trackA_measurement_control_v1/trackA_measurement_control_by_question.csv",
+   "why": "per-question split-half instability",
+   "bytes": 46455,
+   "sha256_source": "5c67f8b155a360119d8218bca19927998dcbfc26496cd424c2113767e3e0f18e"
+  },
+  {
+   "dest": "artifacts/trackA_measurement_control_v1/trackA_measurement_control_summary.csv",
+   "why": "AUROC after excluding measurement-unstable problems",
+   "bytes": 818,
+   "sha256_source": "a0d6637e0934884a51ea2095303648587de6fe4398b3d2a7bca6a7854682fd64"
+  },
+  {
+   "dest": "artifacts/trackA_measurement_control_v1/trackA_matched_budget_comparison.csv",
+   "why": "four-way disagreement at half vs full budget",
+   "bytes": 289,
+   "sha256_source": "c28097b87921c78fa85e0888ad7c4c3db66bd7b9f51e25fdef588e669bae45bf"
+  },
+  {
+   "dest": "artifacts/trackA_measurement_control_v1/trackA_measurement_control_skipped.csv",
+   "why": "states skipped because an arm had <4 feasible rollouts",
+   "bytes": 1421,
+   "sha256_source": "a7f06074feefd6a500eaf9ebfbfcd60ab5b026b27a79d7722c489111b816571a"
+  },
+  {
+   "dest": "artifacts/trackA_measurement_control_v2/trackA_pairwise_measurement_control_summary.csv",
+   "why": "MATCHED pairwise within-arm vs cross-arm disagreement (primary)",
+   "bytes": 325,
+   "sha256_source": "7f223e1d7e0d743be440375a8f97825b8f32103a0f659a056bb6e8500b262498"
+  },
+  {
+   "dest": "artifacts/trackA_measurement_control_v2/trackA_pairwise_measurement_control_by_question.csv",
+   "why": "per-question pairwise rates",
+   "bytes": 24585,
+   "sha256_source": "bf4295e54605d91fdfe0b834eb14b7750518169ee2272f0ad5c22cdf8c506935"
+  },
+  {
+   "dest": "artifacts/config/trackA_effective_training_config.json",
+   "why": "the effective Track-A training configuration, extracted from the runtime manifest and the executed library source",
+   "bytes": 19307,
+   "sha256_source": "af0d3cd2ae610effeb77c7d70953207c8fa8e455bc891c2b834a02d4ccbd24c6"
+  },
+  {
+   "dest": "artifacts/config/deepspeed_zero3.json",
+   "why": "the DeepSpeed ZeRO-3 configuration actually loaded",
+   "bytes": 528,
+   "sha256_source": "fbcc5de8aa2881351b64d0beb9d5f16ce3bbc907688e2c9145eec593ba797ac1"
+  },
+  {
+   "dest": "artifacts/figures/meta_data/meta1_reweighting.csv",
+   "why": "Figure 2 source",
+   "bytes": 5231,
+   "sha256_source": "eb2e627036c7d4c32ad9d60c98cbb6e8ff4c98e85e0cc3ac84e56eb18c9149ac"
+  },
+  {
+   "dest": "artifacts/figures/meta_data/meta2_stochastic_futures.csv",
+   "why": "Figure 3 source",
+   "bytes": 2750,
+   "sha256_source": "53f22f1b235a15547c83ce228f848ccce4d8fb5e13ffe10f0d2de4d74dd363aa"
+  },
+  {
+   "dest": "artifacts/figures/meta_data/meta4_behavioral_displacement.csv",
+   "why": "appendix displacement figure source",
+   "bytes": 5571,
+   "sha256_source": "28b625b8220bc6829a636bb3cad839bc6ff58871ba6fd82d41a4528e9d4f9d03"
+  },
+  {
+   "dest": "artifacts/residual_structure_forecast.csv",
+   "why": "Figure 5 source",
+   "bytes": 1522,
+   "sha256_source": "86b26b4eae80484a7a00598716c89c719c5fed13c0798a353b9ffcd7e531a0cd"
+  },
+  {
+   "dest": "artifacts/prefork_instability.csv",
+   "why": "Figure 6 source",
+   "bytes": 1273,
+   "sha256_source": "5bc231570de903687bbaa4415c3d5adf4e7abf4d7641ed8935bd4fa2bfe69dd3"
+  },
+  {
+   "dest": "round11_3b_trunk/analysis_todo_closure_v1/item4_raw_margin.json",
+   "why": "CLAIM 6 raw-margin frozen source (sanitised)",
+   "bytes": 10750,
+   "sha256_source": "25a04a7d0f2f76a70964ff25eb491f3c9ad6a57ddb6069924a7c3f3c72018ee6"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/eval/trunk_s0_step175.jsonl",
+   "why": "three-field slot-label projection of the frozen evaluation rollouts; lets bk4_omnibus rerun without the 362 MB generation corpus",
+   "bytes": 1268107,
+   "sha256_source": "DERIVED from trunk_s0_step175.jsonl"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/eval/fork_s1_r150_step175.jsonl",
+   "why": "three-field slot-label projection of the frozen evaluation rollouts; lets bk4_omnibus rerun without the 362 MB generation corpus",
+   "bytes": 1268179,
+   "sha256_source": "DERIVED from fork_s1_r150_step175.jsonl"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/eval/fork_s2_r150_step175.jsonl",
+   "why": "three-field slot-label projection of the frozen evaluation rollouts; lets bk4_omnibus rerun without the 362 MB generation corpus",
+   "bytes": 1268146,
+   "sha256_source": "DERIVED from fork_s2_r150_step175.jsonl"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/eval/fork_s3_r150_step175.jsonl",
+   "why": "three-field slot-label projection of the frozen evaluation rollouts; lets bk4_omnibus rerun without the 362 MB generation corpus",
+   "bytes": 1268042,
+   "sha256_source": "DERIVED from fork_s3_r150_step175.jsonl"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/eval/fork_s1_r125_step175.jsonl",
+   "why": "three-field slot-label projection of the frozen evaluation rollouts; lets bk4_omnibus rerun without the 362 MB generation corpus",
+   "bytes": 1268065,
+   "sha256_source": "DERIVED from fork_s1_r125_step175.jsonl"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/eval/fork_s2_r125_step175.jsonl",
+   "why": "three-field slot-label projection of the frozen evaluation rollouts; lets bk4_omnibus rerun without the 362 MB generation corpus",
+   "bytes": 1268038,
+   "sha256_source": "DERIVED from fork_s2_r125_step175.jsonl"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/eval/fork_s3_r125_step175.jsonl",
+   "why": "three-field slot-label projection of the frozen evaluation rollouts; lets bk4_omnibus rerun without the 362 MB generation corpus",
+   "bytes": 1267437,
+   "sha256_source": "DERIVED from fork_s3_r125_step175.jsonl"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/eval/fork_s1_r100_step175.jsonl",
+   "why": "three-field slot-label projection of the frozen evaluation rollouts; lets bk4_omnibus rerun without the 362 MB generation corpus",
+   "bytes": 1267857,
+   "sha256_source": "DERIVED from fork_s1_r100_step175.jsonl"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/eval/fork_s2_r100_step175.jsonl",
+   "why": "three-field slot-label projection of the frozen evaluation rollouts; lets bk4_omnibus rerun without the 362 MB generation corpus",
+   "bytes": 1267693,
+   "sha256_source": "DERIVED from fork_s2_r100_step175.jsonl"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/eval/fork_s3_r100_step175.jsonl",
+   "why": "three-field slot-label projection of the frozen evaluation rollouts; lets bk4_omnibus rerun without the 362 MB generation corpus",
+   "bytes": 1268053,
+   "sha256_source": "DERIVED from fork_s3_r100_step175.jsonl"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/eval/fork_s1_r075_step175.jsonl",
+   "why": "three-field slot-label projection of the frozen evaluation rollouts; lets bk4_omnibus rerun without the 362 MB generation corpus",
+   "bytes": 1268001,
+   "sha256_source": "DERIVED from fork_s1_r075_step175.jsonl"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/eval/fork_s2_r075_step175.jsonl",
+   "why": "three-field slot-label projection of the frozen evaluation rollouts; lets bk4_omnibus rerun without the 362 MB generation corpus",
+   "bytes": 1267923,
+   "sha256_source": "DERIVED from fork_s2_r075_step175.jsonl"
+  },
+  {
+   "dest": "artifacts/round11_3b_trunk/eval/fork_s3_r075_step175.jsonl",
+   "why": "three-field slot-label projection of the frozen evaluation rollouts; lets bk4_omnibus rerun without the 362 MB generation corpus",
+   "bytes": 1267883,
+   "sha256_source": "DERIVED from fork_s3_r075_step175.jsonl"
+  }
+ ],
+ "sanitisation_notes": [
+  "trajectory_registry.csv: 7 rows had internal host names in the training_source column; replaced with neutral cluster labels. No scientific field touched.",
+  "item4_raw_margin.json: the provenance block named the analysis script by absolute path and recorded the training hostname; both replaced. All AUROC/AUPRC/CI values are byte-identical."
+ ],
+ "tree_sanitised_files": [
+  "artifacts/config/trackA_effective_training_config.json",
+  "artifacts/round11_3b_trunk/analysis_todo_closure_v1/item4_lockin_protocol.json"
+ ],
+ "script_edits": [
+  [
+   "p1_sharpening.py",
+   "6"
+  ],
+  [
+   "bk4_omnibus.py",
+   "3"
+  ],
+  [
+   "meta_build.py",
+   "7"
+  ],
+  [
+   "p3_predictive.py",
+   "10"
+  ],
+  [
+   "sr_p5_residual.py",
+   "4"
+  ],
+  [
+   "sr_p6_recursive.py",
+   "4"
+  ],
+  [
+   "sr_p789_susceptibility.py",
+   "4"
+  ],
+  [
+   "tc_item4_raw.py",
+   "4"
+  ],
+  [
+   "ta_prefork.py",
+   "4"
+  ],
+  [
+   "ta_prefork_v2.py",
+   "4"
+  ],
+  [
+   "ta_p0_measctl.py",
+   "4"
+  ],
+  [
+   "ta_p0_pairwise.py",
+   "3"
+  ],
+  [
+   "fig_final.py",
+   "2"
+  ],
+  [
+   "paper_style.py",
+   "paths only"
+  ],
+  [
+   "lib/cd_step100.py",
+   "paths only"
+  ],
+  [
+   "lib/r9_models.py",
+   "paths only"
+  ],
+  [
+   "lib/r6_lib.py",
+   "paths only"
+  ],
+  [
+   "lib/cd_core.py",
+   "paths only"
+  ]
+ ]
+}

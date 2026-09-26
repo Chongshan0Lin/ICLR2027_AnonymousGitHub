@@ -1,0 +1,500 @@
+{
+ "what_this_is": "the raw-margin result: AUROC(-margin, 'the winner switches'), computed directly from the winner margin with no model, no cross-fitting and no folds. This is the headline number; the cross-fitted logistic, its coefficient and its Brier score become supplementary.",
+ "why": "the predictor is the margin itself, so fitting a per-fold logistic can only add fold-specific intercepts and scales to the pooled ranking. Removing the model removes that concern entirely.",
+ "sign_convention": {
+  "margin": "higher -> more persistent",
+  "top1": "higher -> more persistent",
+  "entropy": "higher -> less persistent"
+ },
+ "sign_convention_note": "fixed a priori by each feature's monotone direction, not chosen by what scored best; AUROC(x) = 1 - AUROC(-x), so the choice only flips the number",
+ "no_fitting": true,
+ "no_cross_validation_needed": true,
+ "protocol": {
+  "file": "item4_lockin_protocol.json",
+  "sha256": "2309d7f0673d3d4ee2af8fe5f40448dc40c0eae067c92e9cbe8880d709d3311f"
+ },
+ "inputs_sha256": {
+  "item4_lockin_predictions_v2.csv": "46b1d6487977e7f0cc1c4b0c2dda354bd97c782a49b1329c451775b6f6dc0b2e",
+  "fold_assignment.json": "0f72137b0b9f6a19c7142dd896bc6f36214323bcc88583dfaef48c1731536d5a"
+ },
+ "code_sha256": {
+  "scripts/tc_item4_raw.py": "8d0030747c3190212bae70369eda038b7110df5c35d58d5a45a951319fb3f475"
+ },
+ "git_commit": "68a2908ebf83ca096d28c2cc520d99dee0eaa66b",
+ "command": "python scripts/tc_item4_raw.py",
+ "environment": {
+  "python": "3.11.7",
+  "numpy": "1.26.4",
+  "host": "<anonymised>"
+ },
+ "seeds": {
+  "bootstrap": 20260929
+ },
+ "n_bootstrap": 2000,
+ "resampling_unit": "question",
+ "results": {
+  "delta_5": {
+   "n_cells": 2650,
+   "n_questions": 106,
+   "n_switches": 119,
+   "switch_base_rate": 0.044906,
+   "persistence_base_rate": 0.955094,
+   "features": {
+    "margin": {
+     "sign": 1,
+     "auroc_switch": 0.934573,
+     "auroc_switch_ci": [
+      0.899304,
+      0.961077
+     ],
+     "auroc_persist_identity_check": 0.934573,
+     "identity_holds": true,
+     "auprc_switch": 0.410587,
+     "auprc_switch_ci": [
+      0.320956,
+      0.504387
+     ],
+     "auprc_switch_lift": 9.1433
+    },
+    "top1": {
+     "sign": 1,
+     "auroc_switch": 0.915611,
+     "auroc_switch_ci": [
+      0.876315,
+      0.947128
+     ],
+     "auroc_persist_identity_check": 0.915611,
+     "identity_holds": true,
+     "auprc_switch": 0.317063,
+     "auprc_switch_ci": [
+      0.202564,
+      0.439537
+     ],
+     "auprc_switch_lift": 7.0606
+    },
+    "entropy": {
+     "sign": -1,
+     "auroc_switch": 0.816323,
+     "auroc_switch_ci": [
+      0.752927,
+      0.873248
+     ],
+     "auroc_persist_identity_check": 0.816323,
+     "identity_holds": true,
+     "auprc_switch": 0.135593,
+     "auprc_switch_ci": [
+      0.078496,
+      0.222476
+     ],
+     "auprc_switch_lift": 3.0195
+    }
+   },
+   "cross_fitted_margin_model": {
+    "auroc_switch": 0.932212,
+    "auroc_switch_ci": [
+     0.89402,
+     0.960246
+    ]
+   },
+   "raw_minus_cross_fitted": {
+    "difference": 0.002361,
+    "ci": [
+     0.000166,
+     0.005578
+    ],
+    "p_gt_0": 0.9855,
+    "interpretation": "a paired question-cluster bootstrap of the SAME quantity computed two ways; a CI straddling zero means cross-fitting neither helped nor hurt, i.e. the fold intercepts and scales were not distorting the headline"
+   },
+   "paired_raw_contrasts": {
+    "margin-top1|auroc": {
+     "difference": 0.018962,
+     "ci": [
+      0.008179,
+      0.031717
+     ],
+     "p_gt_0": 1.0
+    },
+    "margin-top1|auprc": {
+     "difference": 0.093524,
+     "ci": [
+      0.001179,
+      0.191359
+     ],
+     "p_gt_0": 0.9775
+    },
+    "margin-entropy|auroc": {
+     "difference": 0.11825,
+     "ci": [
+      0.070073,
+      0.168176
+     ],
+     "p_gt_0": 1.0
+    },
+    "margin-entropy|auprc": {
+     "difference": 0.274994,
+     "ci": [
+      0.191796,
+      0.362606
+     ],
+     "p_gt_0": 1.0
+    }
+   },
+   "auroc_switch_by_fold": {
+    "0": {
+     "n": 550,
+     "n_switches": 16,
+     "auroc": 0.969101
+    },
+    "1": {
+     "n": 525,
+     "n_switches": 18,
+     "auroc": 0.959237
+    },
+    "2": {
+     "n": 525,
+     "n_switches": 14,
+     "auroc": 0.854487
+    },
+    "3": {
+     "n": 525,
+     "n_switches": 50,
+     "auroc": 0.882568
+    },
+    "4": {
+     "n": 525,
+     "n_switches": 21,
+     "auroc": 0.971939
+    }
+   },
+   "tie_sensitivity": {
+    "all_cells": {
+     "n": 2650,
+     "n_switches": 119,
+     "auroc_switch": 0.934573,
+     "ci": [
+      0.899304,
+      0.961077
+     ]
+    },
+    "exclude_near_ties_margin_lt_0.01": {
+     "n": 2640,
+     "n_switches": 117,
+     "auroc_switch": 0.936417,
+     "ci": [
+      0.900046,
+      0.962951
+     ]
+    }
+   },
+   "leave_one_continuation_out": [
+    {
+     "dropped": "seed1",
+     "n": 2120,
+     "n_switches": 96,
+     "auroc_switch": 0.934618
+    },
+    {
+     "dropped": "seed2",
+     "n": 2120,
+     "n_switches": 88,
+     "auroc_switch": 0.930666
+    },
+    {
+     "dropped": "seed3",
+     "n": 2120,
+     "n_switches": 94,
+     "auroc_switch": 0.924463
+    },
+    {
+     "dropped": "seed4",
+     "n": 2120,
+     "n_switches": 98,
+     "auroc_switch": 0.942041
+    },
+    {
+     "dropped": "seed5",
+     "n": 2120,
+     "n_switches": 100,
+     "auroc_switch": 0.940916
+    }
+   ],
+   "switch_concentration_by_margin_sextile": [
+    {
+     "sextile": 1,
+     "n": 442,
+     "n_switches": 108,
+     "share_of_all_switches": 0.9076,
+     "switch_rate": 0.244344
+    },
+    {
+     "sextile": 2,
+     "n": 442,
+     "n_switches": 7,
+     "share_of_all_switches": 0.0588,
+     "switch_rate": 0.015837
+    },
+    {
+     "sextile": 3,
+     "n": 441,
+     "n_switches": 1,
+     "share_of_all_switches": 0.0084,
+     "switch_rate": 0.002268
+    },
+    {
+     "sextile": 4,
+     "n": 442,
+     "n_switches": 0,
+     "share_of_all_switches": 0.0,
+     "switch_rate": 0.0
+    },
+    {
+     "sextile": 5,
+     "n": 441,
+     "n_switches": 2,
+     "share_of_all_switches": 0.0168,
+     "switch_rate": 0.004535
+    },
+    {
+     "sextile": 6,
+     "n": 442,
+     "n_switches": 1,
+     "share_of_all_switches": 0.0084,
+     "switch_rate": 0.002262
+    }
+   ],
+   "share_of_switches_in_lowest_sextile": 0.9076
+  },
+  "delta_10": {
+   "n_cells": 2120,
+   "n_questions": 106,
+   "n_switches": 151,
+   "switch_base_rate": 0.071226,
+   "persistence_base_rate": 0.928774,
+   "features": {
+    "margin": {
+     "sign": 1,
+     "auroc_switch": 0.909074,
+     "auroc_switch_ci": [
+      0.870813,
+      0.939972
+     ],
+     "auroc_persist_identity_check": 0.909074,
+     "identity_holds": true,
+     "auprc_switch": 0.413675,
+     "auprc_switch_ci": [
+      0.29737,
+      0.496987
+     ],
+     "auprc_switch_lift": 5.8079
+    },
+    "top1": {
+     "sign": 1,
+     "auroc_switch": 0.891226,
+     "auroc_switch_ci": [
+      0.844318,
+      0.928993
+     ],
+     "auroc_persist_identity_check": 0.891226,
+     "identity_holds": true,
+     "auprc_switch": 0.386442,
+     "auprc_switch_ci": [
+      0.23151,
+      0.522563
+     ],
+     "auprc_switch_lift": 5.4255
+    },
+    "entropy": {
+     "sign": -1,
+     "auroc_switch": 0.820476,
+     "auroc_switch_ci": [
+      0.756656,
+      0.87748
+     ],
+     "auroc_persist_identity_check": 0.820476,
+     "identity_holds": true,
+     "auprc_switch": 0.190447,
+     "auprc_switch_ci": [
+      0.114502,
+      0.296995
+     ],
+     "auprc_switch_lift": 2.6738
+    }
+   },
+   "cross_fitted_margin_model": {
+    "auroc_switch": 0.907049,
+    "auroc_switch_ci": [
+     0.868174,
+     0.938543
+    ]
+   },
+   "raw_minus_cross_fitted": {
+    "difference": 0.002025,
+    "ci": [
+     0.000171,
+     0.005025
+    ],
+    "p_gt_0": 0.9865,
+    "interpretation": "a paired question-cluster bootstrap of the SAME quantity computed two ways; a CI straddling zero means cross-fitting neither helped nor hurt, i.e. the fold intercepts and scales were not distorting the headline"
+   },
+   "paired_raw_contrasts": {
+    "margin-top1|auroc": {
+     "difference": 0.017848,
+     "ci": [
+      0.005352,
+      0.032128
+     ],
+     "p_gt_0": 0.9995
+    },
+    "margin-top1|auprc": {
+     "difference": 0.027233,
+     "ci": [
+      -0.053051,
+      0.106985
+     ],
+     "p_gt_0": 0.693
+    },
+    "margin-entropy|auroc": {
+     "difference": 0.088598,
+     "ci": [
+      0.041756,
+      0.139077
+     ],
+     "p_gt_0": 1.0
+    },
+    "margin-entropy|auprc": {
+     "difference": 0.223228,
+     "ci": [
+      0.1465,
+      0.284356
+     ],
+     "p_gt_0": 1.0
+    }
+   },
+   "auroc_switch_by_fold": {
+    "0": {
+     "n": 440,
+     "n_switches": 21,
+     "auroc": 0.961473
+    },
+    "1": {
+     "n": 420,
+     "n_switches": 26,
+     "auroc": 0.908727
+    },
+    "2": {
+     "n": 420,
+     "n_switches": 20,
+     "auroc": 0.874125
+    },
+    "3": {
+     "n": 420,
+     "n_switches": 62,
+     "auroc": 0.840872
+    },
+    "4": {
+     "n": 420,
+     "n_switches": 22,
+     "auroc": 0.925651
+    }
+   },
+   "tie_sensitivity": {
+    "all_cells": {
+     "n": 2120,
+     "n_switches": 151,
+     "auroc_switch": 0.909074,
+     "ci": [
+      0.870813,
+      0.939972
+     ]
+    },
+    "exclude_near_ties_margin_lt_0.01": {
+     "n": 2112,
+     "n_switches": 148,
+     "auroc_switch": 0.909551,
+     "ci": [
+      0.87114,
+      0.940868
+     ]
+    }
+   },
+   "leave_one_continuation_out": [
+    {
+     "dropped": "seed1",
+     "n": 1696,
+     "n_switches": 121,
+     "auroc_switch": 0.904185
+    },
+    {
+     "dropped": "seed2",
+     "n": 1696,
+     "n_switches": 105,
+     "auroc_switch": 0.911807
+    },
+    {
+     "dropped": "seed3",
+     "n": 1696,
+     "n_switches": 127,
+     "auroc_switch": 0.901397
+    },
+    {
+     "dropped": "seed4",
+     "n": 1696,
+     "n_switches": 126,
+     "auroc_switch": 0.91811
+    },
+    {
+     "dropped": "seed5",
+     "n": 1696,
+     "n_switches": 125,
+     "auroc_switch": 0.910954
+    }
+   ],
+   "switch_concentration_by_margin_sextile": [
+    {
+     "sextile": 1,
+     "n": 354,
+     "n_switches": 112,
+     "share_of_all_switches": 0.7417,
+     "switch_rate": 0.316384
+    },
+    {
+     "sextile": 2,
+     "n": 353,
+     "n_switches": 33,
+     "share_of_all_switches": 0.2185,
+     "switch_rate": 0.093484
+    },
+    {
+     "sextile": 3,
+     "n": 353,
+     "n_switches": 1,
+     "share_of_all_switches": 0.0066,
+     "switch_rate": 0.002833
+    },
+    {
+     "sextile": 4,
+     "n": 353,
+     "n_switches": 3,
+     "share_of_all_switches": 0.0199,
+     "switch_rate": 0.008499
+    },
+    {
+     "sextile": 5,
+     "n": 357,
+     "n_switches": 2,
+     "share_of_all_switches": 0.0132,
+     "switch_rate": 0.005602
+    },
+    {
+     "sextile": 6,
+     "n": 350,
+     "n_switches": 0,
+     "share_of_all_switches": 0.0,
+     "switch_rate": 0.0
+    }
+   ],
+   "share_of_switches_in_lowest_sextile": 0.7417
+  }
+ },
+ "wall_sec": 47.5
+}
